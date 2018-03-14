@@ -1,0 +1,89 @@
+@if (get('layout', $utils)) {
+
+  .float--left {
+    float: left;
+  }
+
+  .float--right {
+    float: right;
+  }
+
+  .center {
+    float: none;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .center--abs {
+    @include translate(-50%, -50%);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+  }
+
+  .flex {
+    @include flexbox();
+  }
+
+  .vert--top {
+    vertical-align: top;
+  }
+
+  .vert--bottom {
+    vertical-align: bottom;
+  }
+
+  .vert--mid {
+    vertical-align: middle;
+  }
+
+  .vert--base {
+    vertical-align: baseline;
+  }
+
+  .vert--sub {
+    vertical-align: sub;
+  }
+
+  .debug * {
+    outline: 1px dotted;
+  }
+
+  /**
+   * Use to constrain component width
+   */
+
+  .constrain {
+    max-width: 85%;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: theme(default-fg);
+
+    @include breakpoint('min', $smaller) {
+      max-width: 50%;
+    }
+
+    @include breakpoint('min', 75em) {
+      max-width: 35%;
+    }
+  }
+
+  /**
+   * Establish a ratio aware video container
+   */
+
+  .video-container {
+    padding-top: 56.25%;
+    position: relative;
+  }
+
+  .video-container video,
+  .video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+}

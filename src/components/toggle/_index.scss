@@ -1,0 +1,114 @@
+@if (get('toggle', $components)) {
+
+  .toggle {
+    position: absolute;
+    height: 1px;
+    width: 1px;
+    overflow: hidden;
+    white-space: nowrap;
+    clip: rect(1px 1px 1px 1px);
+    clip: rect(1px, 1px, 1px, 1px);
+    clip-path: polygon(0 0, 0 0, 0 0, 0 0);
+  }
+
+  .toggle + label {
+    display: inline-block;
+    position: relative;
+    border: 1px solid;
+    border-color: var(--color-border);
+    border-radius: 20px;
+    cursor: pointer;
+    outline: none;
+    user-select: none;
+  }
+
+  .toggle + label::before,
+  .toggle + label::after {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+
+  .toggle + label::before {
+    @include transition(background-color, 0.4s, ease);
+    border-radius: 20px;
+  }
+
+  .toggle + label::after {
+    top: -3px;
+    left: 0;
+    background-color: #fff;
+    border-radius: 50%;
+    box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.6);
+    transition: transform linear 0.08s, background-color linear 0.08s;
+    will-change: transform;
+  }
+
+  .toggle-container {
+    padding: size(xs);
+  }
+
+  /**
+   * Sizes
+   */
+
+  .toggle--sm + label {
+    width: 2.25em;
+    height: 0.875em;
+  }
+
+  .toggle--sm + label::after {
+    width: 1.125em;
+    height: 1.25em;
+  }
+
+  .toggle--md + label {
+    width: 3.25em;
+    height: 1.25em;
+  }
+
+  .toggle--md + label::after {
+    width: 1.375em;
+    height: 1.5em;
+  }
+
+  .toggle--lg + label {
+    width: 4.5em;
+    height: 1.5625em;
+  }
+
+  .toggle--lg + label::after {
+    width: 1.75em;
+    height: 1.75em;
+  }
+
+  /**
+   * Interactive states
+   */
+
+  .toggle:checked + label::before {
+    background-color: theme(default);
+    opacity: 0.5;
+  }
+
+  .toggle:checked + label::after {
+    background-color: theme(default);
+  }
+
+  .toggle--sm:checked + label::after {
+    @include translate(1.125em, null);
+  }
+
+  .toggle--md:checked + label::after {
+    @include translate(1.875em, null);
+  }
+
+  .toggle--lg:checked + label::after {
+    @include translate(2.625em, null);
+  }
+
+}

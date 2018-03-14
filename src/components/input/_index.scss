@@ -1,0 +1,290 @@
+@if (get('input', $components)) {
+
+  .input {
+    font: inherit;
+    color: inherit;
+    width: inherit;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    border: 0.0625em solid;
+    border-color: var(--color-border);
+  }
+
+  .input-container {
+    display: inline-block;
+  }
+
+  .input-field {
+    position: relative;
+    display: inline;
+  }
+
+  .input::placeholder {
+    opacity: 0.65;
+    font-size: 0.875rem;
+  }
+
+  /**
+   * Sizes
+   */
+
+  .input--xs {
+    padding: size(xs);
+  }
+
+  .input--sm {
+    padding: size(sm);
+  }
+
+  .input--md {
+    padding: size(md);
+  }
+
+  .input--lg {
+    padding: size(lg);
+  }
+
+  .input--xl {
+    padding: size(xl);
+  }
+
+  .input--xxl {
+    padding: size(xxl);
+  }
+
+  .input--full {
+    width: 100%;
+  }
+
+  /**
+   * Shapes
+   */
+
+  .input--rounded {
+    border-radius: var(--size-rounded);
+  }
+
+  /**
+   * Appearance
+   */
+
+  .input--raised {
+    box-shadow: 0 0.0625em 0.25em 0 rgba(0, 0, 0, 0.2);
+  }
+
+  /**
+   * Input Group
+   */
+
+  .input-group--inline {
+    display: inline-flex;
+    flex-direction: column;
+  }
+
+  .input-group--block {
+    display: flex;
+    flex-direction: column;
+  }
+
+  @include breakpoint('min', 36.25em) {
+
+    .input-group--block,
+    .input-group--inline {
+      flex-direction: row;
+    }
+
+  }
+
+  .input-group--inline .input,
+  .input-group--block .input {
+    width: 100%;
+
+    @include breakpoint('min', 36.25em) {
+      text-align: center;
+    }
+  }
+
+  .input-group--inline .input-field,
+  .input-group--block .input-field {
+    flex: 1 0 auto;
+    text-align: center;
+    margin-bottom: size(xs);
+
+    @include breakpoint('min', 36.25em) {
+      margin-bottom: 0;
+    }
+  }
+
+  .input-group--rounded .input {
+    padding-left: size(sm);
+    border-radius: var(--size-rounded);
+  }
+
+  @include breakpoint('min', 36.25em) {
+
+    .input-group--rounded .input {
+      border-radius: 0;
+      padding-left: size(xs);
+    }
+
+    .input-group--inline .input-field:not(:last-child) .input,
+    .input-group--block .input-field:not(:last-child) .input {
+      border-right-width: 0;
+    }
+
+    .input-group--rounded .input-field:first-of-type .input {
+      border-top-left-radius: var(--size-rounded);
+      border-bottom-left-radius: var(--size-rounded);
+    }
+
+    .input-group--rounded .input-field:last-of-type .input {
+      border-top-right-radius: var(--size-rounded);
+      border-bottom-right-radius: var(--size-rounded);
+    }
+
+  }
+
+  /**
+   * States
+   */
+
+  .input:focus {
+    outline: 0;
+    box-shadow: 0 0 3px theme(default);
+  }
+
+  .input-field--error {
+    color: theme(danger);
+    fill: theme(danger);
+  }
+
+  .input-field--error .input {
+    padding-right: size(lg);
+    box-shadow: 0 0 3px theme(danger);
+  }
+
+  .input-field--success {
+    color: theme(success);
+    fill: theme(success);
+  }
+
+  .input-field--success .input {
+    padding-right: size(lg);
+    box-shadow: 0 0 3px theme(success);
+  }
+
+  .input-field--warn {
+    color: theme(warn);
+    fill: theme(warn);
+  }
+
+  .input-field--warn .input {
+    padding-right: size(lg);
+    box-shadow: 0 0 3px theme(warn);
+  }
+
+  /**
+   * Nested components
+   */
+
+  .input--full .icon--search-left {
+    @include rotate(1.2turn);
+    position: absolute;
+    left: 10px;
+    top: 3px;
+  }
+
+  .input--xs + .icon--search-right {
+    position: absolute;
+    right: 16px;
+    top: 1px;
+  }
+
+  .input-field .icon--error,
+  .input-field .icon--success {
+    @include transition(opacity, 0.35s);
+    position: absolute;
+    top: 0;
+    right: 20px;
+    opacity: 0;
+  }
+
+  .input-field--error .icon--error,
+  .input-field--success .icon--success {
+    opacity: 1;
+  }
+
+  .input-field--error > textarea,
+  .input-field--success > textarea {
+    resize: none;
+    margin-bottom: -6px;
+  }
+
+  .input-field--error > textarea + .icon--error,
+  .input-field--success > textarea + .icon--success {
+    top: -65px;
+  }
+
+  .input-field .hint {
+    display: none;
+    position: relative;
+    top: 1px;
+    width: inherit;
+    padding: size(xxs);
+    border: 0.0625em solid;
+    background-color: #fff;
+    border-radius: 0.1875em;
+    border-color: var(--color-border);
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+
+    @include breakpoint('min', $smallest) {
+      padding: size(xs);
+    }
+  }
+
+  .input-field--error .hint,
+  .input-field--success .hint {
+    display: block !important;
+  }
+
+  .input-field .hint-text {
+    font-size: 0.875rem;
+  }
+
+  .hint-caret {
+    position: absolute;
+    top: -16px;
+    right: 20px;
+    border: size(xs) solid transparent;
+    border-bottom-color: rgba(0, 0, 0, 0.2);
+  }
+
+  .hint-caret::after {
+    content: "";
+    position: absolute;
+    top: -6px;
+    left: -7px;
+    z-index: get-zindex(base);
+    display: block;
+    border: 7px solid transparent;
+    border-bottom-color: #fff;
+  }
+
+  .input-grid {
+    display: grid;
+    grid-row-gap: size(sm);
+    grid-column-gap: size(xs);
+    grid-template-columns: repeat(auto-fit, minmax(calc(100% / 3), 1fr));
+  }
+
+  .input-grid .input-field {
+    width: 100%;
+  }
+
+  .input-row {
+    display: grid;
+    grid-column-gap: size(md);
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+}

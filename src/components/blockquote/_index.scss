@@ -1,0 +1,126 @@
+@if (get('blockquote', $components)) {
+
+  .blockquote-container {
+    position: relative;
+    padding: size(xxxl) size(md) size(xs) size(md);
+    border: 0.0625em solid;
+    border-color: var(--color-border);
+    box-shadow: 0 0.0625em 0.25em 0 rgba(0, 0, 0, 0.2);
+  }
+
+  .blockquote {
+    position: relative;
+    margin-bottom: size(xl);
+    padding-left: size(xs);
+
+    @include breakpoint('min', $smaller) {
+      padding-left: size(lg);
+    }
+  }
+
+  .blockquote::before {
+    content: "\201C";
+    position: absolute;
+    top: -4px;
+    left: -14px;
+    font-size: 2rem;
+    font-family: Georgia, serif;
+    font-weight: bold;
+    color: theme(default);
+
+    @include breakpoint('min', $smaller) {
+      left: 0;
+      top: -8px;
+      font-size: 2.625rem;
+    }
+  }
+
+  .blockquote-icon {
+    @include translate(-50%, -50%);
+    width: size(xl);
+    height: size(xl);
+    position: absolute;
+    top: 0;
+    left: 50%;
+    border: 1px solid;
+    border-color: var(--color-border);
+    border-radius: var(--size-rounded);
+    background-color: theme(default);
+    box-shadow: 0 0.0625em 0.25em 0 rgba(0, 0, 0, 0.2);
+  }
+
+  .blockquote-icon .icon {
+    @include translate(-50%, -50%);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    fill: theme(default-fg);
+  }
+
+  .blockquote-content {
+    font-weight: bold;
+  }
+
+  .blockquote-expand {
+    font-size: 0.875rem;
+    padding-left: calc((2 / 14) * 1em);
+    padding-right: calc((2 / 14) * 1em);
+    margin-left: calc((8 / 14) * 1em);
+    cursor: pointer;
+    opacity: 0.8;
+    border-style: solid;
+    border-width: 0 0 1px;
+    border-color: var(--color-border);
+  }
+
+  .blockquote-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid;
+    border-color: #e5e6e9;
+  }
+
+  /**
+   * Interactive states
+   */
+
+  .blockquote-expand:focus {
+    outline: 0;
+    box-shadow: 0 0 3px theme(default);
+  }
+
+  /**
+   * Nested components
+   */
+
+  .blockquote-footer .media {
+    border: 0;
+    padding: 0;
+    flex-grow: 1;
+  }
+
+  .blockquote-footer .media-item {
+    margin: 0;
+    width: auto;
+    float: left;
+    padding-top: size(sm);
+  }
+
+  .blockquote-footer .media-content {
+    padding-top: calc(21 / 16 * 1em);
+    padding-left: calc(4 / 16 * 1em);
+  }
+
+  .blockquote-footer .icon-container {
+    padding: size(xs) 0 size(xs) size(md);
+    border: 0;
+    margin-right: -10px;
+  }
+
+  .blockquote-footer .icon {
+    position: relative;
+    left: -8px;
+  }
+
+}

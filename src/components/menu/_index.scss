@@ -1,0 +1,51 @@
+@if (get('menu', $components)) {
+
+  .menu {
+    padding: size(xs);
+    box-shadow: 0 0.0625em 0.25em 0 rgba(0, 0, 0, 0.2);
+  }
+
+  .menu-header {
+    font-size: 0.75rem;
+    display: block;
+    padding: ((2 / 12) * 1em) ((10 / 12) * 1em);
+  }
+
+  .menu-header::after {
+    @include translate(null, -0.65em);
+    content: "";
+    border-bottom: 1px solid #efefef;
+    display: block;
+    width: 100%;
+  }
+
+  .menu-title {
+    display: inline-block;
+  }
+
+  .menu-header .menu-title {
+    position: relative;
+    z-index: get-zindex(base);
+    background-color: inherit;
+    color: #ccc;
+    line-height: 1.8;
+    margin-left: -0.5em;
+  }
+
+  .menu-item {
+    padding: 0.125em 0.625em;
+  }
+
+  .menu-item a {
+    display: inline-block;
+    padding: 0.125em 0.625em;
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .menu-item .icon {
+    margin-right: 0.5em;
+    opacity: 0.85;
+  }
+
+}

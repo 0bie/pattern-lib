@@ -1,0 +1,60 @@
+/**
+ * Spacing
+ * @param {map} $sizes
+ * Refer to `variables.scss` for $sizes
+ * m => margin
+ * mt => margin-top
+ * mb => margin-bottom
+ * ml => margin-left
+ * mr => margin-right
+ * p => padding
+ * pt => padding-top
+ * pb => padding-bottom
+ * pl => padding-left
+ * pr => padding-right
+ * lr => *-left *-right
+ * tb => *-top *-bottom
+ */
+
+@if (get('spacing', $utils)) {
+  $spacing: (
+    'margin': 'm',
+    'padding': 'p'
+  );
+
+  $sides: (
+    'top': 't',
+    'right': 'r',
+    'bottom': 'b',
+    'left': 'l'
+  );
+
+  @each $property, $property-alias in $spacing {
+    @each $size, $value in $sizes {
+
+      .#{$property-alias}--#{$size} {
+        #{$property}: $value !important;
+      }
+
+      .#{$property-alias}lr--#{$size} {
+        #{$property}-left: $value !important;
+        #{$property}-right: $value !important;
+      }
+
+      .#{$property-alias}tb--#{$size} {
+        #{$property}-top: $value !important;
+        #{$property}-bottom: $value !important;
+      }
+
+      @each $side, $side-alias in $sides {
+
+        .#{$property-alias + $side-alias}--#{$size} {
+          #{$property}-#{$side}: $value !important;
+        }
+
+      }
+
+    }
+
+  }
+}

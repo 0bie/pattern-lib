@@ -1,0 +1,87 @@
+@if (get('datatree', $components)) {
+
+  .datatree-list,
+  .datatree-sublist {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    position: relative;
+  }
+
+  .datatree-item,
+  .datatree-subitem {
+    position: relative;
+    list-style: none;
+  }
+
+  .datatree-title {
+    position: relative;
+  }
+
+  .datatree-title::before {
+    position: absolute;
+    top: 16px;
+    left: 6px;
+    width: size(xxs);
+    height: size(xxs);
+    content: "";
+    display: block;
+    background-color: theme(default);
+    border-radius: var(--size-rounded);
+    opacity: 0.65;
+  }
+
+  .datatree-subitem {
+    margin-left: 17px;
+  }
+
+  .datatree-item span {
+    text-decoration: none;
+    display: block;
+    padding: 5px 15px;
+    color: theme(default);
+    position: relative;
+  }
+
+  .datatree-subitem span {
+    border-left: 1px solid #999;
+  }
+
+  .datatree-subitem span::before {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 10px;
+    border-top: 1px solid #999;
+  }
+
+  .datatree-subitem span + .datatree-sublist::after {
+    content: "";
+    display: block;
+    position: absolute;
+    left: -4px;
+    top: -16px;
+    height: 16px;
+    width: 8px;
+    background-color: #fff;
+  }
+
+  .datatree-subitem:last-child::after {
+    content: "";
+    display: block;
+    position: absolute;
+    left: -4px;
+    bottom: 0;
+    height: 16px;
+    width: 8px;
+    background-color: #fff;
+  }
+
+  .datatree span .icon {
+    top: -1px;
+    fill: #999;
+  }
+
+}

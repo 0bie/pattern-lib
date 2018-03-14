@@ -1,0 +1,19 @@
+{
+  "extends": "stylelint-config-standard",
+  "rules": {
+    "at-rule-no-unknown": null,
+    "declaration-empty-line-before": "never",
+    "rule-empty-line-before": ["always", {
+      "ignore": ["inside-block"]
+    }],
+    "block-closing-brace-newline-after": ["always", {
+      "ignoreAtRules": ["if", "else", "each", "include"]
+    }],
+    "block-closing-brace-empty-line-before": ["never", {
+      "except": ["after-closing-brace"]
+    }],
+    "at-rule-empty-line-before": ["always", {
+      "ignoreAtRules": ["if", "else", "each", "include", "import"]
+    }]
+  }
+}

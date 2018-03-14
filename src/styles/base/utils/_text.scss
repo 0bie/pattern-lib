@@ -1,0 +1,71 @@
+@if (get('text', $utils)) {
+
+  .text--right {
+    text-align: right;
+  }
+
+  .text--left {
+    text-align: left;
+  }
+
+  .text--center {
+    text-align: center;
+  }
+
+  .text--truncate {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+
+  .text--sr {
+    /* sr => screen reader */
+    position: absolute;
+    height: 1px;
+    width: 1px;
+    overflow: hidden;
+    white-space: nowrap;
+    clip: rect(1px 1px 1px 1px);
+    clip: rect(1px, 1px, 1px, 1px);
+    clip-path: polygon(0 0, 0 0, 0 0, 0 0);
+  }
+
+  /**
+  *  Text states
+  *
+  *  .text--warn {
+  *    color: #ffba0a;
+  *  }
+  *
+  */
+
+  @each $color, $value in $theme {
+
+    .text--#{$color} {
+      color: $value;
+    }
+
+  }
+
+  /**
+  *  Link states
+  *
+  *  .link--warn {
+  *    color: #ffba0a;
+  *  }
+  *
+  */
+
+  @each $color, $value in $theme {
+
+    .link--#{$color} {
+      color: $value;
+
+      &:hover {
+        color: theme(default);
+      }
+    }
+
+  }
+
+}

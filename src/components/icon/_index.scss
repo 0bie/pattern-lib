@@ -1,0 +1,169 @@
+@if (get('icon', $components)) {
+
+  .icon {
+    fill: currentColor;
+    color: inherit;
+  }
+
+  /**
+   * Sizes
+   */
+
+  .icon--xs {
+    width: size(xs);
+    height: size(xs);
+  }
+
+  .icon--sm {
+    width: size(sm);
+    height: size(sm);
+  }
+
+  .icon--md {
+    width: size(md);
+    height: size(md);
+  }
+
+  .icon--lg {
+    width: size(lg);
+    height: size(lg);
+  }
+
+  .icon--xl {
+    width: size(xl);
+    height: size(xl);
+  }
+
+  .icon--xxl {
+    width: size(xxl);
+    height: size(xxl);
+  }
+
+  /**
+   * Menu icon
+   */
+
+  .icon--menu {
+    cursor: pointer;
+    touch-action: manipulation;
+  }
+
+  .icon--menu .bar {
+    width: 1.5em;
+    height: 0.2em;
+    display: block;
+    position: relative;
+    background-color: currentColor;
+  }
+
+  .icon--menu .bar::before,
+  .icon--menu .bar::after {
+    content: "";
+    width: 1.5em;
+    height: 0.2em;
+    display: block;
+    position: absolute;
+    background-color: currentColor;
+  }
+
+  .icon--menu .bar::before {
+    top: 0.625em;
+  }
+
+  .icon--menu .bar::after {
+    top: -0.625em;
+  }
+
+  /**
+   * Target area
+   * for menu icon
+   */
+
+  .icon--menu::before,
+  .icon--menu::after {
+    content: "";
+    position: absolute;
+    top: -1.25em;
+    padding: 1.5625em;
+  }
+
+  .icon--menu::before {
+    left: 0;
+  }
+
+  .icon--menu::after {
+    right: 0;
+  }
+
+  /**
+   * Exit icon
+   */
+
+  .icon--exit {
+    cursor: pointer;
+    touch-action: manipulation;
+  }
+
+  .icon--exit .bar {
+    position: relative;
+    font-size: 1.5rem;
+    display: block;
+    color: currentColor;
+  }
+
+  .icon--exit .bar::before,
+  .icon--exit .bar::after {
+    content: "";
+    width: 1.5em;
+    display: block;
+    position: absolute;
+    height: ( (3 / 24) * 1em );
+    background-color: currentColor;
+  }
+
+  .icon--exit .bar::before {
+    @include rotate(-0.12turn);
+  }
+
+  .icon--exit .bar::after {
+    @include rotate(0.12turn);
+  }
+
+  /**
+   * Target area
+   * for exit icon
+   */
+
+  .icon--exit::before,
+  .icon--exit::after {
+    position: absolute;
+    top: -1.25em;
+    content: "";
+    padding: 1.5625em;
+  }
+
+  .icon--exit::before {
+    left: 0;
+  }
+
+  .icon--exit::after {
+    right: 0;
+  }
+
+  /**
+   * Shapes
+   */
+
+  .icon--menu--rounded .bar,
+  .icon--exit--rounded .bar {
+    border-radius: var(--size-rounded);
+  }
+
+  .icon--menu--rounded .bar::before,
+  .icon--menu--rounded .bar::after,
+  .icon--exit--rounded .bar::before,
+  .icon--exit--rounded .bar::after {
+    border-radius: var(--size-rounded);
+  }
+
+}

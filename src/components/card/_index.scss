@@ -1,0 +1,113 @@
+@if (get('card', $components)) {
+
+  .card {
+    overflow: hidden;
+  }
+
+  .card-container {
+    max-width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    z-index: get-zindex(flyout);
+    overflow: hidden;
+    border: 0.0625em solid;
+    border-color: var(--color-border);
+    box-shadow: 0 0.0625em 0.25em 0 rgba(0, 0, 0, 0.2);
+  }
+
+  .card-container::before {
+    position: absolute;
+    left: 0;
+    right: 0;
+    content: "";
+    height: size(xs);
+    background-color: theme(default);
+  }
+
+  .card-item img {
+    display: block;
+    min-width: 100%;
+  }
+
+  .card-item .icon {
+    width: 100%;
+    height: 100%;
+  }
+
+  .card-content {
+    padding: size(md);
+  }
+
+  .card-title {
+    text-transform: capitalize;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+
+  .card-titlebar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: size(sm);
+  }
+
+  .card-titlebar .btn {
+    font-size: 0.75rem;
+    text-transform: capitalize;
+  }
+
+  .card-footer {
+    @include transition(transform, 0.5s);
+    @include translate3d(null, 3em);
+    position: relative;
+    bottom: 0;
+    z-index: ( get-zindex(flyout) - 10 );
+    background-color: theme(default);
+    color: theme(default-fg);
+  }
+
+  .card-footer .content {
+    display: flex;
+    justify-content: space-around;
+  }
+
+  .card-footer .btn {
+    font-size: 0.8125rem;
+    border: 0;
+  }
+
+  /**
+   * Card shapes
+   */
+
+  .card--rounded {
+    border-radius: 0.5em;
+  }
+
+  .card--rounded img {
+    border-top-left-radius: 0.5em;
+    border-top-right-radius: 0.5em;
+  }
+
+  .card--rounded .card-footer {
+    border-bottom-left-radius: 0.5em;
+    border-bottom-right-radius: 0.5em;
+  }
+
+  /**
+   * Interactive states
+   * for hidden content
+   */
+
+  .card-container:hover .card-footer,
+  .card-container:focus .card-footer {
+    transform: none;
+  }
+
+  .card-footer .btn:focus {
+    box-shadow: 0 1px 1px theme(default-fg);
+  }
+
+}

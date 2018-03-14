@@ -1,0 +1,55 @@
+@if (get('spinner', $components)) {
+
+  @include keyframes(rotate) {
+
+    100% {
+      transform: rotate(360deg);
+    }
+
+  }
+
+  .spinner {
+    @include animation(rotate 0.5s linear infinite);
+    display: inline-block;
+    content: "";
+    border: 2px solid theme(default);
+    border-radius: var(--size-rounded);
+    border-right-color: transparent;
+    border-top-color: transparent;
+  }
+
+  /**
+   * Sizes
+   */
+
+  .spinner--xs {
+    width: size(xs);
+    height: size(xs);
+  }
+
+  .spinner--sm {
+    width: size(sm);
+    height: size(sm);
+  }
+
+  .spinner--md {
+    width: size(md);
+    height: size(md);
+  }
+
+  .spinner--lg {
+    width: size(lg);
+    height: size(lg);
+  }
+
+  .spinner--xl {
+    width: size(xl);
+    height: size(xl);
+  }
+
+  .spinner--xxl {
+    width: size(xxl);
+    height: size(xxl);
+  }
+
+}

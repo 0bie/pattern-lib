@@ -1,0 +1,66 @@
+@if (get('checkbox', $components)) {
+
+  .checkbox-container {
+    display: inline-flex;
+    align-items: center;
+    cursor: pointer;
+  }
+
+  .checkbox + div::before {
+    content: "";
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 0.1875em;
+    background-color: #eee;
+    background-size: 50% 50%;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    border: 1px solid;
+    border-color: var(--color-border);
+  }
+
+  .checkbox-label {
+    vertical-align: middle;
+  }
+
+  /**
+   * Sizes
+   */
+
+  .checkbox--sm + div::before {
+    width: calc(var(--size-sm-check) * 1em);
+    height: calc(var(--size-sm-check) * 1em);
+  }
+
+  .checkbox--md + div::before {
+    width: calc(var(--size-md-check) * 1em);
+    height: calc(var(--size-md-check) * 1em);
+  }
+
+  .checkbox--lg + div::before {
+    width: calc(var(--size-lg-check) * 1em);
+    height: calc(var(--size-lg-check) * 1em);
+  }
+
+  /**
+   * Shape
+   */
+
+  .checkbox--rounded + div::before {
+    border-radius: var(--size-rounded);
+  }
+
+  /**
+   * Interactive states
+   */
+
+  .checkbox:checked + div::before {
+    background-color: currentColor;
+    background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCjwhLS0gR2VuZXJhdG9yOiBBZG9iZSBJbGx1c3RyYXRvciAxNy4xLjAsIFNWRyBFeHBvcnQgUGx1Zy1JbiAuIFNWRyBWZXJzaW9uOiA2LjAwIEJ1aWxkIDApICAtLT4NCjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+DQo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4Ig0KCSB2aWV3Qm94PSIwIDAgOCA4IiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDAgMCA4IDgiIHhtbDpzcGFjZT0icHJlc2VydmUiPg0KPHBhdGggZmlsbD0iI0ZGRkZGRiIgZD0iTTYuNCwxTDUuNywxLjdMMi45LDQuNUwyLjEsMy43TDEuNCwzTDAsNC40bDAuNywwLjdsMS41LDEuNWwwLjcsMC43bDAuNy0wLjdsMy41LTMuNWwwLjctMC43TDYuNCwxTDYuNCwxeiINCgkvPg0KPC9zdmc+DQo=);
+  }
+
+  .checkbox:active ~ div::before {
+    background-color: hsla(0, 0%, 13%, 0.5);
+  }
+
+}

@@ -1,0 +1,137 @@
+@if (get('carousel', $components)) {
+
+  .carousel {
+    position: relative;
+    height: 23em;
+    border: 0.0625em solid;
+    border-color: var(--color-border);
+
+    @include breakpoint(max, $small) {
+      min-height: 33em;
+    }
+  }
+
+  .carousel-container {
+    position: relative;
+    margin: 0 auto 120px auto;
+    background-color: theme(default-fg);
+    box-shadow: 0 0.0625em 0.25em 0 rgba(0, 0, 0, 0.2);
+
+    @include breakpoint('min', $smaller) {
+      max-width: 50%;
+    }
+
+    @include breakpoint('min', 75em) {
+      max-width: 35%;
+    }
+  }
+
+  .carousel-item {
+    @include transition(opacity, 0.75s);
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    padding: size(sm);
+    display: flex;
+    align-items: center;
+  }
+
+  .carldist-description {
+    margin-bottom: size(xs);
+  }
+
+  .carousel-controls {
+    position: absolute;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-around;
+    background-color: theme(default);
+    border: 0.0625em solid;
+    border-color: var(--color-border);
+    border-top-width: 0;
+  }
+
+  .carousel-controls .btn {
+    border: 0;
+  }
+
+  .carousel-controls .icon {
+    fill: theme(default-fg);
+  }
+
+  /**
+   * Shapes
+   */
+
+  .carousel--rounded {
+    border-top-left-radius: size(xs);
+    border-top-right-radius: size(xs);
+  }
+
+  .carousel--rounded .carousel-image {
+    border-radius: size(xs);
+  }
+
+  .carousel--rounded + .carousel-controls {
+    border-bottom-left-radius: size(xs);
+    border-bottom-right-radius: size(xs);
+  }
+
+  /**
+   * Interactive states
+   */
+
+  .carousel-item--active {
+    opacity: 1;
+  }
+
+  .carousel-controls .btn:focus {
+    box-shadow: 0 1px 1px theme(default-fg);
+  }
+
+  /**
+   * Nested components
+   */
+
+  .carousel-item .media {
+    border: 0;
+  }
+
+  @include breakpoint(null, $smallest, $preSmaller) {
+
+    .carousel-item .media-container {
+      max-width: 85%;
+      margin: 0 auto;
+    }
+
+  }
+
+  .carousel-item .media-item {
+    margin-bottom: size(sm);
+  }
+
+  .carousel-item .media-title {
+    font-weight: bold;
+  }
+
+  .carousel-item .media-content {
+    padding: 0;
+  }
+
+  @include breakpoint('min', $postSmall) {
+
+    .carousel-item .media-item {
+      width: calc(45% - 1.25em);
+    }
+
+    .carousel-item .media-content {
+      width: calc(55% - 1.25em);
+      padding: 0;
+    }
+
+  }
+
+}

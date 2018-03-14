@@ -1,0 +1,80 @@
+@if (get('status', $components)) {
+
+  .status {
+    font-size: 0.75rem;
+    display: inline-block;
+  }
+
+  .status--on {
+    color: theme(success);
+  }
+
+  .status--off {
+    color: theme(danger);
+  }
+
+  .status--idle {
+    color: theme(warn);
+  }
+
+  .status-icon {
+    position: relative;
+    top: -1px;
+    width: (16 / 12 * 1em);
+    height: (16 / 12 * 1em);
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: (4 / 12 * 1em);
+    border: 1px solid currentColor;
+    border-radius: var(--size-rounded);
+  }
+
+  .status-icon::after {
+    @include animation(status 1.7s cubic-bezier(0.25, 0.1, 0.25, 1) infinite);
+    content: '';
+    position: absolute;
+    top: 2px;
+    bottom: 2px;
+    left: 2px;
+    right: 2px;
+    display: block;
+    background-color: currentColor;
+    border-radius: var(--size-rounded);
+  }
+
+  .status--idle .status-icon::after {
+    animation-duration: 10s;
+    animation-delay: 5s;
+  }
+
+  .status--off .status-icon::after {
+    animation: initial;
+  }
+
+  .status-text {
+    display: inline-block;
+    vertical-align: middle;
+    color: inherit;
+    text-transform: uppercase;
+  }
+
+  @keyframes status {
+
+    0% {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    50% {
+      opacity: 0.3;
+      transform: scale(0.65);
+    }
+
+    100% {
+      opacity: 1;
+      transform: scale(0.95);
+    }
+
+  }
+
+}

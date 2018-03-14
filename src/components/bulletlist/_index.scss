@@ -1,0 +1,35 @@
+@if (get(bulletlist, $components)) {
+
+  .bulletlist {
+    padding: 0;
+    margin: 0;
+    column-count: 2;
+  }
+
+  .bulletlist-item {
+    position: relative;
+    padding: size(xs) size(xl);
+    border: 0.0625em solid;
+    border-color: var(--color-border);
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+
+  .bulletlist-item::before {
+    @include translate(-50%, -50%);
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    content: "";
+    width: size(sm);
+    height: size(sm);
+    border: 0.125em solid theme(default);
+    border-radius: var(--size-rounded);
+    background-position: center;
+    background-size: 60%;
+    background-repeat: no-repeat;
+    background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiBpZD0iY2hlY2siIHZpZXdCb3g9IjAgMCA4IDgiIHdpZHRoPSIzMiIgaGVpZ2h0PSIzMiIgZmlsbD0iIzYzNzI4MCI+CiAgICA8cGF0aCBkPSJNNi40MDYgMGwtLjcxOS42ODgtMi43ODEgMi43ODEtLjc4MS0uNzgxLS43MTktLjY4OC0xLjQwNiAxLjQwNi42ODguNzE5IDEuNSAxLjUuNzE5LjY4OC43MTktLjY4OCAzLjUtMy41LjY4OC0uNzE5LTEuNDA2LTEuNDA2eiIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMCAxKSI+PC9wYXRoPgo8L3N2Zz4=);
+  }
+
+}

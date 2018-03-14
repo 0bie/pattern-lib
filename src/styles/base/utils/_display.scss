@@ -1,0 +1,57 @@
+@if (get('display', $utils)) {
+  /**
+   * New Block Formating Context
+   */
+
+  .block {
+    display: flow-root;
+  }
+
+  @supports not (display: flow-root) {
+
+    .block {
+      overflow: hidden;
+    }
+
+  }
+
+  /**
+   * Contain floated elements
+   */
+
+  .cf::before,
+  .cf::after {
+    content: " ";
+    display: table;
+  }
+
+  .cf::after {
+    clear: both;
+  }
+
+  /**
+   * Display Utils
+   */
+
+  .removed {
+    display: none !important;
+    visibility: hidden !important;
+  }
+
+  .revealed {
+    display: block !important;
+    visibility: visible !important;
+  }
+
+  .hidden {
+    position: absolute;
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  .visible {
+    opacity: 1;
+    visibility: visible;
+  }
+
+}

@@ -1,0 +1,232 @@
+/**
+ * variables used to apply theme specific values
+ * Syntax: --<property>-<identifier>[-componentName]
+ * E.g: --color-primary-btn || --size-sm-btn
+ */
+
+:root {
+
+  /**
+   * Defaults
+   */
+
+  --size-rounded: 100px;
+  --size-circle-btn: 60px;
+  --color-hover: #f7f7f5;
+  --color-disabled: rgba(128, 128, 128, 0.6);
+  --color-border: #e5e6e9 #dfe0e4 #d0d1d5;
+  --color-text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+
+  /**
+   * Spacing
+   * 8pt spacing
+   * Reference: https://goo.gl/oMYraK https://goo.gl/GHeJap
+   */
+
+  --size-pt: 0.5;
+  --xxs: calc( var(--size-pt) / 2 * 1em );
+  --xs: calc( var(--size-pt) * 1em );
+  --sm: calc( var(--size-pt) * 2em );
+  --md: calc( var(--size-pt) * 3em );
+  --lg: calc( var(--size-pt) * 4em );
+  --xl: calc( var(--size-pt) * 5em );
+  --xxl: calc( var(--size-pt) * 6em );
+  --xxxl: calc( var(--size-pt) * 7em );
+  --xxxxl: calc( var(--size-pt) * 8em );
+
+  /* Font */
+
+  --system-font: BlinkMacSystemFont, -apple-system, "Segoe UI", "Roboto", "Oxygen",
+                 "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+                 sans-serif;
+
+  /* Checkbox */
+
+  --size-sm-check: 1.25;
+  --size-md-check: 1.75;
+  --size-lg-check: 2.8125;
+
+  /**
+   * Image
+   * Sizes based on multiples of 16
+   * (32, 64, 128, 256, 512)
+   */
+
+  --size-xs-image: calc((var(--size-pt) * 2) * 2em);
+  --size-sm-image: calc((var(--size-pt) * 4) * 2em);
+  --size-md-image: calc((var(--size-pt) * 8) * 2em);
+  --size-lg-image: calc((var(--size-pt) * 16) * 2em);
+  --size-xl-image: calc((var(--size-pt) * 32) * 2em);
+
+  /**
+   * Theme
+   * bg => background color
+   * fg => foreground color
+   */
+
+  --theme-default-bg: #637280;
+  --theme-default-fg: color(var(--theme-default-bg) contrast(51%));
+
+  --theme-danger-bg: #d02000;
+  --theme-danger-fg: color(var(--theme-danger-bg) contrast(51%));
+
+  --theme-success-bg: #27ae60;
+  --theme-success-fg: color(var(--theme-success-bg) l(5%));
+
+  --theme-warn-bg: #ffba0a;
+  --theme-warn-fg: color(var(--theme-warn-bg) contrast(51%));
+
+}
+
+/**
+ * Breakpoint
+ * Refer to `mixins.scss` for usage
+ */
+
+$small: (50 * 1em) !default;
+$preSmall: ($small - 0.0625 * 1em) !default;
+$postSmall: ($small + 0.0625 * 1em) !default;
+
+$smaller: (40 * 1em) !default;
+$preSmaller: ($smaller - 0.0625 * 1em) !default;
+$postSmaller: ($smaller + 0.0625 * 1em) !default;
+
+$smallest: (30 * 1em) !default;
+$preSmallest: ($smallest - 0.0625 * 1em) !default;
+$postSmallest: ($smallest + 0.0625 * 1em) !default;
+
+/**
+ * `z-index`
+ * Refer to `functions.scss` for `get-zindex`
+ *
+ * @example:
+ *
+ *   .selector {
+ *     z-index: get-zindex(base);
+ *   }
+ *
+ */
+
+$zIndex-layers: (
+  base: 5,
+  overlay: 20,
+  flyout: 30,
+  modal: 40,
+  apex: 50
+) !default;
+
+/* Icons */
+
+$social-icons: (
+  dribbble: #f26798,
+  dropbox: #0089d1,
+  facebook: #3b5998,
+  googleplus: #dc4a38,
+  instagram: #325c86,
+  pinterest: #cb2027,
+  twitter: #2aa9e0,
+  vimeo: #1cb7ea,
+  youtube: #d72523
+) !default;
+
+/* Spacing */
+
+$sizes: (
+  0: 0,
+  xxs: var(--xxs),
+  xs: var(--xs),
+  sm: var(--sm),
+  md: var(--md),
+  lg: var(--lg),
+  xl: var(--xl),
+  xxl: var(--xxl),
+  xxxl: var(--xxxl),
+  xxxxl: var(--xxxxl)
+) !default;
+
+/* Theme */
+
+$theme: (
+  default: var(--theme-default-bg),
+  default-fg: var(--theme-default-fg),
+  danger: var(--theme-danger-bg),
+  danger-fg: var(--theme-danger-fg),
+  success: var(--theme-success-bg),
+  success-fg: var(--theme-success-fg),
+  warn: var(--theme-warn-bg),
+  warn-fg: var(--theme-warn-fg)
+) !default;
+
+/* Manifest maps */
+
+/**
+ * Components
+ * Collection of components
+ * Set `true` to include stylesheet
+ * Refer to `components.scss`
+ */
+
+$components-default: (
+  accordion: false,
+  avatar: false,
+  blockquote: false,
+  bulletlist: false,
+  button: false,
+  card: false,
+  cardlist: false,
+  caret: false,
+  carousel: false,
+  checkbox: false,
+  datatree: false,
+  dropdown: false,
+  hero: false,
+  icon: false,
+  image: false,
+  input: false,
+  list: false,
+  media: false,
+  menu: false,
+  modal: false,
+  nav-a: false,
+  nav-b: false,
+  nav-c: false,
+  notice: false,
+  pagination: false,
+  pagination-b: false,
+  picker: false,
+  radio: false,
+  sidebar: false,
+  spinner: false,
+  status: false,
+  table: false,
+  tabset: false,
+  timeline: false,
+  toggle: false
+);
+
+/**
+ * Merge `components-default`
+ * Required to prevent `get` function from throwing error
+ * if a component stylesheet is excluded from `$components` map
+ */
+
+$components: () !default;
+$components: map-merge($components-default, $components);
+
+$utils-default: (
+  display: false,
+  layout: false,
+  reset: false,
+  skin: false,
+  spacing: false,
+  text: false
+);
+
+/**
+ * Merge `utils-default`
+ * Required to prevent `get` function from throwing error
+ * if a utility stylesheet is excluded from `$utils` map
+ */
+
+$utils: () !default;
+$utils: map-merge($utils-default, $utils);

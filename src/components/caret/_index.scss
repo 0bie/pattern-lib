@@ -1,0 +1,42 @@
+@if (get('caret', $components)) {
+
+  .caret {
+    position: relative;
+    display: inline-block;
+    min-width: 1em;
+    min-height: 1em;
+  }
+
+  .caret::after {
+    position: absolute;
+    right: 0;
+    left: auto;
+    content: "";
+    border-left: solid transparent;
+    border-right: solid transparent;
+    border-bottom: solid currentColor;
+    border-width: 0.5em;
+    color: inherit;
+  }
+
+  /**
+   * Directions
+   */
+
+  .caret--top::after {
+    @include rotate(0turn);
+  }
+
+  .caret--bottom::after {
+    @include rotate(0.5turn);
+  }
+
+  .caret--left::after {
+    @include rotate(0.75turn);
+  }
+
+  .caret--right::after {
+    @include rotate(0.25turn);
+  }
+
+}

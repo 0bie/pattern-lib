@@ -1,0 +1,121 @@
+@if (get('media', $components)) {
+
+  .media {
+    overflow: hidden;
+    padding: size(sm);
+    border: 0.0625em solid;
+    border-color: var(--color-border);
+  }
+
+  .media-container {
+    position: relative;
+    z-index: get-zindex(overlay);
+    overflow: hidden;
+  }
+
+  .media-title {
+    overflow: hidden;
+    font-weight: 500;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  .media-titlebar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: size(xxs);
+  }
+
+  .media-titlebar .btn {
+    font-size: 0.75rem;
+    text-transform: capitalize;
+  }
+
+  .media-item {
+    margin-bottom: size(sm);
+
+    @include breakpoint('min', $postSmall) {
+      float: left;
+      margin-right: size(md);
+      width: calc(25% - 1.25em);
+    }
+  }
+
+  .media-item img {
+    display: block;
+    min-width: 100%;
+    width: 100%;
+  }
+
+  .media-item .icon {
+    width: 100%;
+  }
+
+  @include breakpoint('min', $postSmall) {
+
+    .media-content {
+      width: calc(75% - 1.25em);
+      float: left;
+    }
+
+  }
+
+  .media-footer {
+    @include transition(transform, 0.5s);
+    @include translate3d(null, 2.5em);
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: get-zindex(flyout);
+    will-change: transform;
+    color: theme(default-fg);
+    background-color: theme(default);
+  }
+
+  .media-footer .content {
+    padding: size(xs);
+    color: theme(default-fg);
+    background-color: color(theme(default) a(50%));
+    text-shadow: var(--color-text-shadow);
+  }
+
+  .media-footer .block {
+    font-size: 0.875rem;
+  }
+
+  /**
+   * Shapes
+   */
+
+  .media.rounded img {
+    border-radius: size(xs);
+  }
+
+  .media.rounded .media-footer {
+    overflow: hidden;
+    border-bottom-left-radius: size(xs);
+    border-bottom-right-radius: size(xs);
+  }
+
+  /**
+   * Interactive states
+   */
+
+  .media-container:hover .media-footer,
+  .media-container:focus .media-footer {
+    transform: none;
+  }
+
+  /**
+   * Nested components
+   */
+
+  .media-footer .icon--love {
+    position: relative;
+    top: 1px;
+    right: 1px;
+  }
+
+}

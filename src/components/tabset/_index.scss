@@ -1,0 +1,109 @@
+@if (get('tabset', $components)) {
+
+  .tab-list {
+    position: relative;
+    display: flex;
+    color: inherit;
+    margin-bottom: 200px;
+  }
+
+  .tab-item {
+    flex: 1;
+    border: 0.0625em solid;
+    border-color: var(--color-border);
+    text-transform: uppercase;
+    text-align: center;
+    cursor: pointer;
+  }
+
+  .tab-title {
+    font-size: 1rem;
+    position: relative;
+    display: block;
+    padding: 0.5em;
+  }
+
+  .tab-item--active .tab-title::after {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    content: "";
+    width: 0;
+    height: 0;
+    color: theme(default);
+    border: solid transparent;
+    border-top-color: currentColor;
+    border-width: calc(6 / 16 * 1em);
+    transform: translateX(calc(-6 / 16 * 1em));
+  }
+
+  .tab-section {
+    @include transition(opacity, 0.3s);
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 100%;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    text-transform: none;
+    text-align: left;
+    cursor: initial;
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  /**
+   * Interactive states
+   */
+
+  .tab-item:focus,
+  .tab-title:focus {
+    outline: 0;
+    box-shadow: 0 0 3px theme(default);
+  }
+
+  .tab-item--active .tab-title {
+    background-color: theme(default);
+    color: theme(default-fg);
+    border: 0;
+  }
+
+  .tab-item--active .tab-section {
+    opacity: 1;
+    visibility: visible;
+    color: theme(default);
+    z-index: get-zindex(overlay);
+  }
+
+  /**
+   * Shapes
+   */
+
+  .tab-list--rounded .tab-item:first-of-type {
+    border-top-left-radius: 0.5em;
+    border-bottom-left-radius: 0.5em;
+
+    .tab-title {
+      border-top-left-radius: 0.5em;
+      border-bottom-left-radius: 0.5em;
+    }
+  }
+
+  .tab-list--rounded .tab-item:last-of-type {
+    border-top-right-radius: 0.5em;
+    border-bottom-right-radius: 0.5em;
+
+    .tab-title {
+      border-top-right-radius: 0.5em;
+      border-bottom-right-radius: 0.5em;
+    }
+  }
+
+  .tab-list--rounded .tab-title::after {
+    top: 50%;
+    border-radius: 50%;
+    border-width: calc(12 / 16 * 1em);
+    transform: translateX(calc(-12 / 16 * 1em)) rotate(0.5turn);
+  }
+
+}

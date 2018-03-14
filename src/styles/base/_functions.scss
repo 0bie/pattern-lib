@@ -1,0 +1,112 @@
+/**
+ * To call a function without passing it as an expression the following syntax is required:
+ * `@if functionName($arg) {};`
+ * E.g `log("error message");` === `@if log("error message") {};`
+ * `@return null` is used to avoid compiler errors in some cases where nothing is expected
+ * Reference: https://www.sitepoint.com/using-error-responsibly-in-sass/
+ */
+
+/**
+ * Error handling:
+ * @param {string} $message - Message to log
+ */
+
+@function log($message) {
+  @if feature-exists('at-error') != true {
+    @warn $message;
+  } @else {
+    @error $message;
+  }
+}
+
+/**
+ * Check for number type
+ * @param {list} $values
+ */
+
+@function is-number($values) {
+  @each $value in $values {
+    @return type-of($value) == number;
+  }
+}
+
+/**
+ * Check for string type
+ * @param {list} $values
+ */
+
+@function is-string($values) {
+  @each $value in $values {
+    @return type-of($value) == string;
+  }
+}
+
+/**
+ * Check for number type and unit
+ * @param {number} $value
+ * @param {string} $mixin - The mixin containing `$value`
+ */
+
+@function has-unit($value, $mixin) {
+  @if (type-of($value) != number) or unitless($value) {
+    @if log("#{$mixin} mixin: `#{$value}` must be a valid numeric value") {}
+  }
+  @return type-of($value) == number;
+}
+
+/**
+ * Get keys from a map
+ * @param {string} $key - The key of the map
+ * @param {map} $map - The map object
+ */
+
+@function get($key, $map) {
+  @if (type-of($key) == string) and (type-of($map) == map) {
+    @return map-get($map, $key);
+  }
+}
+
+/**
+ * Get default z-index values
+ * @param {string} $layer - The z-index layer
+ * @param {map} $map - The $zIndex-layers map in `defaults.scss`
+ */
+
+@function get-zindex($layer, $map: $zIndex-layers) {
+  @if (type-of($layer) == string) and (type-of($map) == map) {
+    @if (map-has-key($map, $layer)) {
+      @return map-get($map, $layer);
+    }
+  }
+  @if log("Unknown map key: `#{$layer}` used in `get-zindex()` function ") {}
+}
+
+/**
+ * Get default size values
+ * @param {string} $size - The size
+ * @param {map} $map - The `$sizes` map in `defaults.scss`
+ */
+
+@function size($size, $map: $sizes) {
+  @if (type-of($size) == string) and (type-of($map) == map) {
+    @if (map-has-key($map, $size)) {
+      @return map-get($map, $size);
+    }
+  }
+  @if log("Unknown map key: `#{$size}` used in `size()` function ") {}
+}
+
+/**
+ * Get default theme values
+ * @param {string} $state - The theme state
+ * @param {map} $map - The `$theme` map in `defaults.scss`
+ */
+
+@function theme($state, $map: $theme) {
+  @if (type-of($state) == string) and (type-of($map) == map) {
+    @if (map-has-key($map, $state)) {
+      @return map-get($map, $state);
+    }
+  }
+  @if log("Unknown map key: `#{$state}` used in `theme()` function ") {}
+}

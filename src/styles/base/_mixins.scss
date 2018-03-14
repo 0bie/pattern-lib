@@ -1,0 +1,381 @@
+/**
+ * animation
+ * @param {list} $props - Animation properties
+ * @example:
+ *
+ * .selector {
+ *   @include animation(animationName 1.5s ease 0.5s infinite);
+ * }
+ */
+
+@mixin animation($props) {
+  // Check if the `$props` list contains an adequate number of values for animation shorthand
+  @if (length($props) >= 2) {
+    animation: #{$props};
+  } @else {
+    @error "animation shorthand requires 2 or more values";
+  }
+}
+
+/**
+ * keyframes
+ * @param {string} $animationName
+ * @example:
+ *
+ * @include keyframes(animationName) {
+ *   0%{transform(translateY(-20px));}
+ *   50%{transform(translateY(20px));}
+ *   100%{transform(none);}
+ * }
+ */
+
+@mixin keyframes($animationName) {
+  @keyframes #{$animationName} {
+    @content;
+  }
+}
+
+/**
+ * breakpoint
+ * @param {string} $query (min|max|null)
+ * @param {number} $vw1 - viewport width
+ * @param {number} $vw2 (Optional)
+ *
+ * Refer to `defaults.scss` for viewport values
+ *
+ * @examples:
+ *
+ * .selector1 {
+ *   @include breakpoint('min', $smaller) {
+ *     padding: 0;
+ *   }
+ * }
+ *
+ * .selector2 {
+ *   @include breakpoint('max', 50em) {
+      padding: 0;
+ *   }
+ * }
+ *
+ * .selector3 {
+ *   @include breakpoint(null, $smaller, $small) {
+ *     padding: 0;
+ *   }
+ * }
+ *
+ */
+
+@mixin breakpoint($query, $vw1, $vw2: null) {
+  @if (($query == 'min') and has-unit($vw1, 'breakpoint')) {
+    @media (min-width: $vw1) { @content; }
+  } @else if (($query == 'max') and has-unit($vw1, 'breakpoint')) {
+    @media (max-width: $vw1) { @content; }
+  } @else if ($query == null) {
+    @if (has-unit($vw1, 'breakpoint') and has-unit($vw2, 'breakpoint')) {
+      @media (min-width: $vw1) and (max-width: $vw2) { @content; }
+    }
+  } @else {
+    @error 'breakpoint mixin: `#{$query}` should be `min`, `max` or `null`';
+  }
+}
+
+.breapointTestMinMax {
+  @include breakpoint(null, 80em, 90em) {
+    overflow: visible;
+  }
+}
+
+.breapointTestMax {
+  @include breakpoint(max, 80em) {
+    overflow: visible;
+  }
+}
+
+.breapointTestMin {
+  @include breakpoint('min', 80em) {
+    overflow: visible;
+  }
+}
+
+/**
+ * transition
+ * @param {string} $property
+ * @param {number} $duration
+ * @param {string} $timing-function
+ * @param {number} $delay
+ * @param {list} $props - multiple transition properties
+ *
+ * @example:
+ *
+ * .selector {
+ *   @include transition(all, 0.5s, ease, 0.5s);
+ * }
+ *
+ */
+
+@mixin transition($property, $duration, $timing-function: ease, $delay: 0s) {
+  transition: $property $duration $timing-function $delay;
+}
+
+/**
+ * flexbox
+ * @param {string} $direction - column|row
+ * @param {string} $wrap - nowrap|wrap|wrap-reverse
+ * @param {string} $justify - flex-start|flex-end|center|space-between|space-around
+ * @example:
+ *
+ * .selector {
+ *   @include flexbox($wrap: nowrap);
+ * }
+ */
+
+@mixin flexbox($direction: row, $wrap: wrap, $justify: null) {
+  @supports (display: flex) {
+    display: flex;
+    flex-direction: $direction;
+    flex-wrap: $wrap;
+    justify-content: $justify;
+  }
+}
+
+/**
+ * flexbox center
+ * @example:
+ *
+ * .selector {
+ *   @inlcude flexbox-center();
+ * }
+ *
+ */
+
+@mixin flexbox-center() {
+  @supports (display: flex) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+/**
+ * rotate
+ * @param {number} $turn (deg|turn|grad|rad)
+ * @example:
+ *
+ * .selector {
+ *   @include rotate(0.25turn);
+ * }
+ *
+ */
+
+@mixin rotate ($turn) {
+  @if (has-unit($turn, 'rotate')) {
+    transform: rotate($turn);
+  }
+}
+
+.rotateTest {
+  @include rotate(0.75turn);
+}
+
+/**
+ * axis_rotate
+ * @param {number} $x
+ * @param {number} $y
+ * @example:
+ *
+ * .selector1 {
+ *   @include axis-rotate(180deg, null) // rotateX
+ * }
+ *
+ * .selector2 {
+ *   @inlcude axis-rotate(null, 180deg) // rotateY
+ * }
+ */
+
+@mixin axis-rotate(
+  $x: null,
+  $y: null
+){
+  @if (($x != null and $y == null) and has-unit($x, 'axis-rotate')) {
+    transform: rotateX($x);
+  } @else if (($y != null and $x == null) and has-unit($y, 'axis-rotate')) {
+    transform: rotateY($y);
+  } @else if ($x == null and $y == null ) {
+    @error "axis-rotate mixin requires a valid x or y value";
+  } @else {
+    @error "axis-rotate mixin: `null` is a required value";
+  }
+}
+
+.axisRotateTest {
+  @include axis-rotate(2turn, null);
+}
+
+/**
+ * scale
+ * @param {number} $size
+ * @example:
+ *
+ * .selector {
+ *   @include scale(1.2);
+ * }
+ */
+
+@mixin scale ($size) {
+  @if (is-number($size)) {
+    transform: scale($size);
+  } @else {
+    @error "scale mixin: `#{$size}` must be a valid numeric value";
+  }
+}
+
+.scaleTest {
+  @include scale(5);
+}
+
+/**
+ * axis_scale
+ * @param {number} $x
+ * @param {number} $y
+ * @example:
+ *
+ * .selector1 {
+ *   @include axis-scale(1.2, null) // scaleX
+ * }
+ *
+ * .selector2 {
+ *   @include axis-scale(null, 1.2) // scaleY
+ * }
+ *
+ * .selector3 {
+ *   @include axis-scale(1, 1.2) // scale(X,Y)
+ * }
+ */
+
+@mixin axis-scale($x: null, $y: null) {
+  @if (($x != null and $y == null) and is-number($x)) {
+    transform: scaleX($x);
+  } @else if (($y != null and $x == null) and is-number($y)) {
+    transform: scaleY($y);
+  } @else if (is-number($x) and is-number($y)) {
+    transform: scale($x, $y);
+  } @else if ($x == null and $y == null ) {
+    @error "axis_scale mixin requires a valid x or y value";
+  } @else {
+    @error "axis-scale mixin: #{$x} or #{$y} should be a valid numeric value";
+  }
+}
+
+.axisScaleTest {
+  @include axis-scale(50, 1);
+}
+
+.axisScaleTest1 {
+  @include axis-scale(null, 1);
+}
+
+.axisScaleTest2 {
+  @include axis-scale(1.3, null);
+}
+
+/**
+ * Translate
+ * @param {number} $x
+ * @param {number} $y
+ * @example:
+ *
+ * .selector1 {
+ *   @include translate(1em, null) // translateX
+ * }
+ *
+ * .selector2 {
+ *   @include translate(null, 1em) // translateY
+ * }
+ *
+ * .selector3 {
+ *   @include translate(1em, 1.2em) // translate(X, Y)
+ * }
+ */
+
+@mixin translate(
+  $x: null,
+  $y: null
+){
+  @if (($x != null and $y == null) and is-number($x)) {
+    transform: translateX($x);
+  } @else if (($y != null and $x == null) and is-number($y)) {
+    transform: translateY($y);
+  } @else if (($x != null and $y != null) and is-number($x $y)) {
+    transform: translate($x, $y);
+  } @else if ($x == null and $y == null) {
+    @error "translate mixin requires a valid x or y value";
+  } @else {
+    @error "translate mixin: #{$x} or #{$y} should be a valid numeric value";
+  }
+}
+
+.translateTest1 {
+  @include translate(null, 6em);
+}
+
+.translateTest2 {
+  @include translate(6em, null);
+}
+
+.translateTest3 {
+  @include translate(6em);
+}
+
+/**
+ * Translate3d
+ * @param {number} $x
+ * @param {number} $y
+ * @param {number} $z
+ * @example:
+ *
+ * .selector1 {
+ *   @include translate3d(1em, null) x
+ * }
+ *
+ * .selector2 {
+ *   @include translate3d(null, 1em) y
+ * }
+ */
+
+@mixin translate3d(
+  $x: null,
+  $y: null,
+  $z: null
+){
+  @if (($x != null and $y == null) and is-number($x)) {
+    transform: translate3d($x, 0, 0);
+  } @else if (($y != null and $x == null) and is-number($y)) {
+    transform: translate3d(0, $y, 0);
+  } @else if (($x != null and $y != null) and is-number($x $y)) {
+    transform: translate3d($x, $y, 0);
+  } @else if ($x == null and $y == null) {
+    @error "translate3d mixin requires a valid x or y value";
+  } @else {
+    @error "translate3d mixin: #{$x} or #{$y} should be a valid numeric value";
+  }
+}
+
+.translateTest4 {
+  @include translate3d(null, 6em);
+}
+
+.translateTest5 {
+  @include translate3d(6em, null);
+}
+
+.typeTest {
+  $x: 1em;
+  $y: a, b;
+  $z: (a: 1, b: 2);
+  @debug type-of($x);
+  @debug type-of($y);
+  @debug type-of($z);
+  @debug(type-of(1));
+  @debug(type-of('1'));
+  @debug type-of(null);
+}

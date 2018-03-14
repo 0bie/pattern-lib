@@ -1,0 +1,166 @@
+@if (get('nav-a', $components)) {
+
+  .nav-a {
+    position: relative;
+    max-width: 43.75em;
+    margin-left: auto;
+    margin-right: auto;
+    color: inherit;
+    padding: size(xs);
+    overflow: hidden; /* Prevents horizontal scrolling due to `<menu-icon>` target area */
+    box-shadow: 0 0.0625em 0.25em 0 rgba(0, 0, 0, 0.2);
+  }
+
+  .nav-a .logo {
+    display: inline-block;
+    text-decoration: none;
+  }
+
+  .nav-a .logo-text {
+    display: inline;
+    vertical-align: middle;
+  }
+
+  /**
+   * Align menu icon
+   */
+
+  .nav-a .icon--menu {
+    position: absolute;
+    right: 1em;
+    margin-top: 0.8125em;
+
+    @include breakpoint('min', 42.6875em) {
+      display: none;
+    }
+  }
+
+  .nav-a-list {
+    display: inline;
+    text-align: center;
+    padding-top: size(xs);
+    padding-bottom: size(xs);
+
+    @include breakpoint('min', $smaller) {
+      text-align: initial;
+      margin-left: size(xs);
+      border-left: 1px solid currentColor;
+    }
+
+    @include breakpoint(max, 42.625em) {
+      display: none;
+    }
+  }
+
+  .nav-a-item {
+    padding-top: size(xs);
+    padding-bottom: size(xs);
+    text-transform: capitalize;
+
+    @include breakpoint('min', $smaller) {
+      display: inline-block;
+      padding-left: size(md);
+    }
+  }
+
+  .nav-a-item a {
+    text-decoration: none;
+    letter-spacing: 0.0625em;
+  }
+
+  /**
+   * Mobile Navigation
+   */
+
+  .nav-a--sm {
+    @include scale(0.95);
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: (get-zindex(apex));
+    transform-origin: 100% 0;
+    height: 100vh;
+    text-align: center;
+    background-color: color(theme(default) a(97%));
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.25s, transform 0.25s, visibility 0.25s;
+  }
+
+  .nav-a--sm .nav-a-item {
+    display: list-item;
+  }
+
+  /**
+   * Align exit icon
+   */
+
+  .nav-a--sm .icon--exit {
+    position: absolute;
+    top: size(sm);
+    right: size(md);
+    z-index: ( get-zindex(modal) + 20 );
+    display: block;
+    height: 2em;
+    width: 2em;
+    margin-top: 1.25em;
+  }
+
+  .nav-a--sm .icon--exit .bar {
+    color: theme(default-fg);
+  }
+
+  .nav-a--sm-list {
+    padding-top: size(xl);
+  }
+
+  .nav-a--sm-list a {
+    font-size: 1.5rem;
+    display: inline-block;
+    text-decoration: none;
+    color: theme(default-fg);
+    text-transform: capitalize;
+    padding-top: ( (16 / 24) * 1em );
+    padding-bottom: ( (16 / 24) * 1em );
+    letter-spacing: ( (1 / 24) * 1em );
+    text-shadow: var(--color-text-shadow);
+  }
+
+  .nav-a--sm-list a:hover {
+    text-decoration: underline;
+  }
+
+  /**
+   * Interactive states
+   */
+
+  .nav-a .icon--menu:focus,
+  .nav-a .icon--exit:focus {
+    outline: 0;
+    box-shadow: 0 0 3px theme(default);
+  }
+
+  .nav-a.is-active .nav-a--sm {
+    @include scale(1);
+    opacity: 1;
+    margin-bottom: -1.25em;
+    visibility: visible;
+
+    @include breakpoint('min', 42.6875em) {
+      opacity: 0;
+      visibility: hidden;
+    }
+  }
+
+  /**
+   * Prevent background scrolling
+   * when navigation modal is active
+   */
+
+  html.nav-a--is-active {
+    overflow: hidden;
+  }
+
+}

@@ -1,0 +1,5 @@
+# Ignore config files
+
+src/styles/base/_mixins.scss
+src/styles/base/_defaults.scss
+src/styles/base/_functions.scss

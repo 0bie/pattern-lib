@@ -1,0 +1,111 @@
+@if (get('avatar', $components)) {
+
+  .avatar {
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+    border-radius: size(xs);
+    background-color: theme(default);
+    color: theme(default-fg);
+  }
+
+  .avatar-text {
+    @include translate(-50%, -50%);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    letter-spacing: 2px;
+    text-align: center;
+    color: inherit;
+    text-transform: uppercase;
+    text-shadow: var(--color-text-shadow);
+  }
+
+  .avatar--sm .avatar-text {
+    font-size: 0.625rem;
+  }
+
+  .avatar--lg .avatar-text {
+    font-size: 1.375rem;
+  }
+
+  .avatar--xl .avatar-text {
+    font-size: 1.75rem;
+  }
+
+  /**
+   * Sizes
+   */
+
+  .avatar--sm {
+    width: size(lg);
+    height: size(lg);
+  }
+
+  .avatar--md {
+    width: size(xxl);
+    height: size(xxl);
+  }
+
+  .avatar--lg {
+    width: size(xxxxl);
+    height: size(xxxxl);
+  }
+
+  .avatar--xl {
+    width: calc(var(--size-pt) * 14em);
+    height: calc(var(--size-pt) * 14em);
+  }
+
+  /**
+   * Shapes
+   */
+
+  .avatar--rounded {
+    border-radius: var(--size-rounded);
+  }
+
+  /**
+   * Appearance
+   */
+
+  .avatar--raised {
+    box-shadow: 0 0.0625em 0.25em 0 rgba(0, 0, 0, 0.2);
+  }
+
+  $letters: a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v, w, x, y, z !default;
+
+  @each $letter in $letters {
+    $color: rgb(random(255), random(255), random(255));
+    .avatar--#{$letter} {
+      background-color: $color;
+      color: color($color contrast(51%));
+      & .icon {
+        fill: color($color contrast(51%));
+      }
+    }
+  }
+
+  /**
+   * Nested components
+   */
+
+  .avatar .icon {
+    @include translate(-50%, -50%);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: size(sm);
+    height: size(sm);
+  }
+
+  .avatar--sm .icon {
+    width: size(xs);
+    height: size(xs);
+  }
+
+  .avatar--xl .icon {
+    width: size(md);
+    height: size(md);
+  }
+}

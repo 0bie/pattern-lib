@@ -1,0 +1,160 @@
+@if (get('dropdown', $components)) {
+
+  .dropdown-container {
+    position: relative;
+    display: inline-block;
+  }
+
+  .dropdown-label {
+    display: inline-block;
+    padding: size(xxs) size(xs) size(xxs);
+    text-transform: capitalize;
+    border: 0.0625em solid;
+    border-color: var(--color-border);
+    cursor: pointer;
+  }
+
+  .dropdown-item {
+    padding: size(xs) size(sm) size(xs);
+    text-transform: capitalize;
+    cursor: pointer;
+  }
+
+  .dropdown-item:not(:last-child) {
+    border-bottom: 0.0625em solid;
+    border-color: var(--color-border);
+  }
+
+  .dropdown-item a {
+    text-decoration: none;
+  }
+
+  .dropdown-wrap {
+    @include translate3d(null, 1em);
+    position: absolute;
+    top: 100%;
+    left: auto;
+    z-index: get-zindex(flyout);
+    background-color: #fff;
+    border: 0.0625em solid;
+    border-color: var(--color-border);
+    white-space: nowrap;
+    min-width: 10em;
+    opacity: 0;
+    pointer-events: none;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    box-shadow: 0 0.0625em 0.25em 0 rgba(0, 0, 0, 0.2);
+    transition: transform 0.35s, opacity 0.35s;
+    transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
+
+  /**
+   * Shapes
+   */
+
+  .dropdown--rounded .dropdown-label,
+  .dropdown--rounded .dropdown-list {
+    border-radius: 0.1875em;
+  }
+
+  /**
+   * Interactive states
+   */
+
+  .dropdown-item:hover,
+  .dropdown-item:focus {
+    background-color: var(--color-hover);
+    color: color(theme(default) l(15%));
+  }
+
+  .dropdown--active .dropdown-wrap {
+    opacity: 1;
+    transform: none;
+    pointer-events: auto;
+  }
+
+  .dropdown-container:focus,
+  .dropdown-container:hover {
+    outline: 0;
+    box-shadow: 0 0 3px theme(default);
+  }
+
+  /**
+   * Positions
+   */
+
+  .dropdown-list--left {
+    right: auto !important;
+    left: 0 !important;
+  }
+
+  .dropdown-list--right {
+    left: auto !important;
+    right: 0 !important;
+  }
+
+  .dropdown-list--bottom {
+    top: auto !important;
+    bottom: 100% !important;
+  }
+
+  .dropdown-list--top {
+    bottom: auto !important;
+    top: 100% !important;
+  }
+
+  /**
+   * Nested components
+   */
+
+  .dropdown-label .icon {
+    pointer-events: none;
+  }
+
+  /**
+   * Use a button within the click target
+   * Prevents context menu showing in FF mobile
+   * Reference: https://goo.gl/yyvHEt
+   */
+
+  .dropdown-label .btn {
+    border: 0;
+    pointer-events: none;
+  }
+
+  .dropdown-wrap .media {
+    border: 0;
+    margin: 0;
+    float: none;
+    width: auto;
+  }
+
+  @include breakpoint('min', $postSmall) {
+
+    .dropdown-wrap--media {
+      min-width: 15em;
+    }
+
+    .dropdown-wrap--media .media-item {
+      width: calc(35% - 1em);
+      margin-right: 1em;
+      margin-bottom: 0;
+    }
+
+    .dropdown-wrap--media .media-content {
+      width: 65%;
+    }
+
+    .dropdown-wrap--media .media-description {
+      font-size: 0.875rem;
+    }
+
+    .dropdown-wrap--media .media-titlebar {
+      margin-bottom: 0;
+    }
+
+  }
+
+}

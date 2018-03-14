@@ -1,0 +1,44 @@
+@if (get('notice', $components)) {
+
+  .notice {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: size(xs) size(sm);
+    border: 0.0625em solid;
+    border-color: var(--color-border);
+  }
+
+  .notice p {
+    flex-grow: 1;
+    text-shadow: var(--color-text-shadow);
+  }
+
+  /**
+   * States
+   */
+
+  .notice--error {
+    color: theme(danger-fg);
+    background-color: theme(danger);
+  }
+
+  .notice--success {
+    color: theme(success-fg);
+    background-color: theme(success);
+  }
+
+  .notice--warn {
+    color: theme(warn-fg);
+    background-color: theme(warn);
+  }
+
+  /**
+   * Shapes
+   */
+
+  .notice--rounded {
+    border-radius: var(--size-rounded);
+  }
+
+}

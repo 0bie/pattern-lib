@@ -1,0 +1,20 @@
+@if (get('list', $components)) {
+
+  .list {
+    overflow: hidden;
+    border: 0.0625em solid;
+    border-color: var(--color-border);
+    position: relative;
+    padding: size(sm);
+  }
+
+  .list-item {
+    padding: size(xxs) size(xs) size(xxs);
+  }
+
+  .list-item:not(:last-child) {
+    border-bottom: 1px solid;
+    border-color: var(--color-border);
+  }
+
+}

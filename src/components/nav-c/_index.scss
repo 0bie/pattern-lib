@@ -1,0 +1,213 @@
+@if (get('nav-c', $components)) {
+
+  .nav-c {
+    width: 100%;
+    overflow: hidden;
+    color: inherit;
+    border-top: 0.125em solid currentColor;
+
+    @include breakpoint('min', $smaller) {
+      height: auto;
+      padding-top: size(xs);
+    }
+  }
+
+  .nav-c-container {
+    display: flex;
+    padding: size(xs);
+    align-items: center;
+  }
+
+  .nav-c-container .logo {
+    font-size: 1rem;
+    flex-grow: 4;
+    display: inline-block;
+    text-transform: capitalize;
+    letter-spacing: 0.05em;
+  }
+
+  .nav-c-container .logo-link {
+    display: block;
+    max-width: 10em;
+    height: 1.5em;
+    padding-right: 0.625em;
+    color: inherit;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    text-decoration: none;
+  }
+
+  .nav-c-container .logo-text {
+    visibility: hidden;
+    display: inline-block;
+
+    @include breakpoint('min', 24.1875em) {
+      visibility: visible;
+    }
+  }
+
+  .nav-c-container .icon--logo {
+    vertical-align: middle;
+    margin-top: -0.35em;
+  }
+
+  .nav-c-menu {
+    @include transition(background-color, 0.1s);
+    display: inline-block;
+    border: 0.0625em solid currentColor;
+    padding-left: size(xs);
+    padding-right: size(xs);
+    cursor: pointer;
+
+    @include breakpoint('min', $postSmaller) {
+      display: none;
+    }
+  }
+
+  .nav-c-menu::before {
+    content: "Menu";
+    color: inherit;
+
+    @include breakpoint(max, 20em) {
+      font-size: 0.75rem;
+    }
+  }
+
+  .nav-c-form {
+    display: flex;
+    overflow: hidden;
+    margin-right: size(xs);
+    border: 0.0625em solid;
+    border-color: var(--color-border);
+
+    @include breakpoint('min', $postSmaller) {
+      margin-right: 0;
+    }
+  }
+
+  .nav-c-form .btn {
+    display: flex;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+    border-color: transparent;
+    border: 1px solid transparent;
+  }
+
+  .nav-c-form .input {
+    border: 0;
+    padding-left: 0.3125em;
+    padding-right: 0.3125em;
+  }
+
+  .nav-c-form .input:focus {
+    outline: 0;
+  }
+
+  .nav-c-form .input:focus ~ .btn {
+    background-color: currentColor;
+  }
+
+  .nav-c-form .input:focus ~ .btn .icon {
+    color: theme(default-fg);
+  }
+
+  .nav-c-list {
+    overflow: hidden;
+    background-color: #fff;
+
+    @include breakpoint(max, $smaller) {
+      height: 0vh; /* stylelint-disable-line length-zero-no-unit */
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.8s, height 0.35s;
+    }
+  }
+
+  .nav-c-item {
+    @include transition(opacity, 0.75s, ease);
+    padding-top: 1.25em;
+    opacity: 0;
+    will-change: opacity;
+
+    @include breakpoint('min', $postSmaller) {
+      opacity: 1;
+      display: inline;
+      margin-right: size(lg);
+    }
+  }
+
+  .nav-c-item:nth-of-type(1) {
+    transition-delay: 0.05s;
+  }
+
+  .nav-c-item:nth-of-type(2) {
+    transition-delay: 0.1s;
+  }
+
+  .nav-c-item:nth-of-type(3) {
+    transition-delay: 0.15s;
+  }
+
+  .nav-c-item:nth-of-type(4) {
+    transition-delay: 0.2s;
+  }
+
+  .nav-c-item:nth-of-type(5) {
+    transition-delay: 0.25s;
+  }
+
+  .nav-c-item:nth-of-type(6) {
+    transition-delay: 0.3s;
+  }
+
+  .nav-c-item a {
+    color: inherit;
+    text-decoration: none;
+    text-transform: capitalize;
+  }
+
+  /**
+   * Interactive states
+   */
+
+  .nav-c-menu:hover {
+    background-color: theme(default);
+  }
+
+  .nav-c-menu:hover::before {
+    color: theme(default-fg);
+  }
+
+  .nav-c--active .nav-c-menu {
+    background-color: theme(default);
+  }
+
+  .nav-c--active .nav-c-menu::before {
+    content: "Close";
+    color: theme(default-fg);
+  }
+
+  .nav-c--active .nav-c-list {
+    height: 100vh;
+    opacity: 1;
+    visibility: visible;
+
+    @include breakpoint('min', $postSmaller) {
+      height: auto;
+    }
+  }
+
+  .nav-c--active .nav-c-item {
+    opacity: 1;
+  }
+
+  /**
+   * Prevent background scrolling
+   * when `nav` is `active`
+   */
+
+  main.nav-c--active {
+    overflow: hidden;
+  }
+
+}

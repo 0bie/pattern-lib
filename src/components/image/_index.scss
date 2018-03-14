@@ -1,0 +1,49 @@
+@if (get('image', $components)) {
+
+  .image-container {
+    position: relative;
+    display: inline-block;
+  }
+
+  .image-container .image {
+    display: block;
+  }
+
+  .image-caption {
+    font-size: 0.875rem;
+    padding: size(xxs) size(xs);
+    color: theme(default-fg);
+    background-color: theme(default);
+  }
+
+  .image-caption .icon--love {
+    position: relative;
+    top: 1px;
+    right: 1px;
+  }
+
+  /**
+   * Sizes
+   */
+
+  .image--xs {
+    width: var(--size-xs-image);
+  }
+
+  .image--sm {
+    width: var(--size-sm-image);
+  }
+
+  .image--md {
+    width: var(--size-md-image);
+  }
+
+  .image--lg {
+    width: var(--size-lg-image);
+  }
+
+  .image--xl {
+    width: var(--size-xl-image);
+  }
+
+}

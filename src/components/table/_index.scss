@@ -1,0 +1,131 @@
+@if (get('table', $components)) {
+
+  .table {
+    width: 100%;
+    border-collapse: separate;
+  }
+
+  .table--fixed {
+    table-layout: fixed;
+  }
+
+  .table-container {
+    max-width: 85%;
+    margin: 0 auto;
+    overflow-y: auto;
+    border: 0.0625em solid;
+    border-color: var(--color-border);
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .table-header {
+    background-color: theme(default);
+  }
+
+  .table-cell {
+    padding: 8px 4px;
+    text-align: center;
+    text-decoration: none;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    border-bottom: 1px solid #ededed;
+  }
+
+  .table-cell:first-child {
+    padding-left: size(xs);
+  }
+
+  .table-cell:last-child {
+    padding-right: size(md);
+    text-align: center;
+  }
+
+  .table-cell--flush {
+    padding: 0;
+  }
+
+  .table-cell--no-border {
+    border-bottom: 0;
+  }
+
+  .table-cell--border-right {
+    border-right: 1px solid #ededed;
+  }
+
+  .table-cell--border-left {
+    border-left: 1px solid #ededed;
+  }
+
+  .table-cell--bold {
+    font-weight: 700;
+  }
+
+  .table-cell--break {
+    color: inherit;
+    border-top: 1px dashed currentColor;
+  }
+
+  .table-link {
+    display: block;
+    color: inherit;
+    font-weight: 700;
+    text-decoration: none;
+  }
+
+  .table-link:focus,
+  .table-link:hover {
+    text-decoration: underline;
+  }
+
+  .table abbr[title] {
+    text-decoration: none;
+  }
+
+  .table .header-title {
+    width: 40%;
+  }
+
+  /**
+   * States
+   */
+
+  .table-row:focus,
+  .table-row:hover {
+    background-color: #f7f7f5;
+  }
+
+  .table-row--disabled,
+  .table-row--disabled .table-link {
+    color: #5a5a5a;
+  }
+
+  .table-row--highlighted {
+    background-color: #e5f2ff;
+  }
+
+  .table-row--highlighted:focus,
+  .table-row--highlighted:hover {
+    background-color: #cce5ff;
+  }
+
+  .table-row--highlighted .table-cell {
+    border-bottom: 1px solid #d1e8ff;
+  }
+
+  /**
+   * Nested components
+   */
+
+  .table-header .table-cell {
+    padding-top: size(xs);
+    padding-bottom: size(xxs);
+    vertical-align: bottom;
+    color: theme(default-fg);
+  }
+
+  .table-row--break .table-cell {
+    border-bottom: 1px dashed #252525;
+  }
+
+}

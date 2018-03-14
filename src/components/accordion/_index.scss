@@ -1,0 +1,94 @@
+@if (get('accordion', $components)) {
+
+  .accordion {
+    padding: size(md) size(sm);
+    overflow: hidden;
+    border: 0.0625em solid;
+    border-color: var(--color-border);
+  }
+
+  .accordion-title {
+    position: relative;
+    display: block;
+    font-size: 1rem;
+    font-weight: normal;
+    padding-left: size(xs);
+    padding-right: size(xs);
+    border-bottom: 0.0625em solid #eee;
+    cursor: pointer;
+
+    @include breakpoint('min', $small) {
+      font-size: 1.125rem;
+    }
+  }
+
+  .accordion-title::before,
+  .accordion-title::after {
+    @include transition(transform, 0s);
+    position: absolute;
+    top: 10px;
+    content: "";
+    display: block;
+    height: 2px;
+    color: inherit;
+    border-left: 12px solid currentColor;
+    border-radius: size(xs);
+    opacity: 0.65;
+    cursor: pointer;
+  }
+
+  .accordion-title::before {
+    @include rotate(0.15turn);
+    right: 6px;
+  }
+
+  .accordion-title::after {
+    @include rotate(0.85turn);
+    right: 0;
+  }
+
+  .accordion-section:not(:first-child) {
+    padding-top: size(md);
+  }
+
+  .accordion-wrap {
+    height: 0;
+    overflow: hidden;
+    transition: height 0.25s ease-out;
+  }
+
+  .accordion-content {
+    padding-top: size(md);
+  }
+
+  /**
+   * Interaction states
+   * for hidden content sections
+   */
+
+  .accordion-title:focus {
+    outline: 0;
+    box-shadow: 0 0 3px theme(default);
+  }
+
+  .accordion-section--active .accordion-title::before {
+    @include rotate(1.35turn);
+  }
+
+  .accordion-section--active .accordion-title::after {
+    @include rotate(0.65turn);
+  }
+
+  /**
+   * Nested components
+   */
+
+  .accordion-content .media-container {
+    max-width: none;
+  }
+
+  .accordion-content .media-content {
+    padding: 0;
+  }
+
+}

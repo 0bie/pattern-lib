@@ -1,0 +1,205 @@
+@if (get('cardlist', $components)) {
+
+  .cardlist {
+    @include breakpoint('min', $smaller) {
+      display: flex;
+    }
+  }
+
+  .cardlist-container {
+
+    @include breakpoint('min', $smaller) {
+      padding-right: size(xl);
+      padding-left: size(xl);
+    }
+
+    @include breakpoint('min', 56.25em) {
+      max-width: 90%;
+      margin-right: auto;
+      margin-left: auto;
+    }
+  }
+
+  .cardlist-item {
+    @include breakpoint(max, $smaller) {
+      box-shadow: 0 0 0.625em rgba(0, 0, 0, 0.2);
+      margin-bottom: 0.9375em;
+    }
+
+    @include breakpoint('min', $smaller) {
+      position: relative;
+      margin-left: -3.125em;
+    }
+
+    @include breakpoint('min', $small) {
+      margin-left: -2.8125em;
+    }
+  }
+
+  .cardlist-item img {
+    position: relative;
+    z-index: get-zindex(base);
+    width: 100%;
+    display: block;
+  }
+
+  .cardlist-item .image-container {
+    @include transition(height, 0.25s, ease-in-out);
+    height: 0;
+    display: block;
+    margin-bottom: -3px;
+
+    @include breakpoint('min', $smaller) {
+      height: auto !important;
+    }
+  }
+
+  .cardlist-content {
+    position: relative;
+    z-index: get-zindex(overlay);
+    overflow: hidden;
+    box-shadow: 0 0 0.625em 0.25em rgba(0, 0, 0, 0.1);
+  }
+
+  @include breakpoint('min', $smaller) {
+
+    .cardlist-overlay {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: ( get-zindex(overlay) - 10 );
+      background-color: rgba(255, 255, 255, 0.25);
+    }
+
+  }
+
+  .cardlist-options {
+    position: relative;
+    z-index: get-zindex(flyout);
+    display: flex;
+    justify-content: space-around;
+    background-color: theme(default);
+
+    @include breakpoint('min', $smaller) {
+      @include transition(transform, 0.5s);
+      @include translate3d(null, 3.125em);
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background-color: color(theme(default) a(60%));
+    }
+  }
+
+  .cardlist-options .icon {
+    fill: theme(default-fg);
+    vertical-align: middle;
+    pointer-events: none;
+  }
+
+  .cardlist-options .btn {
+    border: 0;
+
+    @include breakpoint('max', $smaller) {
+      padding-left: size(md);
+      padding-right: size(md);
+    }
+  }
+
+  .cardlist-share {
+    display: none;
+  }
+
+  .cardlist-info {
+    padding: size(md);
+    white-space: nowrap;
+
+    @include breakpoint('min', $smaller) {
+      position: absolute;
+      left: 0;
+      right: 0;
+      z-index: get-zindex(base);
+      display: none;
+      padding-left: 0;
+    }
+  }
+
+  .cardlist-header {
+    position: relative;
+    text-align: center;
+    margin-bottom: 16px;
+  }
+
+  .cardlist-header::before,
+  .cardlist-header::after {
+    content: "";
+    display: block;
+    height: 1px;
+    position: absolute;
+    top: 50%;
+    border: 1px solid;
+    left: 0;
+    right: 0;
+    color: #ccc;
+  }
+
+  .cardlist-header::before {
+
+    @include breakpoint('min', $smaller) {
+      left: -50px;
+    }
+
+    @include breakpoint('min', $small) {
+      left: -45px;
+    }
+  }
+
+  .cardlist-title {
+    position: relative;
+    z-index: get-zindex(base);
+    font-size: 1.25rem;
+    display: inline-block;
+    padding: size(xs) size(sm) size(xs);
+    background-color: #fff;
+  }
+
+  @include breakpoint('min', $smaller) {
+
+    .cardlist-expand {
+      display: none;
+    }
+
+    .cardlist-share {
+      display: block;
+    }
+
+  }
+
+  /**
+   * Interactive states for
+   * hidden elements
+   */
+
+  .cardlist-item:hover,
+  .cardlist-item:focus {
+    z-index: get-zindex(flyout);
+    outline: 0;
+  }
+
+  .cardlist-item:hover .cardlist-info,
+  .cardlist-item:focus .cardlist-info {
+    display: block;
+  }
+
+  .cardlist-item:hover .cardlist-options,
+  .cardlist-item:focus .cardlist-options {
+    transform: none;
+  }
+
+  .cardlist-options .btn:focus {
+    box-shadow: 0 1px 1px theme(default-fg);
+  }
+
+}
