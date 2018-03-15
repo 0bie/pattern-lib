@@ -155,25 +155,3 @@ const sidebar_bottom = {
   label: 'Toggle bottom sidebar'
 };
 
-export const markup = `<div>
-  <header>
-    <h1 class="text--center">Sidebar</h1>
-  </header>
-  <ul class="sidebar sidebar--left flyout" id="js-sidebar">
-    ${items.map((item) => `<li class="sidebar-item">
-      <button class="btn btn--md">
-      ${item.icon ? `<svg class="icon icon--lg" role="img" aria-labelledby="title" width="30" height="30">
-        <title>${item.icon} Icon</title>
-        <desc>A ${item.icon} Icon </desc>
-        <use xlink:href=#${item.icon}></use>
-      </svg>` : ''}
-      ${item.title ? `<span>${item.title}</span>` : ''}
-      </button>
-    </li>`).join('')}
-  </ul>
-  <div class="constrain">
-    <button class="btn btn--xs btn--full" id="js-sidebar-toggle">
-      Toggle Sidebar
-    </button>
-  </div>
-</div>`;
