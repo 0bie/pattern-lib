@@ -1,5 +1,5 @@
 import {dropdownMarkup, dropdownPositions} from './template';
-import {toggleVisibilityHandler} from '../utils';
+import {debounce, toggleVisibilityHandler} from '../utils';
 
 document.addEventListener('DOMContentLoaded', appendDropdown);
 
@@ -53,6 +53,7 @@ export function dropdownHandler(evtType, parent, className) {
    * Bind dropdown events
    */
 
+  dropdownResizeHandler(parent, dropdownPositions);
   toggleVisibilityHandler(evtType, parent, dropdownLabel, visibleClass);
   dropdown.addEventListener(evtType, dropdownPositionHandler.bind(null, parent, dropdownPositions));
   dropdown.addEventListener('mouseenter', () => dropdownWrap.style.willChange = 'opacity, transform');
@@ -60,6 +61,20 @@ export function dropdownHandler(evtType, parent, className) {
 
 }
 
+/**
+ * Reposition dropdown on window resize event
+ * @param {string} parent - The dropdown `id`
+ * @param {object} classNames - The dropdown position classNames
+ */
+
+function dropdownResizeHandler(parent, classNames) {
+
+  window.addEventListener('resize', debounce(handler, 250));
+  function handler() {
+    dropdownPositionHandler(parent, classNames);
+  }
+
+}
 
 /**
  * Position dropdown list
