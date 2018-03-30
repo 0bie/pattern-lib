@@ -96,12 +96,13 @@ function cardlistResizeHandler(parent, breakpoint) {
     }
     cardlistSections.forEach((section) => {
       const viewportWidth = document.documentElement.clientWidth;
+      const toggleIcon = section.querySelector('.icon--expand');
       const imageContainer = section.querySelector('.image-container');
       const imageIsExpanded = (imageContainer.clientHeight > 0) && (viewportWidth <= breakpoint);
       if (imageIsExpanded) {
         imageContainer.style.height = 0 + 'px';
         imageContainer.setAttribute('aria-hidden', 'true');
-        section.classList.remove('expanded');
+        toggleIcon.style.transform = 'none';
       }
       imageContainer.setAttribute('aria-hidden', (viewportWidth > breakpoint ? 'false' : 'true'));
     });
