@@ -11,7 +11,7 @@ export const tableMarkup = template;
  * @returns {string} Markup for table component
  */
 
-function renderTable({id, headerItems, rounded, classArr}) {
+function renderTable({id, headerItems, tableItems, rounded, classArr}) {
 
   if (!id) {
     throw new Error('renderTable method requires `id` as a string');

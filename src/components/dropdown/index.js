@@ -79,7 +79,7 @@ function dropdownResizeHandler(parent, classNames) {
 /**
  * Position dropdown list
  * based on the available space in the viewport
- * Reference: https://goo.gl/hX93fa https://goo.gl/nKQ9QV
+ * Reference: https://goo.gl/hX93fa
  * @example: https://jsfiddle.net/dzigSawww/spckajwz/
  *
  * @param {string} parent - The dropdown `id`
