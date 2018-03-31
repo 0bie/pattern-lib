@@ -14,7 +14,8 @@
 
   @each $platform, $color in $social-icons {
 
-    a:hover .icon--#{$platform} {
+    a:hover .icon--#{$platform},
+    a:focus .icon--#{$platform} {
       fill: $color;
     }
 

@@ -1,4 +1,5 @@
 import {navigationMarkup} from './template';
+import {debounce} from '../utils';
 
 document.addEventListener('DOMContentLoaded', appendNavigation);
 
@@ -73,10 +74,11 @@ function navigationToggleHandler(parent, evt) {
  */
 
 function navigationResizeHandler(parent, breakpoint) {
-  window.addEventListener('resize', function handler() {
+  window.addEventListener('resize', debounce(handler, 500));
+  function handler() {
     const main = document.querySelector('.main');
     const viewportWidth = document.documentElement.clientWidth;
     const navIsVisible = parent.classList.contains('nav-c--active');
     if (navIsVisible && viewportWidth > breakpoint) { main.style.overflow = 'auto'; }
-  });
+  }
 }

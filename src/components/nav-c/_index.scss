@@ -97,6 +97,7 @@
     border: 0;
     padding-left: 0.3125em;
     padding-right: 0.3125em;
+    color: color(theme(default) l(15%));
   }
 
   .nav-c-form .input:focus {
@@ -169,6 +170,12 @@
   /**
    * Interactive states
    */
+
+  .nav-c-item a:hover,
+  .nav-c-item a:focus {
+    outline: 0;
+    text-decoration: underline;
+  }
 
   .nav-c-menu:hover {
     background-color: theme(default);

@@ -31,7 +31,7 @@ function appendTabset() {
  * @param {string} parent - The parent element `id`
  */
 
-function tabsetHandler(evtType, parent) {
+export function tabsetHandler(evtType, parent) {
 
 
   const tab = document.getElementById(parent);

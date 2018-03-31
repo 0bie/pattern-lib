@@ -36,7 +36,7 @@ function appendSidebar() {
  * @returns null
  */
 
-function sidebarHandler(evtType, parent) {
+export function sidebarHandler(evtType, parent) {
 
   const sidebar = document.getElementById(parent);
   if (!sidebar) {

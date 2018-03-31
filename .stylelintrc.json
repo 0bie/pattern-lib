@@ -6,6 +6,9 @@
     "rule-empty-line-before": ["always", {
       "ignore": ["inside-block"]
     }],
+    "media-feature-name-no-unknown": [true, {
+      "ignoreMediaFeatureNames": ["prefers-reduced-motion"]
+    }],
     "block-closing-brace-newline-after": ["always", {
       "ignoreAtRules": ["if", "else", "each", "include"]
     }],

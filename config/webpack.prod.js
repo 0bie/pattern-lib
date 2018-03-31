@@ -29,6 +29,10 @@ module.exports = {
       test: /\.(js|html|css)$/,
       threshold: 10240,
       minRatio: 0.8
-    })
+    }),
+    new webpack.DefinePlugin({
+      'process.env.NODE_ENV': 'production'
+    }),
+    new webpack.optimize.ModuleConcatenationPlugin()
   ]
 };
