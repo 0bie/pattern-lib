@@ -73,7 +73,26 @@ function toggleAccordionState(parent, className, evt) {
       const contentIsOpen = section.classList.contains(className) && section.contains(content);
       content.setAttribute('aria-hidden', (contentIsOpen ? 'false' : 'true'));
       title.setAttribute('tabindex', (contentIsOpen ? 0 : -1));
-      container.setAttribute('style', `height: ${contentIsOpen ? content.clientHeight + 'px' : 0}`);
+
+      /**
+       * Force the style mutation onto the task queue
+       * 100ms delay required for transition between states
+       * Reference: https://bit.ly/1PvBq2v
+       */
+
+      setTimeout(() => {
+        container.setAttribute('style', `height: ${contentIsOpen ? content.clientHeight + 'px' : 0}`);
+      }, 100);
+      container.style.height = content.clientHeight + 'px';
+
+      if (section.contains(content)) {
+        container.addEventListener('transitionend', function handler() {
+          const contentIsOpen = container.style.height === 'auto';
+          const contentIsClosed = container.style.height < content.clientHeight || container.style.height === '0px';
+          if (contentIsClosed) return false;
+          if (!contentIsOpen && !contentIsClosed) container.style.height = 'auto';
+        });
+      }
     }
   });
 
