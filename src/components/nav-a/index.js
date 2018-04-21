@@ -10,7 +10,9 @@ function appendNavigation() {
   const navigationFragment = document.createDocumentFragment();
   const navigationContainer = document.createElement('div');
   navigationContainer.classList.add('mb--xxl');
-  if (navigationMarkup) { navigationContainer.innerHTML = navigationMarkup(); }
+  if (navigationMarkup) {
+    navigationContainer.innerHTML = navigationMarkup();
+  }
   navigationFragment.appendChild(navigationContainer);
   document.getElementById('root').appendChild(navigationFragment);
 
@@ -57,7 +59,7 @@ function navigationToggleHandler(parent, evt) {
   const toggled = (evt.target === menuIcon) || (evt.target === exitIcon);
   const toggleInitiated = !parent.classList.contains('is-active') && toggled;
 
-  if (evt.type === 'keypress' && key !== 13) { return null; }
+  if (evt.type === 'keypress' && key !== 13) return null;
   if (toggled) {
     parent.classList.toggle('is-active');
     document.documentElement.classList.toggle('nav-a_is-active');

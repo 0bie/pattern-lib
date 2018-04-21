@@ -24,7 +24,9 @@ function renderDropdown(dropdown) {
     throw new Error('renderDropdown method requires a valid object');
   }
   const {id, label, labelIcon, items, content, classArr, wrapClassArr, rounded = false} = dropdown;
-  if (!id) { throw new Error('renderDropdown method requires `id` as a string'); }
+  if (!id) {
+    throw new Error('renderDropdown method requires `id` as a string');
+  }
   const classNames = classArr ? classArr.join(' ') : '';
   const wrapClassNames = wrapClassArr ? wrapClassArr.join(' ') : '';
   const dropdownShape = rounded ? 'dropdown--rounded' : '';
@@ -56,7 +58,9 @@ function renderDropdown(dropdown) {
 
 function renderDropdownItem({text, icon, iconPosition}) {
 
-  if (!text) { throw new Error('renderDropdownItem requires `text` as a string'); }
+  if (!text) {
+    throw new Error('renderDropdownItem requires `text` as a string');
+  }
   return (
     `<li class="dropdown-item">
       ${icon && iconPosition === 'left' ? Icon(icon) : ''}

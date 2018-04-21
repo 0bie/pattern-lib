@@ -10,7 +10,9 @@ function appendInput() {
   const inputFragment = document.createDocumentFragment();
   const inputContainer = document.createElement('div');
   inputContainer.classList.add('mb--lg', 'plr--sm');
-  if (inputMarkup) { inputContainer.innerHTML = inputMarkup(); }
+  if (inputMarkup) {
+    inputContainer.innerHTML = inputMarkup();
+  }
   inputFragment.appendChild(inputContainer);
   document.getElementById('root').appendChild(inputFragment);
 
@@ -56,7 +58,7 @@ function filter(evt) {
     const deletekey = (key === 'Backspace') || (key === 8);
     const spaceKey = (key === ' ') || (key === 32);
     const modifierKey = evt.ctrlKey || evt.metaKey || deletekey || spaceKey;
-    if (modifierKey) { return null; }
+    if (modifierKey) return null;
     text = evt.key || String.fromCharCode(evt.which);
   }
 
@@ -85,6 +87,8 @@ function filter(evt) {
       return false;
     }
   }
-  if (container) { container.classList.remove('input-field--error'); }
+  if (container) {
+    container.classList.remove('input-field--error');
+  }
 
 }

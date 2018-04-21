@@ -11,7 +11,9 @@ function appendCardlist() {
   const cardlistFragment = document.createDocumentFragment();
   const cardlistContainer = document.createElement('div');
   cardlistContainer.classList.add('mb--xxxxl', 'p--md');
-  if (cardlistMarkup) { cardlistContainer.innerHTML = cardlistMarkup(); }
+  if (cardlistMarkup) {
+    cardlistContainer.innerHTML = cardlistMarkup();
+  }
   cardlistFragment.appendChild(cardlistContainer);
   document.getElementById('root').appendChild(cardlistFragment);
 
@@ -65,7 +67,7 @@ function cardlistToggleHandler(parent, evt) {
     const imageContainer = section.querySelector('.image-container');
     const toggled = (evt.target === toggleButton);
 
-    if (evt.type === 'keypress' && key !== 13) { return null; }
+    if (evt.type === 'keypress' && key !== 13) return null;
     if (image.clientHeight) {
       toggleInitiated = section.contains(evt.target) && toggled;
     }
