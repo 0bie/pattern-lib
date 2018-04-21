@@ -12,7 +12,9 @@ function appendDropdown() {
   const dropdownFragment = document.createDocumentFragment();
   const dropdownContainer = document.createElement('div');
   dropdownContainer.classList.add('mb--xxxxl', 'plr--md');
-  if (dropdownMarkup) { dropdownContainer.innerHTML = dropdownMarkup(); }
+  if (dropdownMarkup) {
+    dropdownContainer.innerHTML = dropdownMarkup();
+  }
   dropdownFragment.appendChild(dropdownContainer);
   document.getElementById('root').appendChild(dropdownFragment);
 
@@ -41,7 +43,9 @@ export function dropdownHandler(evtType, parent, className) {
 
   const dropdown = document.getElementById(parent);
 
-  if (!dropdown) { throw new Error('dropdownHandler method requires `parent` as a valid HTML element'); }
+  if (!dropdown) {
+    throw new Error('dropdownHandler method requires `parent` as a valid HTML element');
+  }
   const visibleClass = className;
   const dropdownWrap = dropdown.querySelector('.dropdown-wrap');
   const dropdownLabel = dropdown.querySelector('.dropdown-label').id;

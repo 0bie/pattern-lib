@@ -11,7 +11,9 @@ function appendIcon() {
   const iconFragment = document.createDocumentFragment();
   const iconContainer = document.createElement('div');
   iconContainer.classList.add('mb--lg', 'p--xs');
-  if (iconSetMarkup) { iconContainer.innerHTML = iconSetMarkup(icons); }
+  if (iconSetMarkup) {
+    iconContainer.innerHTML = iconSetMarkup(icons);
+  }
   iconFragment.appendChild(iconContainer);
   document.getElementById('root').appendChild(iconFragment);
 }

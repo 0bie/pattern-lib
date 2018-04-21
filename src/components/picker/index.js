@@ -11,7 +11,9 @@ function appendPicker() {
   const pickerContainer = document.createElement('div');
   const pickerFragement = document.createDocumentFragment();
   pickerContainer.classList.add('mb--lg');
-  if (pickerMarkup) { pickerContainer.innerHTML = pickerMarkup(); }
+  if (pickerMarkup) {
+    pickerContainer.innerHTML = pickerMarkup();
+  }
   pickerFragement.appendChild(pickerContainer);
   document.getElementById('root').appendChild(pickerFragement);
 

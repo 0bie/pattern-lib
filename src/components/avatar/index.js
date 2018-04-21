@@ -10,7 +10,9 @@ function appendAvatar() {
   const avatarFragment = document.createDocumentFragment();
   const avatarContainer = document.createElement('div');
   avatarContainer.classList.add('mb--lg', 'plr--sm');
-  if (avatarMarkup) { avatarContainer.innerHTML = avatarMarkup(); }
+  if (avatarMarkup) {
+    avatarContainer.innerHTML = avatarMarkup();
+  }
   avatarFragment.appendChild(avatarContainer);
   document.getElementById('root').appendChild(avatarFragment);
 }

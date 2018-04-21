@@ -11,7 +11,9 @@ function appendNavigation() {
   const navigationContainer = document.createElement('div');
   const navigationFragment = document.createDocumentFragment();
   navigationContainer.classList.add('mb--xxxxl');
-  if (navigationMarkup) { navigationContainer.innerHTML = navigationMarkup(); }
+  if (navigationMarkup) {
+    navigationContainer.innerHTML = navigationMarkup();
+  }
   navigationFragment.appendChild(navigationContainer);
   document.getElementById('root').appendChild(navigationFragment);
 
@@ -57,7 +59,7 @@ function navigationToggleHandler(parent, evt) {
   const menuIcon = parent.querySelector('.nav-c-menu');
   const toggled = (evt.target === menuIcon);
   const toggleInitiated = !parent.classList.contains('nav-c--active') && toggled;
-  if (evt.type === 'keypress' && key !== 13) { return null; }
+  if (evt.type === 'keypress' && key !== 13) return null;
   if (toggled) {
     parent.classList.toggle('nav-c--active');
     navList.setAttribute('aria-hidden', (toggleInitiated ? 'false' : 'true'));
@@ -79,6 +81,8 @@ function navigationResizeHandler(parent, breakpoint) {
     const main = document.querySelector('.main');
     const viewportWidth = document.documentElement.clientWidth;
     const navIsVisible = parent.classList.contains('nav-c--active');
-    if (navIsVisible && viewportWidth > breakpoint) { main.style.overflow = 'auto'; }
+    if (navIsVisible && viewportWidth > breakpoint) {
+      main.style.overflow = 'auto';
+    }
   }
 }

@@ -10,7 +10,9 @@ function appendButton() {
   const buttonContainer = document.createElement('div');
   const buttonFragment = document.createDocumentFragment();
   buttonContainer.classList.add('mb--lg');
-  if (buttonMarkup) { buttonContainer.innerHTML = buttonMarkup(); }
+  if (buttonMarkup) {
+    buttonContainer.innerHTML = buttonMarkup();
+  }
   buttonFragment.appendChild(buttonContainer);
   document.getElementById('root').appendChild(buttonFragment);
 }

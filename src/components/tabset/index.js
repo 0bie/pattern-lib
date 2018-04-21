@@ -11,7 +11,9 @@ function appendTabset() {
   const tabContainer = document.createElement('div');
   const tabFragment = document.createDocumentFragment();
   tabContainer.classList.add('mb--xxl');
-  if (tabsetMarkup) { tabContainer.innerHTML = tabsetMarkup(); }
+  if (tabsetMarkup) {
+    tabContainer.innerHTML = tabsetMarkup();
+  }
   tabFragment.appendChild(tabContainer);
   document.getElementById('root').appendChild(tabFragment);
 
@@ -58,7 +60,7 @@ function tabsetToggleHandler(parent, evt) {
   if (!tabItems || tabItems.length === 0) {
     throw new Error('accessibilityHandler method requires `parent` as an element with children');
   }
-  if (evt.type === 'keypress' && key !== 13) { return null; }
+  if (evt.type === 'keypress' && key !== 13) return null;
   tabItems.forEach((item) => {
     const title = item.querySelector('h1');
     const section = item.querySelector('section');

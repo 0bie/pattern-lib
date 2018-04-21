@@ -10,7 +10,9 @@ function appendMedia() {
   const mediaFragment = document.createDocumentFragment();
   const mediaContainer = document.createElement('div');
   mediaContainer.classList.add('mb--lg');
-  if (mediaMarkup) { mediaContainer.innerHTML = mediaMarkup(); }
+  if (mediaMarkup) {
+    mediaContainer.innerHTML = mediaMarkup();
+  }
   mediaFragment.appendChild(mediaContainer);
   document.getElementById('root').appendChild(mediaFragment);
 }

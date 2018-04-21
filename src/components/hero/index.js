@@ -10,7 +10,9 @@ function appendHero() {
   const heroFragment = document.createDocumentFragment();
   const heroContainer = document.createElement('div');
   heroContainer.classList.add('mb--xxl');
-  if (heroMarkup) { heroContainer.innerHTML = heroMarkup(); }
+  if (heroMarkup) {
+    heroContainer.innerHTML = heroMarkup();
+  }
   heroFragment.appendChild(heroContainer);
   document.getElementById('root').appendChild(heroFragment);
 }
