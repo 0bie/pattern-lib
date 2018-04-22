@@ -12,12 +12,19 @@ const cssDevConfig = [
 ];
 
 const cssProdConfig = {
-  fallback: 'style-loader',
-  use: [
-    {loader: 'css-loader', options: {sourceMap: true}},
-    {loader: 'postcss-loader', options: {plugins}},
-    {loader: 'sass-loader'}
-  ]
+  cssLoader: {
+    loader: 'css-loader',
+    options: {
+      minimize: {safe: true}
+    }
+  },
+  postcssLoader: {
+    loader: 'postcss-loader',
+    options: {plugins}
+  },
+  scssLoader: {
+    loader: 'sass-loader'
+  }
 };
 
 module.exports = {cssDevConfig, cssProdConfig};
