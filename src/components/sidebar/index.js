@@ -11,7 +11,9 @@ function appendSidebar() {
   const sidebarContainer = document.createElement('div');
   const sidebarFragment = document.createDocumentFragment();
   sidebarContainer.classList.add('mb--lg');
-  if (sidebarMarkup) { sidebarContainer.innerHTML = sidebarMarkup(); }
+  if (sidebarMarkup) {
+    sidebarContainer.innerHTML = sidebarMarkup();
+  }
   sidebarFragment.appendChild(sidebarContainer);
   document.getElementById('root').appendChild(sidebarFragment);
 
@@ -59,7 +61,7 @@ function sidebarToggleHandler(parent, evt) {
   const toggleButton = parent.querySelector('.btn--full');
   const sidebarIsOpen = sidebar.classList.contains('sidebar--active') && parent.contains(toggleButton);
 
-  if (evt.type === 'keypress' && key !== 13) { return null; }
+  if (evt.type === 'keypress' && key !== 13) return null;
   if (evt.target === toggleButton) {
     sidebar.classList.toggle('sidebar--active');
     toggleButton.setAttribute('tabindex', (sidebarIsOpen ? 0 : -1));

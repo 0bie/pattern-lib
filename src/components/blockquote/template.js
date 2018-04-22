@@ -127,7 +127,7 @@ function getName(firstname, lastname) {
 function expandQuote(id, quote) {
 
   const observer = new MutationObserver((mutations) => {
-    if (!id) { return null; }
+    if (!id) return null;
     const blockquote = document.getElementById(id);
     mutations.forEach((mutation) => {
       for (const node of mutation.addedNodes) {
@@ -165,7 +165,7 @@ function expandHandler(evtType, parent, quote) {
   parent.addEventListener(evtType, function handler(evt) {
     const key = evt.keyCode || evt.which;
     const expandInitiated = (parent.contains(evt.target)) && (evt.target === expandText);
-    if (evt.type === 'keypress' && key !== 13) { return null; }
+    if (evt.type === 'keypress' && key !== 13) return null;
     if (expandInitiated) {
       content.innerHTML = quote;
       parent.removeEventListener(evt, handler);

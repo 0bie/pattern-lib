@@ -10,7 +10,9 @@ function appendDatatree() {
   const datatreeFragment = document.createDocumentFragment();
   const datatreeContainer = document.createElement('div');
   datatreeContainer.classList.add('mb--xxxxl', 'plr--md');
-  if (dataTreeMarkup) { datatreeContainer.innerHTML = dataTreeMarkup(); }
+  if (dataTreeMarkup) {
+    datatreeContainer.innerHTML = dataTreeMarkup();
+  }
   datatreeFragment.appendChild(datatreeContainer);
   document.getElementById('root').appendChild(datatreeFragment);
 }

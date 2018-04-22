@@ -10,7 +10,9 @@ function appendNotice() {
   const noticeContainer = document.createElement('div');
   const noticeFragment = document.createDocumentFragment();
   noticeContainer.classList.add('mb--lg');
-  if (noticeMarkup) { noticeContainer.innerHTML = noticeMarkup(); }
+  if (noticeMarkup) {
+    noticeContainer.innerHTML = noticeMarkup();
+  }
   noticeFragment.appendChild(noticeContainer);
   document.getElementById('root').appendChild(noticeFragment);
 }

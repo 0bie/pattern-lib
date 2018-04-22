@@ -11,7 +11,9 @@ function appendModal() {
   const modalFragment = document.createDocumentFragment();
   const modalContainer = document.createElement('div');
   modalContainer.classList.add('mb--xxl');
-  if (modalMarkup) { modalContainer.innerHTML = modalMarkup(); }
+  if (modalMarkup) {
+    modalContainer.innerHTML = modalMarkup();
+  }
   modalFragment.appendChild(modalContainer);
   document.getElementById('root').appendChild(modalFragment);
   preventOuterScroll('wheel', 'modal1');

@@ -11,7 +11,9 @@ function appendCardlist() {
   const cardlistFragment = document.createDocumentFragment();
   const cardlistContainer = document.createElement('div');
   cardlistContainer.classList.add('mb--xxxxl', 'p--md');
-  if (cardlistMarkup) { cardlistContainer.innerHTML = cardlistMarkup(); }
+  if (cardlistMarkup) {
+    cardlistContainer.innerHTML = cardlistMarkup();
+  }
   cardlistFragment.appendChild(cardlistContainer);
   document.getElementById('root').appendChild(cardlistFragment);
 
@@ -38,7 +40,6 @@ export function cardlistHandler(evtType, id) {
   if (!cardlist) {
     throw new Error('cardlistHandler method requires a valid HTML element');
   }
-  cardlistResizeHandler(cardlist, 639);
   cardlist.addEventListener(evtType, cardlistToggleHandler.bind(null, cardlist), false);
 
 }
@@ -65,7 +66,7 @@ function cardlistToggleHandler(parent, evt) {
     const imageContainer = section.querySelector('.image-container');
     const toggled = (evt.target === toggleButton);
 
-    if (evt.type === 'keypress' && key !== 13) { return null; }
+    if (evt.type === 'keypress' && key !== 13) return null;
     if (image.clientHeight) {
       toggleInitiated = section.contains(evt.target) && toggled;
     }
@@ -74,38 +75,27 @@ function cardlistToggleHandler(parent, evt) {
       toggleButton.setAttribute('tabindex', (!imageIsExpanded ? 0 : -1));
       imageContainer.setAttribute('aria-hidden', (!imageIsExpanded ? 'false' : 'true'));
       toggleIcon.setAttribute('style', `transform: rotate(${imageIsExpanded ? 0 : '0.12turn'})`);
-      imageContainer.setAttribute('style', `height: ${imageIsExpanded ? 0 : image.clientHeight}` + 'px');
-    }
-  });
 
-}
+      /**
+       * Force the style mutation onto the task queue
+       * 100ms delay required for transition between states
+       * Reference: https://bit.ly/1PvBq2v
+       */
 
-/**
- * Toggle expanded state on image after browser resize
- * @param {Object} parent - The parent element
- * @param {number} breakpoint - The max-width for smaller devices (based on `$smaller` breakpoint set in css)
- * @returns null
- */
+      setTimeout(() => {
+        imageContainer.setAttribute('style', `height: ${!imageIsExpanded ? image.clientHeight + 'px' : 0}`);
+      }, 100);
+      imageContainer.style.height = image.clientHeight + 'px';
 
-function cardlistResizeHandler(parent, breakpoint) {
-
-  window.addEventListener('resize', function handler() {
-    const cardlistSections = [...parent.children];
-    if (!cardlistSections || cardlistSections.length === 0) {
-      throw new Error('cardlistResizeHandler method requires `parent` as an element with children');
-    }
-    cardlistSections.forEach((section) => {
-      const viewportWidth = document.documentElement.clientWidth;
-      const toggleIcon = section.querySelector('.icon--expand');
-      const imageContainer = section.querySelector('.image-container');
-      const imageIsExpanded = (imageContainer.clientHeight > 0) && (viewportWidth <= breakpoint);
-      if (imageIsExpanded) {
-        imageContainer.style.height = 0 + 'px';
-        imageContainer.setAttribute('aria-hidden', 'true');
-        toggleIcon.style.transform = 'none';
+      if (toggleInitiated) {
+        imageContainer.addEventListener('transitionend', function handler() {
+          const contentIsOpen = imageContainer.style.height === 'auto';
+          const contentIsClosed = imageContainer.style.height < image.clientHeight || imageContainer.style.height === '0px';
+          if (contentIsClosed) return false;
+          if (!contentIsOpen && !contentIsClosed) imageContainer.style.height = 'auto';
+        });
       }
-      imageContainer.setAttribute('aria-hidden', (viewportWidth > breakpoint ? 'false' : 'true'));
-    });
+    }
   });
 
 }

@@ -10,7 +10,9 @@ function appendRadio() {
   const radioContainer = document.createElement('div');
   const radioFragment = document.createDocumentFragment();
   radioContainer.classList.add('mb--lg');
-  if (radioMarkup) { radioContainer.innerHTML = radioMarkup(); }
+  if (radioMarkup) {
+    radioContainer.innerHTML = radioMarkup();
+  }
   radioFragment.appendChild(radioContainer);
   document.getElementById('root').appendChild(radioFragment);
 }

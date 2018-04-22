@@ -10,7 +10,9 @@ function appendCarousel() {
 
   const carouselFragment = document.createDocumentFragment();
   const carouselContainer = document.createElement('div');
-  if (carouselMarkup) { carouselContainer.innerHTML = carouselMarkup(); }
+  if (carouselMarkup) {
+    carouselContainer.innerHTML = carouselMarkup();
+  }
   carouselFragment.appendChild(carouselContainer);
   document.getElementById('root').appendChild(carouselFragment);
 

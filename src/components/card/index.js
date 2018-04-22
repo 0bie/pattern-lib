@@ -10,7 +10,9 @@ function appendCard() {
   const cardFragment = document.createDocumentFragment();
   const cardContainer = document.createElement('div');
   cardContainer.classList.add('mb--lg');
-  if (cardMarkup) { cardContainer.innerHTML = cardMarkup(); }
+  if (cardMarkup) {
+    cardContainer.innerHTML = cardMarkup();
+  }
   cardFragment.appendChild(cardContainer);
   document.getElementById('root').appendChild(cardFragment);
 }

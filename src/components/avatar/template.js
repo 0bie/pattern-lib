@@ -25,7 +25,9 @@ function renderAvatar(avatar) {
   const {size, firstname, lastname, image, icon, rounded, classArr} = avatar;
   const classNames = classArr ? classArr.join(' ') : '';
   const avatarShape = rounded ? 'avatar--rounded' : '';
-  if (!icon && (firstname || lastname)) { name = getName(firstname, lastname); }
+  if (!icon && (firstname || lastname)) {
+    name = getName(firstname, lastname);
+  }
   return (
     /* eslint-disable indent */
     `<div class="avatar avatar--${size} ${avatarShape} ${classNames}">

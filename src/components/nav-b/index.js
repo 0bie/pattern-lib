@@ -11,7 +11,9 @@ function appendNavigation() {
   const navigationContainer = document.createElement('div');
   const navigationFragment = document.createDocumentFragment();
   navigationContainer.classList.add('mb--lg');
-  if (navigationMarkup) { navigationContainer.innerHTML = navigationMarkup(); }
+  if (navigationMarkup) {
+    navigationContainer.innerHTML = navigationMarkup();
+  }
   navigationFragment.appendChild(navigationContainer);
   document.getElementById('root').appendChild(navigationFragment);
 
@@ -63,7 +65,7 @@ function navigationToggleHandler(parent, evt) {
   const toggled = (evt.target === menuIcon) || (evt.target === exitIcon);
   const toggleInitiated = !nav.classList.contains('is-visible') && toggled;
   exitIcon.setAttribute('tabindex', 0);
-  if (evt.type === 'keypress' && key !== 13) { return null; }
+  if (evt.type === 'keypress' && key !== 13) return null;
   if (toggled) {
     nav.classList.toggle('is-visible');
     nav.setAttribute('aria-hidden', (toggleInitiated ? 'false' : 'true'));
