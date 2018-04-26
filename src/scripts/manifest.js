@@ -31,8 +31,9 @@ import sidebar from 'components/sidebar';
 import spinner from 'components/spinner';
 import status from 'components/status';
 import tab from 'components/tabset';
-import timeline from 'components/timeline';
 import table from 'components/table';
+import timeline from 'components/timeline';
+import todo from 'components/todo';
 import toggle from 'components/toggle';
 /* eslint-enable no-unused-vars */
 

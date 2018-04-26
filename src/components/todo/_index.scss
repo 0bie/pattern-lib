@@ -1,0 +1,101 @@
+@if (get('todo', $components)) {
+
+  .todo-container {
+    padding: size(sm);
+    border: 1px solid;
+    border-color: var(--color-border);
+  }
+
+  .todo-header {
+    margin-bottom: size(sm);
+  }
+
+  .todo-title {
+    font-size: 1.375rem;
+    flex-grow: 1;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    margin-bottom: size(xs);
+  }
+
+  .todo-form {
+    position: relative;
+    display: flex;
+  }
+
+  .todo-input {
+    border-right: 0;
+  }
+
+  .todo-cta {
+    border: 1px solid;
+  }
+
+  .todo-label {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .todo-check {
+    @include transition(opacity, 0.35s);
+    display: flex;
+    flex-grow: 0;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.5;
+    width: 1.375em;
+    height: 1.375em;
+    cursor: pointer;
+    color: theme(success);
+    margin-right: size(xs);
+    border: 1px solid currentColor;
+    border-radius: var(--size-rounded);
+  }
+
+  .todo-text {
+    @include transition(color, 0.35s);
+    max-width: 85%;
+    flex-basis: 85%;
+    flex-grow: 1;
+    overflow: hidden;
+    white-space: nowrap;
+    display: inline-block;
+    vertical-align: middle;
+    text-overflow: ellipsis;
+  }
+
+  /**
+   * Interactive states
+   */
+
+  .todo-item input:checked + label .todo-text {
+    color: #c0c0c0;
+    text-decoration: line-through;
+  }
+
+  .todo-item input:checked + label .todo-check {
+    opacity: 0.9;
+  }
+
+  /**
+   * Nested components
+   */
+
+  .todo-form .input-field {
+    flex-grow: 1;
+  }
+
+  .todo-item .btn--todo {
+    border: 0;
+    flex-grow: 0;
+  }
+
+  .todo-check .icon--sm {
+    width: 0.75em;
+    height: 0.75em;
+  }
+
+}
