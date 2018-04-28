@@ -28,7 +28,7 @@ function renderButton(button) {
     /* eslint-disable indent */
     `<button class="btn btn--${size} ${classNames}" ${buttonIsDisabled}>
       ${icon && iconPosition == 'left' ? Icon({size, ...icon}) : ''}
-      ${text ? `<span class="btn-text vert--mid">${text}</span>`
+      ${text ? `<span class="btn-text">${text}</span>`
         : buttonIsLoading ? '<span class="text--sr">loading</span>'
         : !iconPosition ? Icon({size, ...icon}) : ''
       }

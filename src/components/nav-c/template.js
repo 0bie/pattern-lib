@@ -30,7 +30,7 @@ function renderNavigation({id, items, logo, logoText, classArr}) {
         </h1>
         <form action="#" method="get" class="${id}-form">
           <label for="${id}-search" class="text--sr">search</label>
-          <input id="${id}-search" type="seatch" class="input" placeholder="search" />
+          <input id="${id}-search" type="seatch" class="input" placeholder="Search products..." />
           <button class="btn shadow--soft">
             ${Icon(searchIcon)}
             <span class="hidden">search</span>
