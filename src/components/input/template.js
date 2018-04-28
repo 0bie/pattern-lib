@@ -54,11 +54,11 @@ function renderInput(input) {
     `<span id=${id} class="input-field ${fieldState} ${classNames}">
       ${
         type === 'text' ?
-          `<input class="input input--${size} ${inputShape} ${inputClassName}" type="text" placeholder="${placeholder}" ${patternAttributes} />`
+          `<input class="input input--${size} ${inputShape} ${inputClassName}" type="text" name="${id}" placeholder="${placeholder}" ${patternAttributes} />`
         : type === 'number' ?
-          `<input class="input input--${size} ${inputShape} ${inputClassName}" type="number" placeholder="${placeholder}" />`
+          `<input class="input input--${size} ${inputShape} ${inputClassName}" type="number" name="${id}" placeholder="${placeholder}" />`
         : type === 'textField' ?
-          `<textarea class="input input--${size} ${textareaShape} ${inputClassName}" placeholder="${placeholder}" ${patternAttributes}></textarea>`
+          `<textarea class="input input--${size} ${textareaShape} ${inputClassName}" name="${id}" placeholder="${placeholder}" ${patternAttributes}></textarea>`
         : new Error ('renderInput method requires `type` as a string ["text"|"number"|"textField"]')
       }
       ${icon ? Icon(icon) : ''}
