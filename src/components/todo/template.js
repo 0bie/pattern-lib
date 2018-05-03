@@ -1,5 +1,4 @@
 import Input from '../input/template';
-import Button from '../button/template';
 import Icon from '../icon/template';
 
 export default renderTodo;
@@ -7,6 +6,7 @@ export const todoMarkup = template;
 
 /**
  * Render a todo list
+ * @param {string} id - The todo `id`
  * @param {string} title - The list title
  * @param {string} ctaText - The list CTA
  * @param {object} ctaIcon - The CTA icon (Optional)
@@ -15,50 +15,28 @@ export const todoMarkup = template;
  * @param {array} classArr - Additional classNames (Optional)
  */
 
-function renderTodo({title, ctaText, ctaIcon, items, rounded, classArr}) {
+function renderTodo({id, title, ctaText, ctaIcon, rounded, classArr}) {
 
-  if (!items) {
-    throw new Error('renderTodo method requires `items` as an array');
+  if (!id) {
+    throw new Error('renderTodo method requires `id` as a string');
   }
   const classNames = classArr ? classArr.join('') : '';
   const listShape = rounded ? 'todo--rounded' : '';
   return (
-    `<div class="todo-container ${classNames}">
+    `<div id=${id} class="todo-container ${classNames}">
       <header class="todo-header">
         <h1 class="todo-title">${title}</h1>
         <form id="todo-form" class="todo-form">
           ${Input(todoInput)}
-          ${Button({text: ctaText, icon: ctaIcon, ...todoButton})}
+          <button class="btn btn--xs btn--todo" data-todo="add" tabindex="0">
+            ${Icon(ctaIcon)}
+            <span class="btn-text">${ctaText}</span>
+          </button>
         </form>
       </header>
-      <ul id="todo-list" class="list todo-list ${listShape}">
-        ${items.map(renderTodoItem).join('')}
-      </ul>
+      <ul id="todo-list" class="list todo-list ${listShape}"></ul>
     </div>`
   );
-}
-
-/**
- * Render a todo item
- */
-
-function renderTodoItem({text, classArr}, i) {
-
-  if (!text) {
-    throw new Error('renderTodoItem method requires `text` as a string');
-  }
-  const classNames = classArr ? classArr.join('') : '';
-  return (
-    `<li id="todo-item-${i}" class="list-item todo-item ${classNames}">
-      <input class="text--sr" type="checkbox" id="todo-check-${i}" name="todo-check-${i}" checked />
-      <label for="todo-check-${i}" class="todo-label">
-        <span class="todo-check" title="Complete Task">${Icon(checkIcon)}</span>
-        <span class="todo-text">${text}</span>
-      </label>
-      ${Button(deleteButton)}
-    </li>`
-  );
-
 }
 
 /**
@@ -83,18 +61,13 @@ const plusIcon = {
 
 const todoInput = {
   size: 'xs',
-  id: 'todo-input',
+  inputId: 'todo-input',
+  id: 'todo-input-container',
   placeholder: 'Add a task...',
   inputClass: ['input--todo', 'input--full']
 };
 
-const todoButton = {
-  size: 'sm',
-  iconPosition: 'left',
-  classArr: ['btn--todo']
-};
-
-const checkIcon = {
+export const checkIcon = {
   id: 'check',
   size: 'sm',
   title: 'Complete Task',
@@ -102,30 +75,25 @@ const checkIcon = {
   classArr: ['vert--mid']
 };
 
-const deleteIcon = {
+export const deleteIcon = {
   id: 'trash',
   title: 'Delete Task',
   classArr: ['vert--mid']
 };
 
-const deleteButton = {
-  size: 'xs',
-  icon: deleteIcon,
-  classArr: ['btn--todo']
-};
-
 const todo = {
+  id: 'todo1',
   title: 'Todo Title',
   ctaText: 'Add',
   ctaIcon: plusIcon,
-  items: [
-    {text: 'Task 1'},
-    {text: 'Task 2'},
-    {text: 'Task 3'},
-    {text: 'Task 4'},
-    {text: 'Task 5'},
-    {text: 'Task 6'}
-  ]
 };
 
+export const todoItems = [
+  {text: 'Task 1', done: true},
+  {text: 'Task 2', done: true},
+  {text: 'Task 3', done: true},
+  {text: 'Task 4', done: true},
+  {text: 'Task 5', done: true},
+  {text: 'Task 6', done: true}
+];
 

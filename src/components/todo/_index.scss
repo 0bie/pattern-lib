@@ -63,6 +63,7 @@
     margin-right: size(xs);
     border: 1px solid currentColor;
     border-radius: var(--size-rounded);
+    pointer-events: none;
   }
 
   .todo-text {
@@ -73,6 +74,7 @@
     display: inline-block;
     vertical-align: middle;
     text-overflow: ellipsis;
+    pointer-events: none;
   }
 
   /**
@@ -133,6 +135,12 @@
   .btn--todo:hover {
     outline: 0;
     color: color(theme(default) l(15%));
+  }
+
+  .todo-check svg,
+  .btn--todo svg,
+  .btn--todo .btn-text {
+    pointer-events: none;
   }
 
 }
