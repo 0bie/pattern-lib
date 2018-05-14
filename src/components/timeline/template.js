@@ -59,7 +59,7 @@ function renderTimelineEvent({time, title, avatar, content, classArr}) {
  */
 
 function template() {
-  return `<div class="constrain p--xxs mb--md">${renderTimeline(timeline)}</div>`;
+  return `<div class="constrain mb--md">${renderTimeline(timeline)}</div>`;
 }
 
 /**

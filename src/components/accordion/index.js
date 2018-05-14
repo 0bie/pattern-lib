@@ -89,7 +89,7 @@ function toggleAccordionState(parent, className, evt) {
 
       if (section.contains(content)) {
         container.addEventListener('transitionend', function handler() {
-          const contentIsOpen = container.style.height === 'auto';
+          const contentIsOpen = container.style.height === content.clientHeight;
           const contentIsClosed = container.style.height < content.clientHeight || container.style.height === '0px';
           if (contentIsClosed) return false;
           if (!contentIsOpen && !contentIsClosed) container.style.height = 'auto';

@@ -15,7 +15,6 @@
     position: relative;
     margin: 0 auto 120px auto;
     background-color: theme(default-fg);
-    box-shadow: 0 0.0625em 0.25em 0 rgba(0, 0, 0, 0.2);
 
     @include breakpoint('min', $smaller) {
       max-width: 50%;

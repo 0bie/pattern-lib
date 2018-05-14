@@ -115,19 +115,21 @@ const row2 = `<td class="table-cell">2</td>
 <td class="table-cell">M</td>
 <td class="table-cell">Sale</td>`;
 
-const row3 = `<tr class="table-row"><td class="table-cell--break" colspan="12"></td></tr>
-<td class="table-cell">3</td>
-<td class="table-cell"></td>
-<th class="table-cell text--left">
-  <a class="table-link" href="#">
-    <span>Item Title</span>
-  </a>
-</th>
-<td class="table-cell">POI0987654323</td>
-<td class="table-cell">Size</td>
-<td class="table-cell">S</td>
-<td class="table-cell">W</td>
-<td class="table-cell">Sale</td>`;
+const row3 = `<tr class="table-row foo"><td class="table-cell--break" colspan="12"></td></tr>
+<tr class="table-row">
+  <td class="table-cell">3</td>
+  <td class="table-cell"></td>
+  <th class="table-cell text--left">
+    <a class="table-link" href="#">
+      <span>Item Title</span>
+    </a>
+  </th>
+  <td class="table-cell">POI0987654323</td>
+  <td class="table-cell">Size</td>
+  <td class="table-cell">S</td>
+  <td class="table-cell">W</td>
+  <td class="table-cell">Sale</td>
+</tr>`;
 
 const tableItems = [
   {content: row1},

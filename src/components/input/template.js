@@ -7,6 +7,7 @@ export const inputMarkup = template;
  * Render an input element
  * @param {object} input - The input properties
  * @param {string} [input].id - The input id
+ * @param {string} [input].inputId - The `<input>` element `id
  * @param {string} [input].type - The input type
  * @param {size} [input].size - The input size (xs|sm|md|lg|xl|xxl)
  * @param {string} [input].placeholder - The input placeholder
@@ -31,6 +32,7 @@ function renderInput(input) {
     error,
     success,
     hint,
+    inputId,
     inputClass,
     classArr,
     rounded,
@@ -54,11 +56,11 @@ function renderInput(input) {
     `<span id=${id} class="input-field ${fieldState} ${classNames}">
       ${
         type === 'text' ?
-          `<input class="input input--${size} ${inputShape} ${inputClassName}" type="text" placeholder="${placeholder}" ${patternAttributes} />`
+          `<input id=${inputId} class="input input--${size} ${inputShape} ${inputClassName}" type="text" placeholder="${placeholder}" ${patternAttributes} />`
         : type === 'number' ?
-          `<input class="input input--${size} ${inputShape} ${inputClassName}" type="number" placeholder="${placeholder}" />`
+          `<input id=${inputId} class="input input--${size} ${inputShape} ${inputClassName}" type="number" placeholder="${placeholder}" />`
         : type === 'textField' ?
-          `<textarea class="input input--${size} ${textareaShape} ${inputClassName}" placeholder="${placeholder}" ${patternAttributes}></textarea>`
+          `<textarea id=${inputId} class="input input--${size} ${textareaShape} ${inputClassName}" placeholder="${placeholder}" ${patternAttributes}></textarea>`
         : new Error ('renderInput method requires `type` as a string ["text"|"number"|"textField"]')
       }
       ${icon ? Icon(icon) : ''}
@@ -305,116 +307,139 @@ const input = {
 const input_sm = Object.assign({}, input, {
   size: 'sm',
   id: 'input_sm',
+  inputId: 'input_sm1'
 });
 
 const input_md = Object.assign({}, input, {
   size: 'md',
   id: 'input_md',
+  inputId: 'input_md1'
 });
 
 const input_lg = Object.assign({}, input, {
   size: 'lg',
-  id: 'input_lg'
+  id: 'input_lg',
+  inputId: 'input_lg1'
 });
 
 const input_xl = Object.assign({}, input, {
   size: 'xl',
-  id: 'input_xl'
+  id: 'input_xl',
+  inputId: 'input_xl1'
 });
 
 const input_xxl = Object.assign({}, input, {
   size: 'xxl',
   id: 'input_xxl',
+  inputId: 'input_xx1'
 });
 
 const input_rounded = Object.assign({}, input, {
   size: 'sm',
   rounded: true,
-  id: 'input_rounded'
+  id: 'input_rounded',
+  inputId: 'input_rounded1'
 });
 
 const input_rounded_md = Object.assign({}, input_rounded, {
   size: 'md',
-  id: 'input_rounded_md'
+  id: 'input_rounded_md',
+  inputId: 'input_rounded_md1'
 });
 
 const input_rounded_lg = Object.assign({}, input_rounded, {
   size: 'lg',
-  id: 'input_rounded_lg'
+  id: 'input_rounded_lg',
+  inputId: 'input_rounded_lg1'
 });
 
 const input_rounded_xl = Object.assign({}, input_rounded, {
   size: 'xl',
-  id: 'input_rounded_xl'
+  id: 'input_rounded_xl',
+  inputId: 'input_rounded_xl1'
 });
 
 const input_rounded_xxl = Object.assign({}, input_rounded, {
   size: 'xxl',
-  id: 'input_rounded_xxl'
+  id: 'input_rounded_xxl',
+  inputId: 'input_rounded_xxl1'
 });
 
 const input_textarea = Object.assign({}, input, {
   type: 'textField',
-  id: 'input_textarea'
+  id: 'input_textarea',
+  inputId: 'input_textarea1'
 });
 
 const input_textarea_sm = Object.assign({}, input_textarea, {
   size: 'sm',
-  id: 'input_textarea_sm'
+  id: 'input_textarea_sm',
+  inputId: 'input_textarea_sm1'
 });
 
 const input_textarea_md = Object.assign({}, input_textarea, {
   size: 'md',
-  id: 'input_textarea_md'
+  id: 'input_textarea_md',
+  inputId: 'input_textarea_md1'
 });
 
 const input_textarea_lg = Object.assign({}, input_textarea, {
   size: 'lg',
-  id: 'input_textarea_lg'
+  id: 'input_textarea_lg',
+  inputId: 'input_textarea_lg1'
 });
 
 const input_textarea_xl = Object.assign({}, input_textarea, {
   size: 'xl',
-  id: 'input_textarea_xl'
+  id: 'input_textarea_xl',
+  inputId: 'input_textarea_xl1'
 });
 
 const input_textarea_xxl = Object.assign({}, input_textarea, {
   size: 'xxl',
-  id: 'input_textarea_xxl'
+  id: 'input_textarea_xxl',
+  inputId: 'input_textarea_xxl1'
 });
 
 const input_textarea_rounded = Object.assign({}, input_textarea, {
   rounded: true,
-  id: 'input_textarea_rounded'
+  id: 'input_textarea_rounded',
+  inputId: 'input_textarea_rounded_rounded1'
 });
 
 const input_textarea_rounded_sm = Object.assign({}, input_textarea_rounded, {
   size: 'sm',
-  id: 'input_textarea_rounded_sm'
+  id: 'input_textarea_rounded_sm',
+  inputId: 'input_textarea_rounded_rounded_sm1'
 });
 
 const input_textarea_rounded_md = Object.assign({}, input_textarea_rounded, {
   size: 'md',
-  id: 'input_textarea_rounded_md'
+  id: 'input_textarea_rounded_md',
+  inputId: 'input_textarea_rounded_md1'
 });
 
 const input_textarea_rounded_lg = Object.assign({}, input_textarea_rounded, {
   size: 'lg',
-  id: 'input_textarea_rounded_lg'
+  id: 'input_textarea_rounded_lg',
+  inputId: 'input_textarea_rounded_lg1'
 });
 
 const input_textarea_rounded_xl = Object.assign({}, input_textarea_rounded, {
   size: 'xl',
-  id: 'input_textarea_rounded_xl'
+  id: 'input_textarea_rounded_xl',
+  inputId: 'input_textarea_rounded_xl1'
 });
 
 const input_textarea_rounded_xxl = Object.assign({}, input_textarea_rounded, {
   size: 'xxl',
-  id: 'input_textarea_rounded_xxl'
+  id: 'input_textarea_rounded_xxl',
+  inputId: 'input_textarea_rounded_xxl1'
 });
 
 const input_search = Object.assign({}, input, {
   id: 'input_search',
+  inputId: 'input_search1',
   inputClass: ['pr--md'],
   icon: Object.assign({}, searchIcon, {classArr: ['icon--search-right']})
 });
@@ -422,6 +447,7 @@ const input_search = Object.assign({}, input, {
 const input_search_rounded = Object.assign({}, input_search, {
   rounded: true,
   id: 'input_search_rounded',
+  inputId: 'input_search_rounded1',
   inputClass: ['pr--md']
 });
 
@@ -430,12 +456,14 @@ const input_validate = {
   type: 'text',
   pattern: '^[0-9]*$',
   id: 'input_validate',
+  inputId: 'input_validate1',
   classArr: ['input--full'],
   placeholder: 'Type a number...',
 };
 
 const input_validate_number = Object.assign({}, input_validate, {
   id: 'input_validate_number',
+  inputId: 'input_validate_number1',
   placeholder: 'Type a number...',
   hint: 'You need to type a number!'
 });
@@ -443,7 +471,7 @@ const input_validate_number = Object.assign({}, input_validate, {
 const input_validate_letter = Object.assign({}, input_validate, {
   pattern: '^[a-zA-Z]+$',
   id: 'input_validate_letter',
+  inputId: 'input_validate_letter1',
   placeholder: 'Type a letter...',
   hint: 'You need to type a letter!'
 });
-

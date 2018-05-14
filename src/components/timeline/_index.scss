@@ -2,6 +2,8 @@
 
   .timeline {
     position: relative;
+    border: 1px solid;
+    border-color: var(--color-border);
   }
 
   .timeline::before {
@@ -47,7 +49,6 @@
     padding: size(sm);
     border: 0.0625em solid;
     border-color: var(--color-border);
-    box-shadow: 0 0.0625em 0.25em 0 rgba(0, 0, 0, 0.2);
   }
 
   .timeline-avatar {
@@ -97,7 +98,7 @@
     content: "";
     display: block;
     border: 7px solid transparent;
-    border-right-color: #fff;
+    border-right-color: theme(default-fg);
   }
 
   /**

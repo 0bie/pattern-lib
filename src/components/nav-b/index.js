@@ -81,10 +81,28 @@ function navigationToggleHandler(parent, evt) {
   const toggled_nested = (evt.target === nestedItem);
   const toggleInitiated_nested = !nestedItem.classList.contains('is-visible') && toggled_nested;
   nestedItem.setAttribute('tabindex', 0);
+
   if (toggled_nested) {
+
+    /**
+     * Force the style mutation onto the task queue
+     * 100ms delay required for transition between states
+     * Reference: https://bit.ly/1PvBq2v
+     */
+
+    setTimeout(() => {
+      nestedListContainer.setAttribute('style', `height: ${toggleInitiated_nested ? nestedList.clientHeight + 'px' : 0}`);
+    }, 100);
+    nestedListContainer.style.height = nestedList.clientHeight + 'px';
+
     nestedItem.classList.toggle('is-visible');
     nestedList.setAttribute('aria-hidden', (toggleInitiated_nested ? 'false' : 'true'));
-    nestedListContainer.setAttribute('style', `height: ${toggleInitiated_nested ? nestedList.clientHeight + 'px' : 0}`);
+    nestedListContainer.addEventListener('transitionend', function handler() {
+      const listIsOpen = nestedListContainer.style.height === nestedList.clientHeight;
+      const listIsClosed = nestedListContainer.style.height < nestedList.clientHeight || nestedListContainer.style.height === '0px';
+      if (listIsClosed) return false;
+      if (!listIsOpen && !listIsClosed) nestedListContainer.style.height = 'auto';
+    });
   }
 
 }
