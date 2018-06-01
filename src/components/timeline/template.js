@@ -68,13 +68,15 @@ function template() {
 
 const avatar = {
   size: 'sm',
-  firstname: 'obie',
-  lastname: 'egwim',
+  firstname: 'donald',
+  lastname: 'draper',
   rounded: true,
   image: 'assets/avatar/avatar2.png',
 };
 
 const avatar2 = Object.assign({}, avatar, {
+  firstname: 'joan',
+  lastname: 'holloway',
   image: 'assets/avatar/avatar3.jpg'
 });
 

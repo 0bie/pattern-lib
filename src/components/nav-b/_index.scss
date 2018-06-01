@@ -285,4 +285,12 @@
     margin: 0;
   }
 
+  .drawer-item .icon--googleplus {
+    @include scale(1.25);
+  }
+
+  .drawer-item .icon--youtube {
+    @include scale(1.5);
+  }
+
 }

@@ -130,8 +130,8 @@ function getInitials(firstname, lastname) {
 
 const avatar_sm = {
   size: 'sm',
-  firstname: 'obie',
-  image: 'assets/avatar/avatar.jpg',
+  firstname: 'Christina',
+  image: 'assets/avatar/avatar3.jpg',
 };
 
 const avatar_md = Object.assign({}, avatar_sm, {
@@ -148,22 +148,22 @@ const avatar_xl = Object.assign({}, avatar_sm, {
 
 const avatar_sm_rounded = Object.assign({}, avatar_sm, {
   rounded: true,
-  image: 'assets/avatar/avatar1.jpg'
+  image: 'assets/avatar/avatar3.jpg'
 });
 
 const avatar_md_rounded = Object.assign({}, avatar_md, {
   rounded: true,
-  image: 'assets/avatar/avatar1.jpg',
+  image: 'assets/avatar/avatar3.jpg',
 });
 
 const avatar_lg_rounded = Object.assign({}, avatar_lg, {
   rounded: true,
-  image: 'assets/avatar/avatar1.jpg'
+  image: 'assets/avatar/avatar3.jpg'
 });
 
 const avatar_xl_rounded = Object.assign({}, avatar_xl, {
   rounded: true,
-  image: 'assets/avatar/avatar1.jpg'
+  image: 'assets/avatar/avatar3.jpg'
 });
 
 const iconProps = {
