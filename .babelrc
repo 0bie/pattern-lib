@@ -1,16 +1,16 @@
 {
   "presets": [
-    ["env", {
+    ["@babel/preset-env", {
       "targets": {
-        "browsers": ["last 2 versions", "ie >= 10"],
-        "node": "current"
+        "node": "current",
+        "browsers": ["last 2 versions", "ie >= 10"]
       },
       "debug": true,
       "modules": false
     }]
   ],
   "plugins": [
-    "syntax-dynamic-import",
-    ["transform-object-rest-spread", { "useBuiltIns": true }]
+    ["@babel/plugin-syntax-dynamic-import"],
+    ["@babel/plugin-proposal-object-rest-spread", { "useBuiltIns": true }]
   ]
 }
