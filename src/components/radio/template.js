@@ -1,3 +1,5 @@
+import {addClassNames} from '../utils';
+
 export default renderRadioInput;
 export const radioMarkup = template;
 
@@ -15,9 +17,8 @@ function renderRadioInput({id, size, label, classArr}) {
   if (!id | !size) {
     throw new Error('renderRadioInput method requires `id` & `size` as a string');
   }
-  const classNames = classArr ? classArr.join(' ') : '';
   return (
-    `<label id=${id} class="radio-container ${classNames}">
+    `<label id=${id} class="radio-container ${addClassNames(classArr)}">
       <input class="radio radio--${size} hidden" type="radio" name=${id} />
       <div><span class="radio-label">${label}</span></div>
     </label>`

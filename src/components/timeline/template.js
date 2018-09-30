@@ -1,4 +1,5 @@
 import Avatar from '../avatar/template';
+import {addClassNames} from '../utils';
 
 export default renderTimeline;
 export const timelineMarkup = template;
@@ -16,9 +17,8 @@ function renderTimeline({id, events, classArr}) {
   if (!events || events.length === 0) {
     throw new Error('renderTimeline method requires `events` as an array');
   }
-  const classNames = classArr ? classArr.join(' ') : '';
   return (
-    `<div id=${id} class="timeline ${classNames}">
+    `<div id=${id} class="timeline ${addClassNames(classArr)}">
       <div class="timeline-content">${events.map(renderTimelineEvent).join('')}</div>
     </div>`
   );
@@ -36,9 +36,8 @@ function renderTimeline({id, events, classArr}) {
 
 function renderTimelineEvent({time, title, avatar, content, classArr}) {
 
-  const classNames = classArr ? classArr.join(' ') : '';
   return (
-    `<div class="timeline-event ${classNames}">
+    `<div class="timeline-event ${addClassNames(classArr)}">
       <div class="timeline-metadata">
         <span class="timeline-avatar">${avatar ? Avatar(avatar) : ''}</span>
         <time class="timeline-hours">${time}</time>

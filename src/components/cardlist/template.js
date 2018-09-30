@@ -1,5 +1,6 @@
 import Button from '../button/template';
 import Icon from '../icon/template';
+import {addClassNames} from '../utils';
 
 export default renderCardlist;
 export const cardlistMarkup = template;
@@ -19,10 +20,9 @@ function renderCardlist({id, title, items, classArr}) {
   if (!id) {
     throw new Error('renderCardlist method requires `id` as a string');
   }
-  const classNames = classArr ? classArr.join(' ') : '';
   return (
     /* eslint-disable indent */
-    `<div class="cardlist-container ${classNames}">
+    `<div class="cardlist-container ${addClassNames(classArr)}">
       <header class="cardlist-header">
         <h1 class="cardlist-title">${title}</h1>
       </header>
@@ -72,7 +72,7 @@ function renderCardlistItem({image, title, subtitle, details}) {
         </div>
       </div>
       <div class="cardlist-info">
-        ${title ? `<h3 cardlist-title>${title}</h3>` : ''}
+        ${title ? `<h3>${title}</h3>` : ''}
         ${subtitle ? `<h4>${subtitle}</h4>` : ''}
         <div>${details}</div>
       </div>

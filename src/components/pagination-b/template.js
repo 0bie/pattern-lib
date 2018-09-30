@@ -1,3 +1,5 @@
+import {addClassNames, getShape} from '../utils';
+
 export default renderPagination;
 export const paginationMarkup = template;
 
@@ -12,10 +14,8 @@ export const paginationMarkup = template;
 
 function renderPagination({id, items, rounded, classArr}) {
 
-  const classNames = classArr ? classArr.join(' ') : '';
-  const paginationShape = rounded ? 'pagination--rounded' : '';
   return (
-    `<nav id=${id} class="pagination cf ${paginationShape} ${classNames}">
+    `<nav id=${id} class="pagination cf ${getShape(rounded, 'pagination')} ${addClassNames(classArr)}">
       <ul class="pagination-list pagination-b-list">
         <li class="pagination-item pagination-b-item">
           <a class="pagination-link pagination-item--disabled">
@@ -46,9 +46,8 @@ function renderPagination({id, items, rounded, classArr}) {
 
 function renderPaginationItem({number, link, classArr}) {
 
-  const classNames = classArr ? classArr.join(' ') : '';
   return (
-    `<li class="pagination-item pagination-b-item ${classNames}">
+    `<li class="pagination-item pagination-b-item ${addClassNames(classArr)}">
       <a class="pagination-link" href=${link}>${number}</a>
     </li>`
   );

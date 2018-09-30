@@ -1,4 +1,5 @@
 import Icon from '../icon/template';
+import {addClassNames} from '../utils';
 
 export default renderNavigation;
 export const navigationMarkup = template;
@@ -18,10 +19,9 @@ function renderNavigation({id, items, logo, logoText, classArr}) {
   if (!id || !items) {
     throw new Error('renderNavigation method requires `id` as a string & `items` as an array');
   }
-  const classNames = classArr ? classArr.join(' ') : '';
   return (
     `<div id=${id}>
-      <div class="nav-c-container ${classNames}">
+      <div class="nav-c-container ${addClassNames(classArr)}">
         <h1 class="logo">
           <a href="#" class="logo-link">
             ${Icon(logo)}
@@ -60,8 +60,7 @@ function renderNavigation({id, items, logo, logoText, classArr}) {
 
 function renderNavigationItem({title, link, classArr}) {
 
-  const classNames = classArr ? classArr.join(' ') : '';
-  return `<li class="nav-c-item ${classNames}"><a href="${link}">${title}</a></li>`;
+  return `<li class="nav-c-item ${addClassNames(classArr)}"><a href="${link}">${title}</a></li>`;
 
 }
 

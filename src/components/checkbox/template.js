@@ -1,3 +1,5 @@
+import {addClassNames, getShape} from '../utils';
+
 export default renderCheckbox;
 export const checkboxMarkup = template;
 
@@ -16,11 +18,9 @@ function renderCheckbox({id, size, label, classArr, rounded = false}) {
   if (!id || !size) {
     throw new Error('renderCheckbox method requires `id` and `size` as a string');
   }
-  const classNames = classArr ? classArr.join(' ') : '';
-  const checkboxShape = rounded ? 'checkbox--rounded' : '';
   return (
-    `<label class="checkbox-container ${classNames}" for="${id}">
-      <input id=${id} class="checkbox checkbox--${size} ${checkboxShape} hidden" type="checkbox" name=${id} />
+    `<label class="checkbox-container ${addClassNames(classArr)}" for="${id}">
+      <input id=${id} class="checkbox checkbox--${size} ${getShape(rounded, 'checkbox')} hidden" type="checkbox" name=${id} />
       <div>
         ${label ? `<span class="checkbox-label">${label}</span>` : ''}
       </div>

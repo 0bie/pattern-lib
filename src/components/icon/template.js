@@ -1,3 +1,5 @@
+import {addClassNames} from '../utils';
+
 export default renderIcon;
 export const iconSetMarkup = template;
 
@@ -19,9 +21,8 @@ function renderIcon(icon) {
   }
   const {id, classArr, size, fill, title, description} = icon;
   const iconFill = fill ? `style="fill: ${fill};"` : '';
-  const classNames = classArr ? classArr.join(' ') : '';
   return (
-    `<svg class="icon icon--${size} ${classNames}" ${iconFill} role="img" aria-labelledby="title" width="30" height="30">
+    `<svg class="icon icon--${size} ${addClassNames(classArr)}" ${iconFill} role="img" aria-labelledby="title" width="30" height="30">
       <title>${title}</title>
       ${description ? `<desc>${description}</desc>` : ''}
       <use xlink:href=#${id}></use>

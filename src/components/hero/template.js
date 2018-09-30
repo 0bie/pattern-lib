@@ -1,4 +1,5 @@
 import Icon from '../icon/template';
+import {addClassNames} from '../utils';
 
 export default renderHero;
 export const heroMarkup = template;
@@ -16,9 +17,8 @@ export const heroMarkup = template;
 
 function renderHero({image, title, subtitle, ctaText, ctaIcon, classArr}) {
 
-  const classNames = classArr ? classArr.join(' ') : '';
   return (
-    `<div class="hero-container ${classNames}">
+    `<div class="hero-container ${addClassNames(classArr)}">
       <section class="hero">
         <div class="hero-content">
           ${title ? renderHeroTitle(title, subtitle) : ''}

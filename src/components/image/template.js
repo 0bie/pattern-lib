@@ -1,3 +1,5 @@
+import {addClassNames} from '../utils';
+
 export default renderImage;
 export const imageMarkup = template;
 
@@ -11,10 +13,9 @@ export const imageMarkup = template;
  */
 
 function renderImage({size, src, caption, classArr, alt = ''}) {
-  const classNames = classArr ? classArr.join(' ') : '';
   return (
     `<figure class="image-container">
-      <img class="image image--${size} ${classNames}" src="${src}" alt="${alt}" />
+      <img class="image image--${size} ${addClassNames(classArr)}" src="${src}" alt="${alt}" />
       ${caption ? `<figcaption class="image-caption">${caption}</figcaption>` : ''}
     </figure>`
   );

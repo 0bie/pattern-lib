@@ -1,4 +1,5 @@
 import Icon from '../icon/template';
+import {addClassNames, getShape} from '../utils';
 
 export default renderMenu;
 export const menuMarkup = template;
@@ -17,12 +18,10 @@ function renderMenu({title, items, classArr, rounded}) {
   if (!items || items.length === 0) {
     throw new Error('renderMenu method requires `items` as an array');
   }
-  const classNames = classArr ? classArr.join(' ') : '';
-  const menuShape = rounded ? 'rounded' : '';
   return (
     /* eslint-disable indent */
-    `<nav class="${classNames}">
-      <ul class="menu ${menuShape}">
+    `<nav class="${addClassNames(classArr)}">
+      <ul class="menu ${getShape(rounded)}">
         ${title ? `<li class="menu-header">
             <span class="menu-title pl--xs pr--xs">${title}</span>
           </li>`
@@ -45,9 +44,8 @@ function renderMenu({title, items, classArr, rounded}) {
 
 function renderMenuItem({content, icon, classArr}) {
 
-  const classNames = classArr ? classArr.join(' ') : '';
   return (
-    `<li class="menu-item ${classNames}">
+    `<li class="menu-item ${addClassNames(classArr)}">
       ${icon ? Icon(icon) : ''}
       ${content}
     </li>`
