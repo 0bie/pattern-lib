@@ -1,5 +1,6 @@
 import Avatar from '../avatar/template';
 import Button from '../button/template';
+import {addClassNames} from '../utils';
 
 export default renderSidebar;
 export const sidebarMarkup = template;
@@ -19,9 +20,8 @@ function renderSidebar({id, items, classArr, label, sidebarPosition = 'left'}) {
   if (!id) {
     throw new Error('renderSidebar method requires `id` as a string');
   }
-  const classNames = classArr ? classArr.join(' ') : '';
   return (
-    `<nav id=${id} class=${classNames}>
+    `<nav id=${id} class=${addClassNames(classArr)}>
       <ul class="sidebar sidebar--${sidebarPosition}">
         ${items.map(renderSidebarItem).join('')}
       </ul>
@@ -45,9 +45,8 @@ function renderSidebarItem({content, classArr}) {
   if (!content) {
     throw new Error('renderSidebarItem method requires `content`');
   }
-  const classNames = classArr ? classArr.join(' ') : '';
   return (
-    `<li class="sidebar-item ${classNames}">
+    `<li class="sidebar-item ${addClassNames(classArr)}">
       ${content}
     </li>`
   );
@@ -154,4 +153,3 @@ const sidebar_bottom = {
   sidebarPosition: 'bottom',
   label: 'Toggle bottom sidebar'
 };
-

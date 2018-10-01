@@ -1,5 +1,6 @@
 import Icon from '../icon/template';
 import Media from '../media/template';
+import {addClassNames, getShape} from '../utils';
 
 export default renderDropdown;
 export const dropdownMarkup = template;
@@ -27,16 +28,13 @@ function renderDropdown(dropdown) {
   if (!id) {
     throw new Error('renderDropdown method requires `id` as a string');
   }
-  const classNames = classArr ? classArr.join(' ') : '';
-  const wrapClassNames = wrapClassArr ? wrapClassArr.join(' ') : '';
-  const dropdownShape = rounded ? 'dropdown--rounded' : '';
   return (
-    `<div id=${id} class="dropdown-container ${classNames} ${dropdownShape}" tabindex="0">
+    `<div id=${id} class="dropdown-container ${addClassNames(classArr)} ${getShape(rounded, 'dropdown')}" tabindex="0">
       <span id="${id}-target" class="dropdown-label" aria-expanded="false" aria-controls="${id}-list">
         ${label ? label : ''}
         ${labelIcon ? `<button class="btn">${Icon(labelIcon)}</button>` : ''}
       </span>
-      <div class="dropdown-wrap ${wrapClassNames}">
+      <div class="dropdown-wrap ${addClassNames(wrapClassArr)}">
       ${items ? `<ul id="${id}-list" class="dropdown-list" aria-live="off">
           ${items.map(renderDropdownItem).join('')}
         </ul>`

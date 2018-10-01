@@ -1,3 +1,5 @@
+import {addClassNames} from '../utils';
+
 export default renderSpinner;
 export const spinnerMarkup = template;
 
@@ -13,8 +15,7 @@ function renderSpinner({id, size, classArr}) {
   if (!id) {
     throw new Error('renderSpinner method requires `id` as a string');
   }
-  const classNames = classArr ? classArr.join(' ') : '';
-  return `<div id=${id} class="spinner spinner--${size} ${classNames}"></div>`;
+  return `<div id=${id} class="spinner spinner--${size} ${addClassNames(classArr)}"></div>`;
 }
 
 /**
@@ -62,10 +63,3 @@ const spinner_xxl = {
   id: 'spinner_xxl',
   size: 'xxl'
 };
-
-export const markup = `<div class="spinner spinner--xs"></div>
-<div class="spinner spinner--sm"></div>
-<div class="spinner spinner--md"></div>
-<div class="spinner spinner--lg"></div>
-<div class="spinner spinner--xl"></div>
-<div class="spinner spinner--xxl"></div>`;

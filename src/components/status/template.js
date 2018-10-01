@@ -1,3 +1,5 @@
+import {addClassNames} from '../utils';
+
 export default renderStatus;
 export const statusMarkup = template;
 
@@ -15,9 +17,8 @@ function renderStatus({id, state, text, classArr}) {
   if (!id || !state) {
     throw new Error('renderStatus method requies `id` & `state` as a string');
   }
-  const classNames = classArr ? classArr.join(' ') : '';
   return (
-    `<span class="status status--${state} ${classNames}">
+    `<span class="status status--${state} ${addClassNames(classArr)}">
       <span class="status-icon" aria-hidden="true"></span>
       <span class="status-text">${text}</span>
     </span>`

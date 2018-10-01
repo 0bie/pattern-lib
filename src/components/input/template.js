@@ -1,4 +1,6 @@
 import Icon from '../icon/template';
+import {getInputState} from './utils';
+import {addClassNames, getShape} from '../utils';
 
 export default renderInput;
 export const inputMarkup = template;
@@ -12,8 +14,7 @@ export const inputMarkup = template;
  * @param {size} [input].size - The input size (xs|sm|md|lg|xl|xxl)
  * @param {string} [input].placeholder - The input placeholder
  * @param {object} [input].icon - Icon properties (Optional)
- * @param {boolean} [input].error - The input error state (Optional)
- * @param {boolean} [input].success - The input success state (Optional)
+ * @param {boolean} [input].state - The input state (Optional)
  * @param {string} [input].hint - The validation message (Optional)
  * @param {boolean} [input].rounded - The input shape (Optional)
  * @param {array} [input].inputClass - Additional input classNames (Optional)
@@ -29,8 +30,7 @@ function renderInput(input) {
     size,
     placeholder,
     icon,
-    error,
-    success,
+    state,
     hint,
     inputId,
     inputClass,
@@ -41,11 +41,6 @@ function renderInput(input) {
   } = input;
 
   const isValidated = hint && pattern;
-  const textareaShape = rounded ? 'rounded' : '';
-  const inputShape = rounded ? 'input--rounded' : '';
-  const classNames = classArr ? classArr.join(' ') : '';
-  const inputClassName = inputClass ? inputClass.join(' ') : '';
-  const fieldState = error ? 'input-field--error' : success ? 'input-field--success' : '';
   const patternAttributes = pattern ? `data-pattern="${pattern}" data-hint="${id}-hint"` : '';
 
   if (!id || !size) {
@@ -53,27 +48,25 @@ function renderInput(input) {
   }
   return (
     /* eslint-disable indent */
-    `<span id=${id} class="input-field ${fieldState} ${classNames}">
+    `<span id=${id} class="input-field ${getInputState(state)} ${addClassNames(classArr)}">
       ${
         type === 'text' ?
-          `<input id=${inputId} class="input input--${size} ${inputShape} ${inputClassName}" type="text" placeholder="${placeholder}" ${patternAttributes} />`
+          `<input id=${inputId} class="input input--${size} ${getShape(rounded, 'input')} ${addClassNames(inputClass)}" type="text" placeholder="${placeholder}" ${patternAttributes} />`
         : type === 'number' ?
-          `<input id=${inputId} class="input input--${size} ${inputShape} ${inputClassName}" type="number" placeholder="${placeholder}" />`
+          `<input id=${inputId} class="input input--${size} ${getShape(rounded, 'input')} ${addClassNames(inputClass)}" type="number" placeholder="${placeholder}" />`
         : type === 'textField' ?
-          `<textarea id=${inputId} class="input input--${size} ${textareaShape} ${inputClassName}" placeholder="${placeholder}" ${patternAttributes}></textarea>`
+          `<textarea id=${inputId} class="input input--${size} ${getShape(rounded)} ${addClassNames(inputClass)}" placeholder="${placeholder}" ${patternAttributes}></textarea>`
         : new Error ('renderInput method requires `type` as a string ["text"|"number"|"textField"]')
       }
       ${icon ? Icon(icon) : ''}
-      ${(error || pattern || isValidated) ? Icon(errorIcon) : ''}
-      ${success ? Icon(successIcon) : ''}
-      ${
-        hint || isValidated ?
+      ${(state === 'error' || pattern || isValidated) ? Icon(errorIcon) : ''}
+      ${state === 'success' ? Icon(successIcon) : ''}
+      ${hint || isValidated ?
           `<div id="${id}-hint" class="hint">
             <div class="hint-caret"></div>
             <span class="hint-text">${hint}</span>
           </div>`
-        : ''
-      }
+        : ''}
     </span>`
     /* eslint-enable indent */
   );
@@ -114,7 +107,7 @@ function template() {
     /* eslint-disable indent */
     `<div class="mb--md">
       <div class="input-container">
-        ${renderInput(Object.assign({}, input, {id: 'input_error_test', error: true}))}
+        ${renderInput(Object.assign({}, input, {id: 'input_error_test', state: 'error'}))}
       </div>
       ${renderInput(input_sm)}
       ${renderInput(input_md)}
@@ -144,7 +137,7 @@ function template() {
       <div class="input-container">
         ${
           renderInput(Object.assign({}, input_rounded, {
-            success: true
+            state: 'success'
           }))
         }
       </div>
@@ -221,7 +214,7 @@ function template() {
       <div>
         ${renderInput(Object.assign({}, input_textarea_md, {
           id: 'input_textarea_md_error',
-          error: true,
+          state: 'error',
           hint: 'This is a form validation error message',
           inputClass: ['input--raised'],
           classArr: ['input--full']
@@ -248,7 +241,7 @@ function template() {
         ${renderInput(Object.assign({}, input_textarea_rounded, {
           id: 'input_textarea_rounded_success',
           size: 'md',
-          success: true,
+          state: 'success',
           hint: 'This is a form validation success message',
           inputClass: ['input--raised'],
           classArr: ['input--full']
@@ -258,7 +251,7 @@ function template() {
         ${renderInput(Object.assign({}, input_textarea_rounded, {
           id: 'input_textarea_rounded_error',
           size: 'md',
-          error: true,
+          state: 'error',
           hint: 'This is a form validation error message',
           inputClass: ['input--raised'],
           classArr: ['input--full']

@@ -1,5 +1,6 @@
 import Image from '../image/template';
 import Icon from '../icon/template';
+import {addClassNames} from '../utils';
 
 export default renderMedia;
 export const mediaMarkup = template;
@@ -17,11 +18,10 @@ export const mediaMarkup = template;
 function renderMedia(media) {
 
   const {item, title, description, footer, footerContent, classArr} = media;
-  const classNames = classArr ? classArr.join(' ') : '';
   return (
     /* eslint-disable indent */
     `<div class="media-container">
-      <div class="media ${classNames}">
+      <div class="media ${addClassNames(classArr)}">
         ${item ? renderMediaItem(item) : new Error('Media needs to render an item')}
         <div class="media-content">
           <div class="media-titlebar">

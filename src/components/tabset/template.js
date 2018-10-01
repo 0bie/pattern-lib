@@ -1,4 +1,5 @@
 import Icon from '../icon/template';
+import {addClassNames, getShape} from '../utils';
 
 export default renderTabset;
 export const tabsetMarkup = template;
@@ -17,11 +18,9 @@ function renderTabset({id, items, rounded, classArr}) {
   if (!id) {
     throw new Error('renderTabset method requires `id` as a string');
   }
-  const classNames = classArr ? classArr.join(' ') : '';
-  const tabShape = rounded ? 'tab-list--rounded' : '';
   return (
     `<nav>
-      <ul id=${id} class="tab-list ${tabShape} ${classNames}" role="tablist">
+      <ul id=${id} class="tab-list ${getShape(rounded, 'tab-list')} ${addClassNames(classArr)}" role="tablist">
         ${items.map(renderTabsetItem).join('')}
       </ul>
     </nav>`
@@ -41,9 +40,8 @@ function renderTabset({id, items, rounded, classArr}) {
 
 function renderTabsetItem({title, content, classArr}, index) {
 
-  const classNames = classArr ? classArr.join(' ') : '';
   return (
-    `<li class="tab-item ${classNames}"  role="presentation">
+    `<li class="tab-item ${addClassNames(classArr)}"  role="presentation">
       <h1 id=title${index + 1} class="tab-title" role="tab" aria-controls=section${index + 1} tabindex="-1">
         ${title}
       </h1>

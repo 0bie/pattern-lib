@@ -1,4 +1,5 @@
 import Button from '../button/template';
+import {addClassNames, getShape} from '../utils';
 
 export default renderCarousel;
 export const carouselMarkup = template;
@@ -8,20 +9,19 @@ export const carouselMarkup = template;
  * @param {Object} carousel - The carousel properties
  * @param {string} [carousel].id - The carousel `id`
  * @param {array} [carousel].items - The carousel items
+ * @param {boolean} [carousel].rounded - The carousel shape
  * @param {array} [carousel].classArr - Additional classnames (Optional)
  * @returns {string} - Markup for carousel component
  */
 
-function renderCarousel({id, items, classArr}) {
+function renderCarousel({id, items, rounded, classArr}) {
 
   if (!id) {
     throw new Error('renderCarousel method requires `id` as a string');
   }
-  const classNames = classArr ? classArr.join(' ') : '';
-  const carouselShape = classArr && classArr.includes('carousel--rounded') ? 'carousel--rounded' : '';
   return (
-    `<div id=${id} class="carousel-container ${classNames}">
-      <div class="carousel ${carouselShape}">
+    `<div id=${id} class="carousel-container ${addClassNames(classArr)}">
+      <div class="carousel ${getShape(rounded, 'carousel')}">
         <ul class="carousel-list">${items.map(renderCarouselItem).join('')}</ul>
       </div>
       <div class="carousel-controls">
@@ -43,10 +43,8 @@ function renderCarousel({id, items, classArr}) {
  */
 
 function renderCarouselItem({image, title, description, classArr}) {
-
-  const classNames = classArr ? classArr.join(' ') : '';
   return (
-    `<li class="carousel-item ${classNames}" aria-hidden="true">
+    `<li class="carousel-item ${addClassNames(classArr)}" aria-hidden="true">
       <div class="media-container">
         <div class="media">
           <div class="media-item">
@@ -110,6 +108,6 @@ const carousel = {
 };
 
 const carousel2 = Object.assign({}, carousel, {
-  id: 'carousel2',
-  classArr: ['carousel--rounded']
+  rounded: true,
+  id: 'carousel2'
 });

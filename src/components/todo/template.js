@@ -1,5 +1,6 @@
 import Input from '../input/template';
 import Icon from '../icon/template';
+import {addClassNames, getShape} from '../utils';
 
 export default renderTodo;
 export const todoMarkup = template;
@@ -20,10 +21,8 @@ function renderTodo({id, title, ctaText, ctaIcon, rounded, classArr}) {
   if (!id) {
     throw new Error('renderTodo method requires `id` as a string');
   }
-  const classNames = classArr ? classArr.join('') : '';
-  const listShape = rounded ? 'todo--rounded' : '';
   return (
-    `<div id=${id} class="todo-container ${classNames}">
+    `<div id=${id} class="todo-container ${addClassNames(classArr)}">
       <header class="todo-header">
         <h1 class="todo-title">${title}</h1>
         <form id="todo-form" class="todo-form">
@@ -34,7 +33,7 @@ function renderTodo({id, title, ctaText, ctaIcon, rounded, classArr}) {
           </button>
         </form>
       </header>
-      <ul id="todo-list" class="list todo-list ${listShape}"></ul>
+      <ul id="todo-list" class="list todo-list ${getShape(rounded, 'todo')}"></ul>
     </div>`
   );
 }
@@ -96,4 +95,3 @@ export const todoItems = [
   {text: 'Task 5', done: true},
   {text: 'Task 6', done: true}
 ];
-

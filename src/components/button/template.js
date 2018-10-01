@@ -1,4 +1,5 @@
 import Icon from '../icon/template';
+import {addClassNames, getShape} from '../utils';
 
 export default renderButton;
 export const buttonMarkup = template;
@@ -21,17 +22,15 @@ function renderButton(button) {
     throw new Error('renderButton method requires `button` as an object');
   }
   const {size, text, icon, iconPosition, classArr, disabled} = button;
-  const classNames = classArr ? classArr.join(' ') : '';
   const buttonIsLoading = classArr && classArr.includes('btn--loading');
   const buttonIsDisabled = disabled ? 'disabled' : '';
   return (
     /* eslint-disable indent */
-    `<button class="btn btn--${size} ${classNames}" ${buttonIsDisabled}>
+    `<button class="btn btn--${size} ${addClassNames(classArr)}" ${buttonIsDisabled}>
       ${icon && iconPosition == 'left' ? Icon({size, ...icon}) : ''}
       ${text ? `<span class="btn-text">${text}</span>`
         : buttonIsLoading ? '<span class="text--sr">loading</span>'
-        : !iconPosition ? Icon({size, ...icon}) : ''
-      }
+        : !iconPosition ? Icon({size, ...icon}) : ''}
       ${icon && iconPosition == 'right' ? Icon({size, ...icon}) : ''}
     </button>`
     /* eslint-enable indent */
@@ -50,13 +49,11 @@ function renderButton(button) {
 
 function renderButtonGroup({display, buttonArr, classArr, rounded}) {
 
-  const classNames = classArr ? classArr.join(' ') : '';
-  const groupShape = rounded ? 'btngroup--rounded' : '';
   if (!display) {
     throw new Error('renderInputGroup method requires `display` as a string');
   }
   return (
-    `<div class="btngroup--${display} ${groupShape} ${classNames}">
+    `<div class="btngroup--${display} ${getShape(rounded, 'btngroup')} ${addClassNames(classArr)}">
       ${buttonArr.map((item) => item).join('')}
     </div>`
   );
@@ -227,32 +224,32 @@ const deleteIcon = {
 
 const btn_xs = {
   size: 'xs',
-  text: 'Button-xs',
+  text: 'Button-xs'
 };
 
 const btn_sm = {
   size: 'sm',
-  text: 'Button-sm',
+  text: 'Button-sm'
 };
 
 const btn_md = {
   size: 'md',
-  text: 'Button-md',
+  text: 'Button-md'
 };
 
 const btn_lg = {
   size: 'lg',
-  text: 'Button-lg',
+  text: 'Button-lg'
 };
 
 const btn_xl = {
   size: 'xl',
-  text: 'Button-xl',
+  text: 'Button-xl'
 };
 
 const btn_xxl = {
   size: 'xxl',
-  text: 'Button-xxl',
+  text: 'Button-xxl'
 };
 
 const btn_full = {
