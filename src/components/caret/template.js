@@ -1,3 +1,5 @@
+import {addClassNames} from '../utils';
+
 export default renderCaret;
 export const caretMarkup = template;
 
@@ -13,8 +15,7 @@ function renderCaret({direction, classArr}) {
   if (!direction) {
     throw new Error('renderCaret method requires `direction` as a string');
   }
-  const classNames = classArr ? classArr.join(' ') : '';
-  return `<span class="caret caret--${direction} ${classNames}"></span>`;
+  return `<span class="caret caret--${direction} ${addClassNames(classArr)}"></span>`;
 
 }
 

@@ -1,3 +1,5 @@
+import {addClassNames} from '../utils';
+
 export default renderAccordion;
 export const accordionMarkup = template;
 
@@ -14,9 +16,8 @@ function renderAccordion({id, classArr, sections}) {
   if (!id) {
     throw new Error('renderAccordion method requires `id` as a string');
   }
-  const classNames = classArr ? classArr.join(' ') : '';
   return (
-    `<div id=${id} class="accordion ${classNames}">
+    `<div id=${id} class="accordion ${addClassNames(classArr)}">
       ${sections ? sections.map(renderAccordionSection).join('') : new Error('accordion requires `sections` as an array')}
     </div>`
   );
@@ -37,9 +38,8 @@ function renderAccordionSection({id, classArr, title, content}) {
   if (!id) {
     throw new Error('renderAccordionSection method requires `id` as a string');
   }
-  const classNames = classArr ? classArr.join(' ') : '';
   return (
-    `<section class="accordion-section ${classNames}">
+    `<section class="accordion-section ${addClassNames(classArr)}">
       <h3 class="accordion-title" id=${id} tabindex="-1">
         ${title ? title : new Error('accordion section requires a title')}
       </h3>

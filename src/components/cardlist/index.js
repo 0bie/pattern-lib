@@ -89,7 +89,7 @@ function cardlistToggleHandler(parent, evt) {
 
       if (toggleInitiated) {
         imageContainer.addEventListener('transitionend', function handler() {
-          const contentIsOpen = imageContainer.style.height === 'auto';
+          const contentIsOpen = imageContainer.style.height === image.clientHeight;
           const contentIsClosed = imageContainer.style.height < image.clientHeight || imageContainer.style.height === '0px';
           if (contentIsClosed) return false;
           if (!contentIsOpen && !contentIsClosed) imageContainer.style.height = 'auto';

@@ -1,3 +1,5 @@
+import {addClassNames} from '../utils';
+
 export default renderBulletlist;
 export const bulletlistMarkup = template;
 
@@ -13,9 +15,8 @@ function renderBulletlist({items, classArr}) {
   if (!items) {
     throw new Error('renderBulletlist method requires `items` as an array');
   }
-  const classNames = classArr ? classArr.join(' ') : '';
   return (
-    `<ul class="bulletlist ${classNames}">
+    `<ul class="bulletlist ${addClassNames(classArr)}">
       ${items.map(renderBulletlistItem).join('')}
     </ul>`
   );
@@ -34,9 +35,8 @@ function renderBulletlistItem({text, classArr}) {
   if (!text) {
     throw new Error('renderBulletlistItems method requires `text` as a string');
   }
-  const classNames = classArr ? classArr.join(' ') : '';
   return (
-    `<li class="bulletlist-item ${classNames}">
+    `<li class="bulletlist-item ${addClassNames(classArr)}">
       <span class="bulletlist-text">${text}</span>
     </li>`
   );

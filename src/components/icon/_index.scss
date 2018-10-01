@@ -45,6 +45,7 @@
 
   .icon--menu {
     cursor: pointer;
+    position: relative;
     touch-action: manipulation;
   }
 
@@ -164,6 +165,21 @@
   .icon--exit--rounded .bar::before,
   .icon--exit--rounded .bar::after {
     border-radius: var(--size-rounded);
+  }
+
+  /**
+   * Interactive states
+   */
+
+  .icon--menu:active,
+  .icon--menu:focus,
+  .icon--menu:hover,
+  .icon--menu:focus .bar::before,
+  .icon--menu:focus .bar::after,
+  .icon--menu:hover .bar::before,
+  .icon--menu:hover .bar::after {
+    outline: 0;
+    box-shadow: 0 0 3px theme(default);
   }
 
 }

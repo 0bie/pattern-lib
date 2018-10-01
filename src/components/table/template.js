@@ -1,3 +1,5 @@
+import {addClassNames, getShape} from '../utils';
+
 export default renderTable;
 export const tableMarkup = template;
 
@@ -16,10 +18,8 @@ function renderTable({id, headerItems, tableItems, rounded, classArr}) {
   if (!id) {
     throw new Error('renderTable method requires `id` as a string');
   }
-  const classNames = classArr ? classArr.join(' ') : '';
-  const tableShape = rounded ? 'table--rounded' : '';
   return (
-    `<div id=${id} class="table-container ${tableShape} ${classNames}">
+    `<div id=${id} class="table-container ${getShape(rounded)} ${addClassNames(classArr)}">
       <table class="table">
         <thead class="table-header">
           <tr>
@@ -43,8 +43,7 @@ function renderTable({id, headerItems, tableItems, rounded, classArr}) {
  */
 
 function renderTableHeader({title, classArr}) {
-  const classNames = classArr ? classArr.join(' ') : '';
-  return `<th class="table-cell ${classNames}">${title}</th>`;
+  return `<th class="table-cell ${addClassNames(classArr)}">${title}</th>`;
 }
 
 
@@ -56,9 +55,8 @@ function renderTableHeader({title, classArr}) {
  */
 
 function renderTableRow({content, classArr}) {
-  const classNames = classArr ? classArr.join(' ') : '';
   return (
-    `<tr class="table-row ${classNames}">${content}</tr>`
+    `<tr class="table-row ${addClassNames(classArr)}">${content}</tr>`
   );
 }
 
@@ -115,19 +113,21 @@ const row2 = `<td class="table-cell">2</td>
 <td class="table-cell">M</td>
 <td class="table-cell">Sale</td>`;
 
-const row3 = `<tr class="table-row"><td class="table-cell--break" colspan="12"></td></tr>
-<td class="table-cell">3</td>
-<td class="table-cell"></td>
-<th class="table-cell text--left">
-  <a class="table-link" href="#">
-    <span>Item Title</span>
-  </a>
-</th>
-<td class="table-cell">POI0987654323</td>
-<td class="table-cell">Size</td>
-<td class="table-cell">S</td>
-<td class="table-cell">W</td>
-<td class="table-cell">Sale</td>`;
+const row3 = `<tr class="table-row foo"><td class="table-cell--break" colspan="12"></td></tr>
+<tr class="table-row">
+  <td class="table-cell">3</td>
+  <td class="table-cell"></td>
+  <th class="table-cell text--left">
+    <a class="table-link" href="#">
+      <span>Item Title</span>
+    </a>
+  </th>
+  <td class="table-cell">POI0987654323</td>
+  <td class="table-cell">Size</td>
+  <td class="table-cell">S</td>
+  <td class="table-cell">W</td>
+  <td class="table-cell">Sale</td>
+</tr>`;
 
 const tableItems = [
   {content: row1},

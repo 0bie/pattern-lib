@@ -1,4 +1,5 @@
 import Icon from '../icon/template';
+import {addClassNames, getShape} from '../utils';
 
 export default renderModal;
 export const modalMarkup = template;
@@ -10,17 +11,15 @@ export const modalMarkup = template;
  * @param {any} content - The modal content
  * @param {array} classArr - Additional classNames
  * @param {boolean} rounded - The modal outline shape
- * @param {boolean} canDismiss - Can a user dismiss the modal?
+ * @param {boolean} preventClose - Can a user dismiss the modal?
  * @returns {string} Markup for modal component
  */
 
-function renderModal({id, title, content, classArr, rounded, canDismiss = true}) {
+function renderModal({id, title, content, classArr, rounded, preventClose}) {
 
-  const modalShape = rounded ? 'rounded' : '';
-  const classNames = classArr ? classArr.join(' ') : '';
   return (
-    `<div class="modal-container ${classNames} ${modalShape}">
-      ${renderModalHeader(title, canDismiss)}
+    `<div class="modal-container ${addClassNames(classArr)} ${getShape(rounded)}">
+      ${renderModalHeader(title, preventClose)}
       <section id="${id}" class="modal">${content}</section>
     </div>`
   );
@@ -34,12 +33,12 @@ function renderModal({id, title, content, classArr, rounded, canDismiss = true})
  * @returns {string} Header markup
  */
 
-function renderModalHeader(title, closeButton) {
-  const dismiss = closeButton ? `<button class="btn btn--sm btn--link">${Icon(exitIcon)}</button>` : '';
+function renderModalHeader(title, preventClose) {
+  const closeButton = !preventClose ? `<button class="btn btn--sm btn--link">${Icon(exitIcon)}</button>` : '';
   return (
     `<header class="modal-header">
       <h1 class="modal-title">${title}</h1>
-      ${dismiss}
+      ${closeButton}
     </header>`
   );
 }
@@ -89,5 +88,6 @@ const modal = {
 
 const modal2 = Object.assign({}, modal, {
   id: 'modal2',
-  rounded: true
+  rounded: true,
+  preventClose: true
 });

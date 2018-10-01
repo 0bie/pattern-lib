@@ -1,5 +1,6 @@
 import Icon from '../icon/template';
 import Avatar from '../avatar/template';
+import {addClassNames} from '../utils';
 
 export default renderBlockquote;
 export const blockquoteMarkup = template;
@@ -23,9 +24,8 @@ export const blockquoteMarkup = template;
 function renderBlockquote(blockquote) {
 
   const {id, quote, firstname, lastname, link, linkCta, image, maxLength, classArr, footer = true} = blockquote;
-  const classNames = classArr ? classArr.join(' ') : '';
   return (
-    `<div id=${id} class="blockquote-container ${classNames}">
+    `<div id=${id} class="blockquote-container ${addClassNames(classArr)}">
       <div class="blockquote-icon">
         ${Icon(quoteIcon)}
       </div>

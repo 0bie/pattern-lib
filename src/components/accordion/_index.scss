@@ -54,7 +54,7 @@
   .accordion-wrap {
     height: 0;
     overflow: hidden;
-    transition: height 0.25s ease-out;
+    @include transition(height, 0.25s, cubic-bezier(0.175, 0.885, 0.32, 1.275));
   }
 
   .accordion-content {

@@ -1,3 +1,5 @@
+import {addClassNames} from '../utils';
+
 export default renderDataTree;
 export const dataTreeMarkup = template;
 
@@ -13,9 +15,8 @@ function renderDataTree({items, classArr}) {
   if (!items || items.length === 0) {
     throw new Error('renderDataTree method requires `items` as an array');
   }
-  const classNames = classArr ? classArr.join(' ') : '';
   return (
-    `<div class="datatree ${classNames}">
+    `<div class="datatree ${addClassNames(classArr)}">
       <ul class="datatree-list">
         ${renderItems(items)}
       </ul>
@@ -60,7 +61,7 @@ function renderDataTreeItem({title, item}) {
 
 function renderSubItem(subItem) {
 
-  if (Array.isArray(subItem)) {
+  if (subItem instanceof Array) {
     return subItem.map((item) => {
       if (typeof (item) == 'object') {
         return (

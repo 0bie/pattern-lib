@@ -1,5 +1,6 @@
 import Button from '../button/template';
 import Icon from '../icon/template';
+import {addClassNames, getShape} from '../utils';
 
 export default renderCard;
 export const cardMarkup = template;
@@ -10,9 +11,10 @@ export const cardMarkup = template;
  * @param {object} card - The card properties
  * @param {string} [card].image - The image URL (Optional)
  * @param {any} [card].icon - An icon (Optional)
- * @param {srtring} [card].title - The card title
+ * @param {string} [card].title - The card title
  * @param {string} [card].description - The card description
  * @param {array} [card].actions - Call to actions
+ * @param {boolean} [card].rounded - The card shape
  * @param {array} [card].classArr - Additional classnames (Optional)
  * @param {boolean} [card].footer - The card footer (Optional)
  * @returns {string} - Markup for card component
@@ -20,13 +22,12 @@ export const cardMarkup = template;
 
 function renderCard(card) {
 
-  const {image, icon, title, description, actions, classArr, footer = true} = card;
-  const classNames = classArr ? classArr.join(' ') : '';
+  const {image, icon, title, description, actions, rounded, classArr, footer = true} = card;
   return (
-    `<div class="card-container ${classNames}">
+    `<div class="card-container ${getShape(rounded)} ${addClassNames(classArr)}">
       <div class="card">
         ${icon || image ? renderCardItem(image, icon) : ''}
-        <div class="card-content">${renderCardContent(title, description, classArr)}</div>
+        <div class="card-content">${renderCardContent(title, description, rounded, classArr)}</div>
         ${footer ? `<div class="card-footer">${renderCardFooter(actions)}</div>` : ''}
       </div>
     </div>`
@@ -37,7 +38,7 @@ function renderCard(card) {
 /**
  * Render the card item
  * @param {string} image - The image URL
- * @param {icon} icon - The icon
+ * @param {object} icon - The icon
  * @returns {string} - Markup for item
  */
 
@@ -57,13 +58,12 @@ function renderCardItem(image, icon) {
  * @returns {string} - Markup for content
  */
 
-function renderCardContent(title, description, classArr) {
+function renderCardContent(title, description, rounded) {
 
-  const buttonShape = classArr && classArr.includes('rounded') ? 'rounded' : '';
   return (
     `<div class="card-titlebar">
       <h4 class="card-title">${title}</h4>
-      ${Button({size: 'xs', text: 'button', classArr: [buttonShape]})}
+      ${Button({size: 'xs', text: 'button', classArr: [getShape(rounded)]})}
     </div>
     <div class="card-description">
       ${description}
@@ -96,9 +96,9 @@ function renderCardFooter(actions) {
 function template() {
   return (
     `<div class="mb--md">
-      <div class="mb--md">${renderCard(bag1)}</div>
-      <div class="mb--md">${renderCard(bag2)}</div>
-      <div class="mb--md">${renderCard(bag3)}</div>
+      <div class="mb--md">${renderCard(card1)}</div>
+      <div class="mb--md">${renderCard(card2)}</div>
+      <div class="mb--md">${renderCard(card3)}</div>
       <div>${renderCard(card4)}</div>
     </div>`
   );
@@ -116,7 +116,7 @@ const cardDescription2 = 'The inspiration was to modernize classic leather messe
   'duffle bags, backpacks, belts, and wallets. In the world of ' +
   'fast-fashion where many brands have moved away from high-quality products.';
 
-const bag1 = {
+const card1 = {
   title: 'card title',
   description: cardDescription1,
   classArr: ['constrain'],
@@ -127,17 +127,19 @@ const bag1 = {
   ]
 };
 
-const bag2 = Object.assign({}, bag1, {
-  classArr: ['constrain', 'rounded']
+const card2 = Object.assign({}, card1, {
+  rounded: true,
+  classArr: ['constrain']
 });
 
-const bag3 = Object.assign({}, bag1, {
+const card3 = Object.assign({}, card1, {
   description: cardDescription2,
   image: 'assets/bag/bag1.jpg'
 });
 
-const card4 = Object.assign({}, bag1, {
+const card4 = Object.assign({}, card1, {
+  rounded: true,
   description: cardDescription2,
   image: 'assets/bag/bag1.jpg',
-  classArr: ['constrain', 'rounded']
+  classArr: ['constrain']
 });

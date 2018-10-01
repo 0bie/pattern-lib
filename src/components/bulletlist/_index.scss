@@ -3,7 +3,10 @@
   .bulletlist {
     padding: 0;
     margin: 0;
-    column-count: 2;
+
+    @include breakpoint('min', $small) {
+      column-count: 2;
+    }
   }
 
   .bulletlist-item {

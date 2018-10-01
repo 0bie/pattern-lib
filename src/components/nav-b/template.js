@@ -1,4 +1,5 @@
 import Icon from '../icon/template';
+import {addClassNames} from '../utils';
 
 export default renderNavigation;
 export const navigationMarkup = template;
@@ -30,10 +31,9 @@ function renderNavigation(navigation) {
   if (!id || !drawerItems) {
     throw new Error('renderNavigation method requires `id` as a string & `drawerItems` as an array');
   }
-  const classNames = classArr ? classArr.join(' ') : '';
   return (
     /* eslint-disable indent */
-    `<div id=${id} class="nav-b-container cf ${classNames}">
+    `<div id=${id} class="nav-b-container cf ${addClassNames(classArr)}">
       <nav class="nav-b-sub">
         <ul>
           <li class="nav-b-item caret caret--bottom">

@@ -1,6 +1,7 @@
 import Button from '../button/template';
 import Avatar from '../avatar/template';
 import Input from '../input/template';
+import {addClassNames, getShape} from '../utils';
 
 export default renderPicker;
 export const pickerMarkup = template;
@@ -22,10 +23,8 @@ function renderPicker({id, items, groups, title, subtitle, rounded, classArr}) {
   if (!items && !groups) {
     throw new Error('renderPicker requires `items` as an array');
   }
-  const classNames = classArr ? classArr.join(' ') : '';
-  const pickerShape = rounded ? 'picker--rounded' : '';
   return (
-    `<div class="picker ${pickerShape} ${classNames}">
+    `<div class="picker ${getShape(rounded, 'picker')} ${addClassNames(classArr)}">
       <header class="picker-header">
         <div class="picker-titlebar">
           <h1 class="picker-title">${title}</h1>
@@ -57,9 +56,8 @@ function renderPickerItem({id, item, title, classArr}) {
   if (!id || !title) {
     throw new Error('renderPickerItem method requires `id` & `title` as a string');
   }
-  const classNames = classArr ? classArr.join(' ') : '';
   return (
-    `<div class="picker-item ${classNames}">
+    `<div class="picker-item ${addClassNames(classArr)}">
       <label for=${id}>
         <div class="checkbox-container">
           <input class="checkbox checkbox--sm checkbox--rounded hidden" type="checkbox" name=${id} id=${id} />
@@ -90,9 +88,8 @@ function renderPickerGroup({title, itemsArr, classArr}) {
   if (!itemsArr) {
     throw new Error('renderPickerGroup requires `itemsArr` as an array');
   }
-  const classNames = classArr ? classArr.join(' ') : '';
   return (
-    `<div class="picker-group ${classNames}">
+    `<div class="picker-group ${addClassNames(classArr)}">
       <header class="picker-groupheader">
         <h3 class="picker-subtitle">${title}</h3>
       </header>

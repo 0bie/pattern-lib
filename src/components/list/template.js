@@ -1,21 +1,23 @@
+import {addClassNames, getShape} from '../utils';
+
 export default renderList;
 export const listMarkup = template;
 
 /**
  * Render a list
  * @param {array} items - The list items
+ * @param {boolean} rounded - The list shape (Optional)
  * @param {array} classArr - Additional Class names (Optional)
  * @returns {string} Markup for list component
  */
 
-function renderList({items, classArr}) {
+function renderList({items, rounded, classArr}) {
 
   if (!items) {
     throw new Error('renderList method requires `items` as an array');
   }
-  const classNames = classArr ? classArr.join(' ') : '';
   return (
-    `<ul class="list ${classNames}">
+    `<ul class="list ${getShape(rounded)} ${addClassNames(classArr)}">
       ${items.map(renderListItem).join('')}
     </ul>`
   );
@@ -34,8 +36,7 @@ function renderListItem({text, classArr}) {
   if (!text) {
     throw new Error('renderBulletlistItem method requires `text` as a string');
   }
-  const classNames = classArr ? classArr.join(' ') : '';
-  return `<li class="list-item ${classNames}">${text}</li>`;
+  return `<li class="list-item ${addClassNames(classArr)}">${text}</li>`;
 
 }
 
