@@ -75,6 +75,7 @@
     pointer-events: auto;
   }
 
+  .dropdown-label:focus,
   .dropdown-container:focus,
   .dropdown-container:hover {
     outline: 0;

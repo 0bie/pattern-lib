@@ -119,6 +119,16 @@
     text-shadow: var(--color-text-shadow);
   }
 
+  .todo-container.rounded .input--todo.rounded {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+
+  .todo-container.rounded .btn--todo.rounded {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+
   /**
    * Interactive states
    */
