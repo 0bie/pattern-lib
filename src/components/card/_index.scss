@@ -12,7 +12,6 @@
     overflow: hidden;
     border: 0.0625em solid;
     border-color: var(--color-border);
-    box-shadow: 0 0.0625em 0.25em 0 rgba(0, 0, 0, 0.2);
   }
 
   .card-container::before {
@@ -58,9 +57,14 @@
     text-transform: capitalize;
   }
 
+  .card-titlebar .btn-text {
+    vertical-align: middle;
+  }
+
   .card-footer {
     @include transition(transform, 0.5s);
     @include translate3d(null, 3em);
+    will-change: transform;
     position: relative;
     bottom: 0;
     z-index: ( get-zindex(flyout) - 10 );
@@ -108,6 +112,11 @@
 
   .card-footer .btn:focus {
     box-shadow: 0 1px 1px theme(default-fg);
+  }
+
+  .card-container:active,
+  .card-container:focus {
+    outline: 0;
   }
 
 }
