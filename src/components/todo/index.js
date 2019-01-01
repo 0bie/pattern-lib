@@ -70,6 +70,11 @@ function addTodoItem(parent, evt) {
  */
 
 function createTodoList(items = [], parent) {
+
+  if (!items.length) {
+    parent.innerHTML = 'There are currently no tasks.';
+    return;
+  }
   parent.innerHTML = items.map((item, i) => `<li id="todo-item-${i}" class="list-item todo-item">
   <input class="text--sr" type="checkbox" id="todo-check-${i}" name="todo-check-${i}" data-index="${i}" ${item.done ? 'checked' : ''} />
   <label for="todo-check-${i}" class="todo-label" data-index="${i}" data-todo="done">
@@ -80,6 +85,7 @@ function createTodoList(items = [], parent) {
     ${Icon(deleteIcon)}
   </button>
   </li>`).join('');
+
 }
 
 /**
