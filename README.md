@@ -12,11 +12,12 @@ A manifest file (`manifest.[js|scss]`) contains the list of files that are inclu
 ## Developing
 - [Install yarn](https://goo.gl/c9cVRS)
 - Install project dependencies: `yarn install`
-- Start development server: `yarn start` (PORT: 8080)
+- Start development server: `yarn start` (http://localhost:8080)
 
 ## Building
 - Run Delopment Build: `yarn build:dev`
 - Run production build: `yarn build:prod`
 
+## Documentation
 
-
+[Pattern Library Docs](https://bit.ly/2Pa6n1O)
