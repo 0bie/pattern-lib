@@ -64,10 +64,6 @@
     padding: size(xs);
   }
 
-  .btn--rounded.btn--xs .btn-text {
-    font-size: 0.875rem;
-  }
-
   .btn--rounded.btn--sm {
     padding: size(sm);
   }
@@ -108,6 +104,10 @@
    * Nested components
    */
 
+  .btn--xs .btn-text {
+    font-size: 0.875rem;
+  }
+
   .btn--xs .icon {
     width: size(sm);
     height: size(sm);
@@ -116,6 +116,10 @@
   .btn--rounded.btn--sm .icon {
     width: size(md);
     height: size(md);
+  }
+
+  .btn--rounded.btn--xs .btn-text {
+    font-size: 0.875rem;
   }
 
   /**
