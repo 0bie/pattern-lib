@@ -33,7 +33,14 @@ module.exports = {
         parallel: true,
         sourceMap: true
       }),
-      new OptimizeCssAssetsPlugin({})
+      new OptimizeCssAssetsPlugin({
+        cssProcessorPluginOptions: {
+          preset: ['default', {
+            calc: false,
+            zindex: false
+          }]
+        }
+      })
     ],
     splitChunks: {
       cacheGroups: {
