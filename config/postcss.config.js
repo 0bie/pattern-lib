@@ -1,30 +1,26 @@
-const cssColorFn = require('postcss-color-function');
-const cssPrefix = require('autoprefixer')({browsers: 'last 2 versions'});
-const cssVars = require('postcss-css-variables');
+const cssPrefix = require('autoprefixer')
+const cssImport = require('postcss-import')
+const cssVars = require('postcss-css-variables')
+const cssColorFn = require('postcss-color-function')
 
-const plugins = () => [cssVars, cssColorFn, cssPrefix];
-
-const cssDevConfig = [
-  {loader: 'style-loader'},
-  {loader: 'css-loader'},
-  {loader: 'postcss-loader', options: {plugins}},
-  {loader: 'sass-loader'}
-];
-
-const cssProdConfig = {
-  cssLoader: {
-    loader: 'css-loader',
-    options: {
-      minimize: {safe: true}
+module.exports = () => ({
+    cssLoader: {
+        loader: 'css-loader'
+    },
+    postcssLoader: {
+        loader: 'postcss-loader',
+        options: {
+            postcssOptions: {
+                plugins: [
+                    [cssVars()],
+                    [cssColorFn()],
+                    [cssPrefix({overrideBrowserslist: 'last 2 versions'})],
+                    [cssImport()]
+                ]
+            }
+        }
+    },
+    scssLoader: {
+        loader: 'sass-loader'
     }
-  },
-  postcssLoader: {
-    loader: 'postcss-loader',
-    options: {plugins}
-  },
-  scssLoader: {
-    loader: 'sass-loader'
-  }
-};
-
-module.exports = {cssDevConfig, cssProdConfig};
+})

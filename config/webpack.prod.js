@@ -1,9 +1,9 @@
 const webpack = require('webpack');
+const TerserPlugin = require('terser-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const UglifyJsWebpackPlugin = require('uglifyjs-webpack-plugin');
 const CompressionWebpackPlugin = require('compression-webpack-plugin');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
-const {cssLoader, postcssLoader, scssLoader} = require('./postcss.config.js').cssProdConfig;
+const {cssLoader, postcssLoader, scssLoader} = require('./postcss.config')();
 
 module.exports = {
   output: {
@@ -26,12 +26,10 @@ module.exports = {
   optimization: {
     nodeEnv: 'production',
     usedExports: true,
-    occurrenceOrder: true,
     minimizer: [
-      new UglifyJsWebpackPlugin({
-        cache: true,
-        parallel: true,
-        sourceMap: true
+      new TerserPlugin({
+            parallel: true,
+            extractComments: false
       }),
       new OptimizeCssAssetsPlugin({})
     ],
@@ -47,10 +45,8 @@ module.exports = {
     }
   },
   plugins: [
-    new webpack.HashedModuleIdsPlugin(),
-    new UglifyJsWebpackPlugin({sourceMap: true}),
     new MiniCssExtractPlugin({
-      filename: 'styles/[name].[chunkHash].css',
+      filename: 'styles/[name].css',
       chunkFilename: 'styles/[id].css'
     }),
     new CompressionWebpackPlugin({
