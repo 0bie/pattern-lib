@@ -30,7 +30,7 @@ function renderPicker({id, items, groups, title, subtitle, rounded, classArr}) {
           <h1 class="picker-title">${title}</h1>
           ${Button({size: 'sm', icon: exitIcon, classArr: ['btn--link']})}
         </div>
-        ${Input({id: `input_${id}`, size: 'xs', inputClass: ['picker-searchbar'], placeholder: 'Type to filter...'})}
+        ${Input({id: `input_${id}`, inputId: `${id}_picker_input`, size: 'xs', inputClass: ['picker-searchbar'], placeholder: 'Type to filter...'})}
       </header>
       <h3 class="picker-subtitle">${subtitle}</h3>
       <div id=${id} class="picker-content">

@@ -26,7 +26,7 @@ export const inputMarkup = template;
 function renderInput(input) {
 
   const {
-    id,
+    id = '',
     size,
     placeholder,
     icon,
@@ -43,8 +43,8 @@ function renderInput(input) {
   const isValidated = hint && pattern;
   const patternAttributes = pattern ? `data-pattern="${pattern}" data-hint="${id}-hint"` : '';
 
-  if (!id || !size) {
-    throw new Error('renderInput method requires `id` and `size` as a string');
+  if (!inputId || !size) {
+    throw new Error('renderInput method requires `inputId` and `size` as a string');
   }
   return (
     /* eslint-disable indent */
@@ -107,7 +107,7 @@ function template() {
     /* eslint-disable indent */
     `<div class="mb--md">
       <div class="input-container">
-        ${renderInput(Object.assign({}, input, {id: 'input_error_test', state: 'error'}))}
+        ${renderInput(Object.assign({}, input, {id: 'input_error_test', inputId: 'foo', state: 'error'}))}
       </div>
       ${renderInput(input_sm)}
       ${renderInput(input_md)}
@@ -120,7 +120,8 @@ function template() {
       <div>
         ${
           renderInput(Object.assign({}, input_validate, {
-            id: 'input_validate1',
+            id: 'input_valid',
+            inputId: 'input_validate2',
             pattern: '^[a-zA-Z]+$',
             placeholder: 'Type a letter...'
           }))
@@ -151,9 +152,9 @@ function template() {
         renderInputGroup({
           display: 'inline',
           inputArr: [
-            renderInput(Object.assign({}, input, {id: 'input_group1'})),
-            renderInput(Object.assign({}, input, {id: 'input_group2'})),
-            renderInput(Object.assign({}, input, {id: 'input_group3'}))
+            renderInput(Object.assign({}, input, {inputId: 'input_group1'})),
+            renderInput(Object.assign({}, input, {inputId: 'input_group2'})),
+            renderInput(Object.assign({}, input, {inputId: 'input_group3'}))
           ]
         })
       }
@@ -163,9 +164,9 @@ function template() {
         renderInputGroup({
           display: 'block',
           inputArr: [
-            renderInput(Object.assign({}, input, {id: 'input_groupa'})),
-            renderInput(Object.assign({}, input, {id: 'input_groupb'})),
-            renderInput(Object.assign({}, input, {id: 'input_groupc'}))
+            renderInput(Object.assign({}, input, {inputId: 'input_groupa'})),
+            renderInput(Object.assign({}, input, {inputId: 'input_groupb'})),
+            renderInput(Object.assign({}, input, {inputId: 'input_groupc'}))
           ]
         })
       }
@@ -176,9 +177,9 @@ function template() {
           display: 'inline',
           rounded: true,
           inputArr: [
-            renderInput(Object.assign({}, input, {id: 'input_group_roundeda'})),
-            renderInput(Object.assign({}, input, {id: 'input_group_roundedb'})),
-            renderInput(Object.assign({}, input, {id: 'input_group_roundedc'}))
+            renderInput(Object.assign({}, input, {inputId: 'input_group_roundeda'})),
+            renderInput(Object.assign({}, input, {inputId: 'input_group_roundedb'})),
+            renderInput(Object.assign({}, input, {inputId: 'input_group_roundedc'}))
           ]
         })
       }
@@ -189,9 +190,9 @@ function template() {
           display: 'block',
           rounded: true,
           inputArr: [
-            renderInput(Object.assign({}, input, {id: 'input_group_rounded1'})),
-            renderInput(Object.assign({}, input, {id: 'input_group_rounded2'})),
-            renderInput(Object.assign({}, input, {id: 'input_group_rounded3'}))
+            renderInput(Object.assign({}, input, {inputId: 'input_group_rounded1'})),
+            renderInput(Object.assign({}, input, {inputId: 'input_group_rounded2'})),
+            renderInput(Object.assign({}, input, {inputId: 'input_group_rounded3'}))
           ]
         })
       }
