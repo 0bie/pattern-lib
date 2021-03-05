@@ -1,5 +1,5 @@
 const {cssDevConfig} = require('./postcss.config.js');
-const {NamedModulesPlugin} = require('webpack');
+const {cssLoader, postcssLoader, scssLoader} = require('./postcss.config')()
 
 module.exports = {
   output: {
@@ -11,11 +11,13 @@ module.exports = {
     rules: [
       {
         test: /\.s?css$/,
-        use: cssDevConfig
+        use: [
+            {loader: 'style-loader'},
+            cssLoader,
+            postcssLoader,
+            scssLoader
+        ]
       }
     ]
-  },
-  plugins: [
-    new NamedModulesPlugin()
-  ]
+  }
 };

@@ -3,7 +3,7 @@ const TerserPlugin = require('terser-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CompressionWebpackPlugin = require('compression-webpack-plugin');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
-const {cssLoader, postcssLoader, scssLoader} = require('./postcss.config.js').cssProdConfig;
+const {cssLoader, postcssLoader, scssLoader} = require('./postcss.config')();
 
 module.exports = {
   output: {
@@ -26,12 +26,10 @@ module.exports = {
   optimization: {
     nodeEnv: 'production',
     usedExports: true,
-    occurrenceOrder: true,
     minimizer: [
       new TerserPlugin({
-        cache: true,
-        parallel: true,
-        sourceMap: true
+            parallel: true,
+            extractComments: false
       }),
       new OptimizeCssAssetsPlugin({
         cssProcessorPluginOptions: {
@@ -54,9 +52,8 @@ module.exports = {
     }
   },
   plugins: [
-    new webpack.HashedModuleIdsPlugin(),
     new MiniCssExtractPlugin({
-      filename: 'styles/[name].[chunkHash].css',
+      filename: 'styles/[name].css',
       chunkFilename: 'styles/[id].css'
     }),
     new CompressionWebpackPlugin({
