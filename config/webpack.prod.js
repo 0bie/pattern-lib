@@ -28,14 +28,8 @@ module.exports = {
     usedExports: true,
     minimizer: [
       new TerserPlugin({
-<<<<<<< HEAD
             parallel: true,
             extractComments: false
-=======
-        cache: true,
-        parallel: true,
-        sourceMap: true
->>>>>>> dev
       }),
       new OptimizeCssAssetsPlugin({
         cssProcessorPluginOptions: {
