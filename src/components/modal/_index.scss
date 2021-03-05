@@ -46,7 +46,8 @@
     display: flex;
     align-items: center;
     margin-bottom: size(xs);
-    padding: size(xxs) size(sm);
+    padding-top: size(xxs);
+    padding-bottom: size(xxs);
   }
 
   .modal-title {

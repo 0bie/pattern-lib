@@ -3,15 +3,28 @@
   .notice {
     display: flex;
     align-items: center;
+    flex-direction: column;
     justify-content: space-between;
     padding: size(xs) size(sm);
     border: 0.0625em solid;
     border-color: var(--color-border);
   }
 
+  .notice-content {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
   .notice p {
     flex-grow: 1;
     text-shadow: var(--color-text-shadow);
+  }
+
+  .notice-footer {
+    width: 100%;
+    padding-top: size(xs);
   }
 
   /**

@@ -106,4 +106,3 @@ function navigationToggleHandler(parent, evt) {
   }
 
 }
-

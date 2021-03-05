@@ -28,10 +28,23 @@ module.exports = {
     usedExports: true,
     minimizer: [
       new TerserPlugin({
+<<<<<<< HEAD
             parallel: true,
             extractComments: false
+=======
+        cache: true,
+        parallel: true,
+        sourceMap: true
+>>>>>>> dev
       }),
-      new OptimizeCssAssetsPlugin({})
+      new OptimizeCssAssetsPlugin({
+        cssProcessorPluginOptions: {
+          preset: ['default', {
+            calc: false,
+            zindex: false
+          }]
+        }
+      })
     ],
     splitChunks: {
       cacheGroups: {

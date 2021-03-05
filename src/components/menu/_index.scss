@@ -43,6 +43,11 @@
     text-decoration: none;
   }
 
+  .menu-divider a {
+    padding: 0;
+    width: 100%;
+  }
+
   .menu-item .icon {
     margin-right: 0.5em;
     opacity: 0.85;

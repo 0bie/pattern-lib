@@ -1,6 +1,7 @@
 @if (get('icon', $components)) {
 
   .icon {
+    font-size: 1rem;
     fill: currentColor;
     color: inherit;
   }

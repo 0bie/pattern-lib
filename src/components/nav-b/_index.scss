@@ -232,6 +232,7 @@
     outline: 0;
     box-shadow: 0 0 3px theme(default);
   }
+
   .nav-b--sm .drawer.is-visible {
     @include translate(0, null);
   }
